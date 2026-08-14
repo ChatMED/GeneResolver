@@ -1,0 +1,170 @@
+{
+  "id": "DEMO_CASE_SINGLE_GENE",
+  "subject": {
+    "id": "DEMO_CASE_SINGLE_GENE",
+    "sex": "MALE"
+  },
+  "phenotypicFeatures": [
+    {
+      "type": {
+        "id": "HP:0000083",
+        "label": "Renal failure"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0001903",
+        "label": "Anaemia"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0000093",
+        "label": "Proteinuria"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0003138",
+        "label": "Increased blood urea nitrogen"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0003326",
+        "label": "Muscle pain"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0012531",
+        "label": "Pain"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0000822",
+        "label": "High blood pressure"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0002574",
+        "label": "Intermittent abdominal pain"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0002027",
+        "label": "Abdominal pain"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0033850",
+        "label": "Coldness"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0000089",
+        "label": "Small kidneys"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0001649",
+        "label": "Fast heart rate"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0009763",
+        "label": "Limb pain"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0032155",
+        "label": "Abdominal cramps"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0000966",
+        "label": "Sweating, decreased"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0000975",
+        "label": "Sweating"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0001638",
+        "label": "Cardiomyopathy"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0001639",
+        "label": "Cardiomyopathy, hypertrophic"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0002046",
+        "label": "Heat intolerance"
+      },
+      "excluded": false
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "interpretation-DEMO_CASE_SINGLE_GENE",
+      "progressStatus": "COMPLETED",
+      "diagnosis": {
+        "disease": {
+          "id": "UNKNOWN",
+          "label": "Fabry disease"
+        },
+        "genomicInterpretations": []
+      }
+    }
+  ],
+  "metaData": {
+    "created": "2026-08-14T08:51:50.858854+00:00",
+    "createdBy": "GeneResolve v2",
+    "resources": [
+      {
+        "id": "hp",
+        "name": "human phenotype ontology",
+        "url": "http://purl.obolibrary.org/obo/hp.owl",
+        "version": "unknown",
+        "namespacePrefix": "HP",
+        "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
+      }
+    ],
+    "phenopacketSchemaVersion": "2.0"
+  }
+}

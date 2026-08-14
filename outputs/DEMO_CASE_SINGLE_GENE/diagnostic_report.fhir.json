@@ -1,0 +1,870 @@
+{
+  "resourceType": "Bundle",
+  "id": "generesolve-bundle-DEMO-CASE-SINGLE-GENE",
+  "type": "collection",
+  "timestamp": "2026-08-14T08:51:50.855310+00:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-DEMO-CASE-SINGLE-GENE",
+        "meta": {
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+              "code": "ANONYED",
+              "display": "anonymized"
+            }
+          ]
+        },
+        "gender": "male",
+        "extension": [
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/age-at-presentation",
+            "valueQuantity": {
+              "value": 45.0,
+              "unit": "a",
+              "system": "http://unitsofmeasure.org",
+              "code": "a"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d1c0fdea-cd6a-4c48-8215-71a555171d57",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "generesolve-DEMO-CASE-SINGLE-GENE",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomics-report"
+          ]
+        },
+        "status": "partial",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE",
+                "display": "Genetics"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81247-9",
+              "display": "Master HL7 genetic variant reporting panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "effectiveDateTime": "2026-08-14T08:51:50.855310+00:00",
+        "issued": "2026-08-14T08:51:50.855310+00:00",
+        "result": [
+          {
+            "reference": "urn:uuid:bdc6ea6a-dadc-4167-863b-57ddce678b17"
+          },
+          {
+            "reference": "urn:uuid:47911740-43ac-4e55-92a7-c7ee46df4a44"
+          },
+          {
+            "reference": "urn:uuid:b2645743-f3b0-47c6-af86-672bd5b70bdc"
+          },
+          {
+            "reference": "urn:uuid:c166ab70-60a4-4bab-8597-e295dfafa588"
+          },
+          {
+            "reference": "urn:uuid:342d80b9-cc0a-462b-952b-6e4041e1d71b"
+          }
+        ],
+        "conclusion": "The patient's clinical presentation, including renal failure, proteinuria, muscle pain, abdominal pain, limb pain, high blood pressure, and small kidneys, strongly suggests Fabry disease. The differential reasoner identifies GLA as the most likely candidate gene (high confidence) associated with this condition. Family history is also positive.",
+        "conclusionCode": [
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "324",
+                "display": "Fabry disease"
+              }
+            ],
+            "text": "Fabry disease"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "49041",
+                "display": "IgG4-related retroperitoneal fibrosis"
+              }
+            ],
+            "text": "IgG4-related retroperitoneal fibrosis"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.omim.org",
+                "code": "621369",
+                "display": "Systemic lupus erythematosus 18"
+              }
+            ],
+            "text": "Systemic lupus erythematosus 18"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.omim.org",
+                "code": "301500",
+                "display": "fabry disease"
+              }
+            ],
+            "text": "fabry disease"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "79276",
+                "display": "Acute intermittent porphyria"
+              }
+            ],
+            "text": "Acute intermittent porphyria"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "904",
+                "display": "Williams syndrome"
+              }
+            ],
+            "text": "Williams syndrome"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "183",
+                "display": "Eosinophilic granulomatosis with polyangiitis"
+              }
+            ],
+            "text": "Eosinophilic granulomatosis with polyangiitis"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "340",
+                "display": "Hemorrhagic fever-renal syndrome"
+              }
+            ],
+            "text": "Hemorrhagic fever-renal syndrome"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/decision-support-disclaimer",
+            "valueString": "This is a preliminary decision-support output. It must be reviewed by a qualified clinician or clinical geneticist before any diagnostic or clinical action is taken."
+          },
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/confidence-level",
+            "valueString": "high"
+          },
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/etiology-classification",
+            "valueString": "single_gene — The patient presents with a constellation of symptoms including kidney failure, burning limb pain, abdominal pain, intolerance to temperature extremes, hypertension, and hypertrophic cardiomyopathy, along with a family history suggestive of an inherited disorder affecting multiple systems.. The combination of symptoms affecting multiple organ systems (kidneys, nerves, heart) and the presence of similar symptoms in family members (daughter, maternal cousin) strongly suggests a single genetic defect causing a systemic disorder. The specific symptoms point towards conditions like Fabry disease or mitochondrial disorders, which are typically inherited in a single-gene manner"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5a9b3fac-35bb-4b1d-a040-1a6e73cbbe5a",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-0",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "324",
+              "display": "Fabry disease"
+            }
+          ],
+          "text": "Fabry disease"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.9123. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:477f6e6c-4129-40bc-938c-df1f766e7fd1",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-1",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "49041",
+              "display": "IgG4-related retroperitoneal fibrosis"
+            }
+          ],
+          "text": "IgG4-related retroperitoneal fibrosis"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0115. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7061d8b0-3d5d-4188-8d9f-b3a8a9457d16",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-2",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.omim.org",
+              "code": "621369",
+              "display": "Systemic lupus erythematosus 18"
+            }
+          ],
+          "text": "Systemic lupus erythematosus 18"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.01. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f1f8e22c-9114-49ff-b7f0-009d9f0c3ae4",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-3",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.omim.org",
+              "code": "301500",
+              "display": "fabry disease"
+            }
+          ],
+          "text": "fabry disease"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0039. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9dc5c698-fed3-49d2-a7ac-3c9b07629dfe",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-4",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "79276",
+              "display": "Acute intermittent porphyria"
+            }
+          ],
+          "text": "Acute intermittent porphyria"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0026. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f3aa0358-098d-49fe-bd62-8f93ac047723",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-5",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "904",
+              "display": "Williams syndrome"
+            }
+          ],
+          "text": "Williams syndrome"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0023. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b6b97bf9-68c5-4002-8992-2c87b4a89c8d",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-6",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "183",
+              "display": "Eosinophilic granulomatosis with polyangiitis"
+            }
+          ],
+          "text": "Eosinophilic granulomatosis with polyangiitis"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0022. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b3ab41b7-918d-4a7e-9d64-3d87782b7326",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-7",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "340",
+              "display": "Hemorrhagic fever-renal syndrome"
+            }
+          ],
+          "text": "Hemorrhagic fever-renal syndrome"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0022. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2d4f6fdd-66ca-473d-ba60-616f571f72f7",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "svcreq-0",
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "urgent",
+        "code": {
+          "coding": [
+            {
+              "display": "Enzyme activity assay for alpha-galactosidase A (GLA)"
+            }
+          ],
+          "text": "Enzyme activity assay for alpha-galactosidase A (GLA)"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "reasonCode": [
+          {
+            "text": "The patient's phenotype (renal failure, proteinuria, hypertrophic cardiomyopathy, burning limb pain, abdominal pain, intolerance to temperature extremes) and family history are highly suggestive of Fabry disease. The top candidate gene is GLA, which encodes alpha-galactosidase A. Measuring the enzyme activity in leukocytes or plasma can directly assess the function of the GLA gene product."
+          }
+        ],
+        "note": [
+          {
+            "text": "Power: decisive. A positive result would establish: Fabry disease if enzyme activity is deficient (<20% of normal). A negative result would rule out: Fabry disease if enzyme activity is normal or near normal (>20% of normal)."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:82096e84-87a5-4f2f-9380-49572e571485",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "svcreq-1",
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "urgent",
+        "code": {
+          "coding": [
+            {
+              "display": "Genetic sequencing of the GLA gene"
+            }
+          ],
+          "text": "Genetic sequencing of the GLA gene"
+        },
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "reasonCode": [
+          {
+            "text": "Given the strong suspicion for Fabry disease based on clinical features and family history, sequencing the GLA gene will identify pathogenic variants responsible for deficient alpha-galactosidase A activity. This test can confirm the diagnosis and identify specific mutations."
+          }
+        ],
+        "note": [
+          {
+            "text": "Power: decisive. A positive result would establish: Fabry disease if a pathogenic variant in GLA is identified. A negative result would rule out: Fabry disease if no pathogenic variant in GLA is identified (though this would be less likely given the strong clinical picture and family history; a normal enzyme assay would be more definitive for ruling out Fabry)."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bdc6ea6a-dadc-4167-863b-57ddce678b17",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-GLA",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "GLA"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "high (GeneResolve score 0.972)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:47911740-43ac-4e55-92a7-c7ee46df4a44",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-ELN",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "ELN"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "low (GeneResolve score 0.357)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b2645743-f3b0-47c6-af86-672bd5b70bdc",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-DNAJC30",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "DNAJC30"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "low (GeneResolve score 0.350)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c166ab70-60a4-4bab-8597-e295dfafa588",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-FKBP6",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "FKBP6"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "low (GeneResolve score 0.343)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:342d80b9-cc0a-462b-952b-6e4041e1d71b",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-TBL2",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "TBL2"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "low (GeneResolve score 0.333)"
+          }
+        ]
+      }
+    }
+  ]
+}

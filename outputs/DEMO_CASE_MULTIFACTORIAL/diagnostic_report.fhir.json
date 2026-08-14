@@ -1,0 +1,459 @@
+{
+  "resourceType": "Bundle",
+  "id": "generesolve-bundle-DEMO-CASE-MULTIFACTORIAL",
+  "type": "collection",
+  "timestamp": "2026-08-14T08:43:38.524929+00:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-DEMO-CASE-MULTIFACTORIAL",
+        "meta": {
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+              "code": "ANONYED",
+              "display": "anonymized"
+            }
+          ]
+        },
+        "gender": "female",
+        "extension": [
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/age-at-presentation",
+            "valueQuantity": {
+              "value": 49.0,
+              "unit": "a",
+              "system": "http://unitsofmeasure.org",
+              "code": "a"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8d872bf1-6319-4fcf-9742-180d488a0b66",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "generesolve-DEMO-CASE-MULTIFACTORIAL",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomics-report"
+          ]
+        },
+        "status": "partial",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE",
+                "display": "Genetics"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81247-9",
+              "display": "Master HL7 genetic variant reporting panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "effectiveDateTime": "2026-08-14T08:43:38.524929+00:00",
+        "issued": "2026-08-14T08:43:38.524929+00:00",
+        "result": [
+          {
+            "reference": "urn:uuid:c48272f9-cfef-4437-933a-cce3c89aff95"
+          },
+          {
+            "reference": "urn:uuid:03780db6-5f09-4d65-a126-054d488faa96"
+          },
+          {
+            "reference": "urn:uuid:1e221f03-c580-4c85-94ab-ca3b7e47d287"
+          }
+        ],
+        "conclusion": "The patient presents with a complex phenotype including tingling, a tumor, racing heart, fainting, high TSH, polydipsia, and weight loss. Despite these symptoms, the analysis did not identify any specific candidate genes strongly associated with this combination of findings. Further investigation is needed to clarify the underlying cause.",
+        "conclusionCode": [
+          {
+            "coding": [
+              {
+                "display": "Sporadic pheochromocytoma/secreting paraganglioma"
+              }
+            ],
+            "text": "Sporadic pheochromocytoma/secreting paraganglioma"
+          },
+          {
+            "coding": [
+              {
+                "display": "Type 2 Diabetes Mellitus"
+              }
+            ],
+            "text": "Type 2 Diabetes Mellitus"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/decision-support-disclaimer",
+            "valueString": "This is a preliminary decision-support output. It must be reviewed by a qualified clinician or clinical geneticist before any diagnostic or clinical action is taken."
+          },
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/confidence-level",
+            "valueString": "insufficient"
+          },
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/etiology-classification",
+            "valueString": "multifactorial — The patient's symptoms of polyuria, polydipsia, polyphagia, and weight loss, along with elevated blood glucose and ketonuria, are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones (though serum ketones were negative at follow-up). While other causes exist, the constellation strongly suggests an autoimmune process destroying pancreatic beta cells.. Diabetes mellitus type 1 is typically caused by an autoimmune destruction of pancreatic beta cells leading to insulin deficiency. This is considered a multifactorial disease involving genetic predisposition (multiple genes) and environmental triggers (like viral infections) interacting to initiate the autoimmune response. It is not primarily caused by a single gene defect, a chromosomal abnormality, or a non-genetic acquired cause"
+          },
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/sources-consulted",
+            "valueString": "hpo_a, open_targets, gwas_catalog, europepmc"
+          },
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/investigation-limitation",
+            "valueString": "No polygenic risk score was computed — GeneResolve does not carry PRS weights. GWAS loci are reported as associations, not as a per-patient risk estimate."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4b86e0e4-6d44-4069-b2c5-13c2ce7c2f3d",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-0",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "display": "Sporadic pheochromocytoma/secreting paraganglioma"
+            }
+          ],
+          "text": "Sporadic pheochromocytoma/secreting paraganglioma"
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "note": [
+          {
+            "text": "Likelihood: moderate. Supporting: Tumour; Racing heart; Fainting; Weight loss; Tingling. Against: High TSH; Polydipsia; blood glucose (increased); free T4 (decreased)."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9150d5dd-e01e-405c-a9a6-3dd26ba16315",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-1",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "display": "Type 2 Diabetes Mellitus"
+            }
+          ],
+          "text": "Type 2 Diabetes Mellitus"
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "note": [
+          {
+            "text": "Likelihood: moderate. Supporting: Weight loss; Polydipsia; blood glucose (increased). Against: Tumour; Racing heart; Fainting; Tingling."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:22e867c4-303e-4ccc-acf9-b97da84495d9",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "svcreq-0",
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "routine",
+        "code": {
+          "coding": [
+            {
+              "display": "Plasma metanephrines and normetanephrines"
+            }
+          ],
+          "text": "Plasma metanephrines and normetanephrines"
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "reasonCode": [
+          {
+            "text": "The patient has symptoms potentially consistent with pheochromocytoma/paraganglioma (tumour, racing heart, fainting, weight loss, tingling). Measuring plasma metanephrines and normetanephrines is the standard biochemical test to screen for these catecholamine-secreting tumors."
+          }
+        ],
+        "note": [
+          {
+            "text": "Power: exclusionary. A positive result would establish: Pheochromocytoma/paraganglioma if elevated. A negative result would rule out: Pheochromocytoma/paraganglioma if normal (though sensitivity is not 100%)."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:49a4c5fd-439a-4670-abb4-f16104269b09",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "svcreq-1",
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "routine",
+        "code": {
+          "coding": [
+            {
+              "display": "HbA1c"
+            }
+          ],
+          "text": "HbA1c"
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "reasonCode": [
+          {
+            "text": "The patient has symptoms (polydipsia, weight loss) and biochemistry (increased blood glucose) suggestive of diabetes mellitus. HbA1c provides a measure of average blood glucose control over the preceding 2-3 months and helps confirm the diagnosis of diabetes."
+          }
+        ],
+        "note": [
+          {
+            "text": "Power: exclusionary. A positive result would establish: Diabetes mellitus if elevated. A negative result would rule out: Diabetes mellitus if normal (though less sensitive for recent onset)."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7c618be7-53c8-4a3a-902d-233742aba33a",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "svcreq-2",
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "routine",
+        "code": {
+          "coding": [
+            {
+              "display": "Autoantibody panel for Type 1 Diabetes Mellitus (e.g., GAD65, IA-2, insulin autoantibodies)"
+            }
+          ],
+          "text": "Autoantibody panel for Type 1 Diabetes Mellitus (e.g., GAD65, IA-2, insulin autoantibodies)"
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "reasonCode": [
+          {
+            "text": "The patient presents with symptoms suggestive of diabetes mellitus (polydipsia, weight loss, increased blood glucose) at age 49. While Type 2 Diabetes is more common at this age, the presentation could potentially be Latent Autoimmune Diabetes in Adults (LADA), a form of Type 1 diabetes that develops more slowly in adults. Testing for autoantibodies specific to pancreatic beta cells can help differentiate between Type 1/LADA and Type 2 diabetes."
+          }
+        ],
+        "note": [
+          {
+            "text": "Power: supportive. A positive result would establish: Type 1 Diabetes Mellitus or LADA if positive. A negative result would rule out: Type 1 Diabetes Mellitus or LADA if negative (though some patients may be antibody negative)."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:da01fc2f-def6-4d34-976f-a1f4166bc49d",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "svcreq-3",
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "routine",
+        "code": {
+          "coding": [
+            {
+              "display": "Thyroid peroxidase antibodies (TPOAb)"
+            }
+          ],
+          "text": "Thyroid peroxidase antibodies (TPOAb)"
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "reasonCode": [
+          {
+            "text": "The patient has high TSH and low free T4, indicating hypothyroidism. Autoimmune thyroid disease (Hashimoto's thyroiditis) is the most common cause of hypothyroidism in iodine-sufficient areas. Testing for TPOAb can confirm an autoimmune etiology."
+          }
+        ],
+        "note": [
+          {
+            "text": "Power: exclusionary. A positive result would establish: Autoimmune hypothyroidism if positive. A negative result would rule out: Autoimmune hypothyroidism if negative (though sensitivity is not 100%)."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c48272f9-cfef-4437-933a-cce3c89aff95",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "lab-0",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "display": "blood glucose"
+            }
+          ],
+          "text": "blood glucose"
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "H",
+                "display": "High"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:03780db6-5f09-4d65-a126-054d488faa96",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "lab-1",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "display": "TSH"
+            }
+          ],
+          "text": "TSH"
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "H",
+                "display": "High"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1e221f03-c580-4c85-94ab-ca3b7e47d287",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "lab-2",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "display": "free T4"
+            }
+          ],
+          "text": "free T4"
+        },
+        "subject": {
+          "reference": "urn:uuid:b9da37d1-9add-4a0c-9b50-734faf400255"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "L",
+                "display": "Low"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

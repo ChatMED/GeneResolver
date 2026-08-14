@@ -1,0 +1,961 @@
+{
+  "resourceType": "Bundle",
+  "id": "generesolve-bundle-DEMO-CASE-VCF-LIRICAL",
+  "type": "collection",
+  "timestamp": "2026-08-14T08:25:08.770130+00:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-DEMO-CASE-VCF-LIRICAL",
+        "meta": {
+          "security": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+              "code": "ANONYED",
+              "display": "anonymized"
+            }
+          ]
+        },
+        "gender": "female",
+        "extension": [
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/age-at-presentation",
+            "valueQuantity": {
+              "value": 14.0,
+              "unit": "a",
+              "system": "http://unitsofmeasure.org",
+              "code": "a"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2e335cbf-47fd-41ce-b87b-30b8eaa2f22c",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "generesolve-DEMO-CASE-VCF-LIRICAL",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomics-report"
+          ]
+        },
+        "status": "partial",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE",
+                "display": "Genetics"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81247-9",
+              "display": "Master HL7 genetic variant reporting panel"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "effectiveDateTime": "2026-08-14T08:25:08.770130+00:00",
+        "issued": "2026-08-14T08:25:08.770130+00:00",
+        "result": [
+          {
+            "reference": "urn:uuid:76ade2f4-6696-4b2e-8228-3bd339461010"
+          },
+          {
+            "reference": "urn:uuid:4fbf2ed3-a32a-4ae2-b1d5-dea50b3eb551"
+          },
+          {
+            "reference": "urn:uuid:28c2e0dd-38e5-43ad-b018-1430fb030a45"
+          },
+          {
+            "reference": "urn:uuid:a5b4adfa-d710-4f88-964f-9d58e18ac900"
+          },
+          {
+            "reference": "urn:uuid:126ac625-03c2-401f-abab-59bd97f67677"
+          }
+        ],
+        "conclusion": "The patient's clinical presentation, including macrocephaly, dystonia, cerebral atrophy, subdural hemorrhage, glutaric aciduria, and aciduria, strongly suggests Glutaric acidemia I. The differential reasoning analysis identifies GCDH as the most likely candidate gene (high confidence) associated with this condition.",
+        "conclusionCode": [
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "25",
+                "display": "Glutaryl-CoA dehydrogenase deficiency"
+              }
+            ],
+            "text": "Glutaryl-CoA dehydrogenase deficiency"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.omim.org",
+                "code": "231670",
+                "display": "Glutaric acidemia I"
+              }
+            ],
+            "text": "Glutaric acidemia I"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.omim.org",
+                "code": "231680",
+                "display": "Multiple acyl-CoA dehydrogenation deficiency"
+              }
+            ],
+            "text": "Multiple acyl-CoA dehydrogenation deficiency"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.omim.org",
+                "code": "231690",
+                "display": "Glutaric aciduria III"
+              }
+            ],
+            "text": "Glutaric aciduria III"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "26791",
+                "display": "Multiple acyl-CoA dehydrogenase deficiency"
+              }
+            ],
+            "text": "Multiple acyl-CoA dehydrogenase deficiency"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "79241",
+                "display": "Biotinidase deficiency"
+              }
+            ],
+            "text": "Biotinidase deficiency"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.omim.org",
+                "code": "616277",
+                "display": "Mitochondrial short-chain enoyl-coa hydratase 1 deficiency"
+              }
+            ],
+            "text": "Mitochondrial short-chain enoyl-coa hydratase 1 deficiency"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.omim.org",
+                "code": "277410",
+                "display": "Methylmalonic aciduria and homocystinuria, cblD type"
+              }
+            ],
+            "text": "Methylmalonic aciduria and homocystinuria, cblD type"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/decision-support-disclaimer",
+            "valueString": "This is a preliminary decision-support output. It must be reviewed by a qualified clinician or clinical geneticist before any diagnostic or clinical action is taken."
+          },
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/confidence-level",
+            "valueString": "moderate"
+          },
+          {
+            "url": "https://generesolve.io/fhir/StructureDefinition/etiology-classification",
+            "valueString": "single_gene — The patient's presentation of macrocephaly, encephalopathic crisis with dystonia, cerebral atrophy, subdural hemorrhage, and glutaric aciduria is characteristic of Glutaric Aciduria Type 1 (GA-1), which is caused by a deficiency in the glutaryl-CoA dehydrogenase enzyme.. GA-1 is an autosomal recessive disorder caused by mutations in the SLC25A13 gene, leading to a loss of function of the encoded protein. This fits the definition of a single gene disorder with a loss-of-function mechanism"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d1605cb9-94e0-4c60-814d-01034d9be68e",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-0",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "25",
+              "display": "Glutaryl-CoA dehydrogenase deficiency"
+            }
+          ],
+          "text": "Glutaryl-CoA dehydrogenase deficiency"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.6298. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:82ded999-6eb5-43c5-8811-b5b11e152c8c",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-1",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.omim.org",
+              "code": "231670",
+              "display": "Glutaric acidemia I"
+            }
+          ],
+          "text": "Glutaric acidemia I"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.3356. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4bd365b8-3c9f-46d5-a0d4-2a87c0d03ca5",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-2",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.omim.org",
+              "code": "231680",
+              "display": "Multiple acyl-CoA dehydrogenation deficiency"
+            }
+          ],
+          "text": "Multiple acyl-CoA dehydrogenation deficiency"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0173. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1e5c4e6f-aa28-44e5-902f-de4dc1a3a658",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-3",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.omim.org",
+              "code": "231690",
+              "display": "Glutaric aciduria III"
+            }
+          ],
+          "text": "Glutaric aciduria III"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0109. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8d1c4952-581c-4ae5-8865-d355ba67e269",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-4",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "26791",
+              "display": "Multiple acyl-CoA dehydrogenase deficiency"
+            }
+          ],
+          "text": "Multiple acyl-CoA dehydrogenase deficiency"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0057. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ac4405ab-102f-481f-8acd-1ff79022580c",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-5",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "79241",
+              "display": "Biotinidase deficiency"
+            }
+          ],
+          "text": "Biotinidase deficiency"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3d1b5671-9008-4816-a2a4-1a5e7b9b9b64",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-6",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.omim.org",
+              "code": "616277",
+              "display": "Mitochondrial short-chain enoyl-coa hydratase 1 deficiency"
+            }
+          ],
+          "text": "Mitochondrial short-chain enoyl-coa hydratase 1 deficiency"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bb569b02-b76a-4ca7-9ccc-9a8f7a9dde2d",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-7",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.omim.org",
+              "code": "277410",
+              "display": "Methylmalonic aciduria and homocystinuria, cblD type"
+            }
+          ],
+          "text": "Methylmalonic aciduria and homocystinuria, cblD type"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:efe539fd-56ea-4951-a208-a463f01d5883",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "svcreq-0",
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "urgent",
+        "code": {
+          "coding": [
+            {
+              "display": "Enzyme activity assay for Glutaryl-CoA dehydrogenase (GCDH) in fibroblasts or leukocytes"
+            }
+          ],
+          "text": "Enzyme activity assay for Glutaryl-CoA dehydrogenase (GCDH) in fibroblasts or leukocytes"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "reasonCode": [
+          {
+            "text": "The patient presents with clinical features (macrocephaly, dystonia, cerebral atrophy, subdural hemorrhage, glutaric aciduria) and a likely pathogenic variant in the GCDH gene, strongly suggesting Glutaric Aciduria Type 1 (GA-1), caused by GCDH deficiency. This test directly measures the function of the enzyme encoded by the top candidate gene."
+          }
+        ],
+        "note": [
+          {
+            "text": "Power: decisive. A positive result would establish: GCDH deficiency, confirming Glutaric Aciduria Type 1 (GA-1). A negative result would rule out: Functional GCDH enzyme activity, ruling out GA-1 as the primary cause despite the variant; would necessitate re-evaluation of other candidate genes/diseases.."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:71358b75-2f21-4f2b-987b-e3b30bd6648b",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "svcreq-1",
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "routine",
+        "code": {
+          "coding": [
+            {
+              "display": "Measurement of plasma or urine acylcarnitine profile"
+            }
+          ],
+          "text": "Measurement of plasma or urine acylcarnitine profile"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "reasonCode": [
+          {
+            "text": "The patient has glutaric aciduria and a likely pathogenic variant in GCDH. An acylcarnitine profile can show characteristic elevations (e.g., C5-DC, C6-DC) consistent with GA-1 or other related disorders like Multiple Acyl-CoA Dehydrogenation Deficiency (MAD). While biochemical tests were suggested generally, this specific profile helps differentiate between GA-1 and other potential causes given the overlapping symptoms and candidate genes."
+          }
+        ],
+        "note": [
+          {
+            "text": "Power: supportive. A positive result would establish: Characteristic acylcarnitine pattern consistent with GA-1 (e.g., elevated C5 dicarboxylic acid), supporting GCDH deficiency.. A negative result would rule out: Acylcarnitine pattern inconsistent with GA-1 or suggestive of another disorder (e.g., MAD), potentially ruling out GA-1 or pointing towards a different diagnosis.."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4f13cc77-ebc1-4fbb-8872-87b2dbaeea9e",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "svcreq-2",
+        "status": "draft",
+        "intent": "proposal",
+        "priority": "routine",
+        "code": {
+          "coding": [
+            {
+              "display": "Genetic testing for SLC25A13 variants"
+            }
+          ],
+          "text": "Genetic testing for SLC25A13 variants"
+        },
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "reasonCode": [
+          {
+            "text": "The Etiology Verdict states that GA-1 is an autosomal recessive disorder caused by mutations in SLC25A13. However, the Ranked Candidate Genes list only includes GCDH. The phenotype strongly suggests GA-1. It is crucial to rule out SLC25A13 mutations if GCDH testing is negative or inconclusive."
+          }
+        ],
+        "note": [
+          {
+            "text": "Power: exclusionary. A positive result would establish: Presence of two pathogenic variants in SLC25A13, confirming Glutaric Aciduria Type 1 (GA-1) due to SLC25A13 deficiency.. A negative result would rule out: Absence of two pathogenic variants in SLC25A13, making SLC25A13 deficiency unlikely as the cause of GA-1.."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:76ade2f4-6696-4b2e-8228-3bd339461010",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-GCDH",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "GCDH"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "high (GeneResolve score 0.953)"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "47999-8",
+                  "display": "Variant"
+                }
+              ]
+            },
+            "valueString": "chr19:13007113:G:A"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4fbf2ed3-a32a-4ae2-b1d5-dea50b3eb551",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-ETFA",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "ETFA"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "moderate (GeneResolve score 0.644)"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "47999-8",
+                  "display": "Variant"
+                }
+              ]
+            },
+            "valueString": "chr15:76550938:C:T"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:28c2e0dd-38e5-43ad-b018-1430fb030a45",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-SUGCT",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "SUGCT"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "low (GeneResolve score 0.416)"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "47999-8",
+                  "display": "Variant"
+                }
+              ]
+            },
+            "valueString": "chr7:40333585:T:C"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a5b4adfa-d710-4f88-964f-9d58e18ac900",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-ALMS1",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "ALMS1"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "low (GeneResolve score 0.378)"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "47999-8",
+                  "display": "Variant"
+                }
+              ]
+            },
+            "valueString": "chr2:73675227:T:TCTC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:126ac625-03c2-401f-abab-59bd97f67677",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-NBPF1",
+        "status": "preliminary",
+        "subject": {
+          "reference": "urn:uuid:f3572ce8-2ac8-4b93-9894-5db099df7fad"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81252-9",
+              "display": "Discrete genetic variant"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6",
+                  "display": "Gene studied"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "display": "NBPF1"
+                }
+              ]
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "93044-6",
+                  "display": "Level of evidence"
+                }
+              ]
+            },
+            "valueString": "low (GeneResolve score 0.376)"
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "47999-8",
+                  "display": "Variant"
+                }
+              ]
+            },
+            "valueString": "chr1:16892276:TG:T"
+          }
+        ]
+      }
+    }
+  ]
+}

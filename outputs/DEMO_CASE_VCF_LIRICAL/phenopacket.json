@@ -1,0 +1,220 @@
+{
+  "id": "DEMO_CASE_VCF_LIRICAL",
+  "subject": {
+    "id": "DEMO_CASE_VCF_LIRICAL",
+    "sex": "FEMALE"
+  },
+  "phenotypicFeatures": [
+    {
+      "type": {
+        "id": "HP:0000256",
+        "label": "Macrocephaly"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0001332",
+        "label": "Dystonia"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0002059",
+        "label": "Cerebral atrophy"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0100309",
+        "label": "Subdural haemorrhage"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0003150",
+        "label": "Glutaric aciduria"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0012072",
+        "label": "Aciduria"
+      },
+      "excluded": false
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "interpretation-DEMO_CASE_VCF_LIRICAL",
+      "progressStatus": "COMPLETED",
+      "diagnosis": {
+        "disease": {
+          "id": "UNKNOWN",
+          "label": "glutaryl-CoA dehydrogenase deficiency"
+        },
+        "genomicInterpretations": [
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "CONTRIBUTORY",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "LIKELY_PATHOGENIC",
+              "variationDescriptor": {
+                "id": "chr19:13007113:G:A",
+                "geneContext": {
+                  "symbol": "GCDH"
+                },
+                "label": "chr19:13007113:G:A"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "UNCERTAIN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "VUS",
+              "variationDescriptor": {
+                "id": "chr15:76550938:C:T",
+                "geneContext": {
+                  "symbol": "ETFA"
+                },
+                "label": "chr15:76550938:C:T"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "UNCERTAIN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "VUS",
+              "variationDescriptor": {
+                "id": "chr15:76550938:C:T",
+                "geneContext": {
+                  "symbol": "ETFA"
+                },
+                "label": "chr15:76550938:C:T"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "UNCERTAIN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "VUS",
+              "variationDescriptor": {
+                "id": "chr11:76660124:G:GTA",
+                "geneContext": {
+                  "symbol": "ACER3"
+                },
+                "label": "chr11:76660124:G:GTA"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "UNCERTAIN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "VUS",
+              "variationDescriptor": {
+                "id": "chr11:76731050:A:G",
+                "geneContext": {
+                  "symbol": "ACER3"
+                },
+                "label": "chr11:76731050:A:G"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "UNCERTAIN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "VUS",
+              "variationDescriptor": {
+                "id": "chr2:73675227:T:TCTC",
+                "geneContext": {
+                  "symbol": "ALMS1"
+                },
+                "label": "chr2:73675227:T:TCTC"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "UNCERTAIN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "VUS",
+              "variationDescriptor": {
+                "id": "chr2:73691144:C:A",
+                "geneContext": {
+                  "symbol": "ALMS1"
+                },
+                "label": "chr2:73691144:C:A"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "BENIGN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "LIKELY_BENIGN",
+              "variationDescriptor": {
+                "id": "chr2:73716810:G:A",
+                "geneContext": {
+                  "symbol": "ALMS1"
+                },
+                "label": "chr2:73716810:G:A"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "BENIGN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "LIKELY_BENIGN",
+              "variationDescriptor": {
+                "id": "chr17:72862593:C:T",
+                "geneContext": {
+                  "symbol": "FDXR"
+                },
+                "label": "chr17:72862593:C:T"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "BENIGN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "LIKELY_BENIGN",
+              "variationDescriptor": {
+                "id": "chr17:72862593:C:T",
+                "geneContext": {
+                  "symbol": "FDXR"
+                },
+                "label": "chr17:72862593:C:T"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "metaData": {
+    "created": "2026-08-14T08:25:08.774472+00:00",
+    "createdBy": "GeneResolve v2",
+    "resources": [
+      {
+        "id": "hp",
+        "name": "human phenotype ontology",
+        "url": "http://purl.obolibrary.org/obo/hp.owl",
+        "version": "unknown",
+        "namespacePrefix": "HP",
+        "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
+      }
+    ],
+    "phenopacketSchemaVersion": "2.0"
+  }
+}
