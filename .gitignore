@@ -11,3 +11,5 @@ outputs/*/
 *.egg-info/
 build/
 dist/
+
+.idea/
