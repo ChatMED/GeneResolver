@@ -1,0 +1,4232 @@
+{
+  "n_gold": 200,
+  "n_scored": 200,
+  "classification_distribution": {
+    "vus": 191,
+    "likely_benign": 6,
+    "likely_pathogenic": 3
+  },
+  "raw_sensitivity": {
+    "agree_pathogenic_direction": 3,
+    "abstained": 191,
+    "contradicts_benign_direction": 6
+  },
+  "engine_concordance": {
+    "discordant": 145,
+    "unknown": 54,
+    "concordant": 1
+  },
+  "criterion_status_distribution": {
+    "PVS1": {
+      "not_evaluated": 103,
+      "not_applicable": 94,
+      "met": 3
+    },
+    "PM2": {
+      "met": 21,
+      "not_evaluated": 151,
+      "not_met": 28
+    },
+    "BA1": {
+      "not_met": 49,
+      "not_evaluated": 151
+    },
+    "BS1": {
+      "not_evaluated": 200
+    },
+    "PP3/BP4": {
+      "not_evaluated": 77,
+      "not_met": 6
+    },
+    "PP3": {
+      "met": 111
+    },
+    "BP4": {
+      "met": 6
+    },
+    "PM4": {
+      "not_applicable": 200
+    },
+    "BP7": {
+      "not_applicable": 200
+    }
+  },
+  "per_variant": [
+    {
+      "variant_id": "2:178723219:C:T",
+      "chrom": "2",
+      "pos": 178723219,
+      "ref": "C",
+      "alt": "T",
+      "gene": "TTN",
+      "diseases": [
+        "Dilated_cardiomyopathy_1G",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2J"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TTN",
+      "disease_context": "Autosomal recessive centronuclear myopathy"
+    },
+    {
+      "variant_id": "2:166046943:A:T",
+      "chrom": "2",
+      "pos": 166046943,
+      "ref": "A",
+      "alt": "T",
+      "gene": "SCN1A",
+      "diseases": [
+        "Developmental_and_epileptic_encephalopathy",
+        "Severe_myoclonic_epilepsy_in_infancy"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "SCN1A",
+      "disease_context": "Epilepsy with myoclonic-atonic seizures"
+    },
+    {
+      "variant_id": "12:6019447:C:G",
+      "chrom": "12",
+      "pos": 6019447,
+      "ref": "C",
+      "alt": "G",
+      "gene": "VWF",
+      "diseases": [
+        "von_Willebrand_disease_type_2M"
+      ],
+      "gold": "pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "VWF",
+      "disease_context": "Von Willebrand disease type 1"
+    },
+    {
+      "variant_id": "17:43049195:C:T",
+      "chrom": "17",
+      "pos": 43049195,
+      "ref": "C",
+      "alt": "T",
+      "gene": "BRCA1",
+      "diseases": [
+        "Hereditary_breast_ovarian_cancer_syndrome",
+        "Pancreatic_cancer_susceptibility_to_4",
+        "Breast-ovarian_cancer_familial_susceptibility_to_1",
+        "Hereditary_cancer-predisposing_syndrome",
+        "Fanconi_anemia_complementation_group_S"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "BRCA1",
+      "disease_context": "Fanconi anemia"
+    },
+    {
+      "variant_id": "17:31169893:T:G",
+      "chrom": "17",
+      "pos": 31169893,
+      "ref": "T",
+      "alt": "G",
+      "gene": "NF1",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome",
+        "Cardiovascular_phenotype"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "likely_benign",
+      "counted_criteria": [
+        "BP4"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "NF1",
+      "disease_context": "Neurofibromatosis-Noonan syndrome"
+    },
+    {
+      "variant_id": "16:57962564:C:T",
+      "chrom": "16",
+      "pos": 57962564,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CNGB1",
+      "diseases": [
+        "Retinitis_pigmentosa_45"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CNGB1",
+      "disease_context": "Retinitis pigmentosa"
+    },
+    {
+      "variant_id": "10:26157309:G:A",
+      "chrom": "10",
+      "pos": 26157309,
+      "ref": "G",
+      "alt": "A",
+      "gene": "MYO3A",
+      "diseases": [
+        "Autosomal_recessive_nonsyndromic_hearing_loss_30"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MYO3A",
+      "disease_context": "Rare autosomal recessive non-syndromic sensorineural deafness type DFNB"
+    },
+    {
+      "variant_id": "4:78472331:G:T",
+      "chrom": "4",
+      "pos": 78472331,
+      "ref": "G",
+      "alt": "T",
+      "gene": "FRAS1",
+      "diseases": [
+        "Fraser_syndrome_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "FRAS1",
+      "disease_context": "Fraser syndrome"
+    },
+    {
+      "variant_id": "2:47476439:G:A",
+      "chrom": "2",
+      "pos": 47476439,
+      "ref": "G",
+      "alt": "A",
+      "gene": "MSH2",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome",
+        "Lynch_syndrome_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MSH2",
+      "disease_context": "Lynch syndrome"
+    },
+    {
+      "variant_id": "X:38291392:C:A",
+      "chrom": "X",
+      "pos": 38291392,
+      "ref": "C",
+      "alt": "A",
+      "gene": "RPGR",
+      "diseases": [
+        "Retinitis_pigmentosa_3",
+        "Macular_degeneration_X-linked_atrophic",
+        "X-linked_cone-rod_dystrophy_1",
+        "Retinitis_pigmentosa_X-linked_and_sinorespiratory_infections_with_or_without_deafness",
+        "RPGR-related_retinopathy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "RPGR",
+      "disease_context": "Retinitis pigmentosa"
+    },
+    {
+      "variant_id": "17:31232883:T:A",
+      "chrom": "17",
+      "pos": 31232883,
+      "ref": "T",
+      "alt": "A",
+      "gene": "NF1",
+      "diseases": [
+        "Neurofibromatosis_type_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "NF1",
+      "disease_context": "Neurofibromatosis-Noonan syndrome"
+    },
+    {
+      "variant_id": "13:100527690:G:T",
+      "chrom": "13",
+      "pos": 100527690,
+      "ref": "G",
+      "alt": "T",
+      "gene": "PCCA",
+      "diseases": [
+        "Propionic_acidemia"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GGACT",
+      "disease_context": "Propionic acidemia"
+    },
+    {
+      "variant_id": "1:94103026:G:A",
+      "chrom": "1",
+      "pos": 94103026,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ABCA4",
+      "diseases": [
+        "Retinitis_pigmentosa_19",
+        "Severe_early-childhood-onset_retinal_dystrophy",
+        "Age_related_macular_degeneration_2",
+        "Cone-rod_dystrophy_3"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ABCA4",
+      "disease_context": "Retinitis pigmentosa"
+    },
+    {
+      "variant_id": "5:7878138:C:G",
+      "chrom": "5",
+      "pos": 7878138,
+      "ref": "C",
+      "alt": "G",
+      "gene": "MTRR",
+      "diseases": [
+        "Neural_tube_defects_folate-sensitive",
+        "Methylcobalamin_deficiency_type_cblE"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MTRR",
+      "disease_context": "Methylcobalamin deficiency type cblE"
+    },
+    {
+      "variant_id": "1:241512098:G:A",
+      "chrom": "1",
+      "pos": 241512098,
+      "ref": "G",
+      "alt": "A",
+      "gene": "FH",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "FH",
+      "disease_context": "Hereditary leiomyomatosis and renal cell cancer"
+    },
+    {
+      "variant_id": "19:12893564:C:T",
+      "chrom": "19",
+      "pos": 12893564,
+      "ref": "C",
+      "alt": "T",
+      "gene": "GCDH",
+      "diseases": [
+        "Glutaric_aciduria_type_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "GCDH",
+      "disease_context": "Glutaryl-CoA dehydrogenase deficiency"
+    },
+    {
+      "variant_id": "11:17442733:A:T",
+      "chrom": "11",
+      "pos": 17442733,
+      "ref": "A",
+      "alt": "T",
+      "gene": "ABCC8",
+      "diseases": [
+        "Type_2_diabetes_mellitus",
+        "Familial_hyperinsulinism",
+        "Neonatal_diabetes_mellitus",
+        "Maturity_onset_diabetes_mellitus_in_young"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ABCC8",
+      "disease_context": "Isolated permanent neonatal diabetes mellitus"
+    },
+    {
+      "variant_id": "15:55432496:C:T",
+      "chrom": "15",
+      "pos": 55432496,
+      "ref": "C",
+      "alt": "T",
+      "gene": "DNAAF4",
+      "diseases": [
+        "Dyslexia_susceptibility_to_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "DNAAF4",
+      "disease_context": "Primary ciliary dyskinesia"
+    },
+    {
+      "variant_id": "22:24502201:C:T",
+      "chrom": "22",
+      "pos": 24502201,
+      "ref": "C",
+      "alt": "T",
+      "gene": "UPB1",
+      "diseases": [
+        "Deficiency_of_beta-ureidopropionase"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "UPB1",
+      "disease_context": "Beta-ureidopropionase deficiency"
+    },
+    {
+      "variant_id": "5:126549927:A:G",
+      "chrom": "5",
+      "pos": 126549927,
+      "ref": "A",
+      "alt": "G",
+      "gene": "ALDH7A1",
+      "diseases": [
+        "Pyridoxine-dependent_epilepsy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ALDH7A1",
+      "disease_context": "Pyridoxine-dependent-developmental and epileptic encephalopathy"
+    },
+    {
+      "variant_id": "17:50194738:C:T",
+      "chrom": "17",
+      "pos": 50194738,
+      "ref": "C",
+      "alt": "T",
+      "gene": "COL1A1",
+      "diseases": [
+        "Ehlers-Danlos_syndrome_arthrochalasia_type",
+        "Osteogenesis_imperfecta_type_I",
+        "Osteogenesis_imperfecta_perinatal_lethal",
+        "Infantile_cortical_hyperostosis",
+        "Osteogenesis_imperfecta_with_normal_sclerae_dominant_form",
+        "Combined_osteogenesis_imperfecta_and_Ehlers-Danlos_syndrome_1",
+        "Osteoporosis",
+        "Osteogenesis_imperfecta_type_III"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "COL1A1",
+      "disease_context": "Classical Ehlers-Danlos syndrome"
+    },
+    {
+      "variant_id": "11:118349026:G:A",
+      "chrom": "11",
+      "pos": 118349026,
+      "ref": "G",
+      "alt": "A",
+      "gene": "CD3G",
+      "diseases": [
+        "Combined_immunodeficiency_due_to_CD3gamma_deficiency"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CD3G",
+      "disease_context": "Combined immunodeficiency due to CD3gamma deficiency"
+    },
+    {
+      "variant_id": "5:1208820:G:A",
+      "chrom": "5",
+      "pos": 1208820,
+      "ref": "G",
+      "alt": "A",
+      "gene": "SLC6A19",
+      "diseases": [
+        "Neutral_1_amino_acid_transport_defect"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "SLC6A19",
+      "disease_context": "Hartnup disease"
+    },
+    {
+      "variant_id": "8:41797511:C:T",
+      "chrom": "8",
+      "pos": 41797511,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ANK1",
+      "diseases": [
+        "Hereditary_spherocytosis_type_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "likely_benign",
+      "counted_criteria": [
+        "BP4"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ANK1",
+      "disease_context": "Hereditary spherocytosis"
+    },
+    {
+      "variant_id": "22:19724282:T:A",
+      "chrom": "22",
+      "pos": 19724282,
+      "ref": "T",
+      "alt": "A",
+      "gene": "GP1BB",
+      "diseases": [
+        "Bernard_Soulier_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GP1BB",
+      "disease_context": "Bernard-Soulier syndrome"
+    },
+    {
+      "variant_id": "22:20995744:A:C",
+      "chrom": "22",
+      "pos": 20995744,
+      "ref": "A",
+      "alt": "C",
+      "gene": "LZTR1",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome",
+        "Cardiovascular_phenotype"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "THAP7",
+      "disease_context": "Hereditary cancer-predisposing syndrome"
+    },
+    {
+      "variant_id": "18:46485071:G:A",
+      "chrom": "18",
+      "pos": 46485071,
+      "ref": "G",
+      "alt": "A",
+      "gene": "LOXHD1",
+      "diseases": [
+        "Autosomal_recessive_nonsyndromic_hearing_loss_77"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LOXHD1",
+      "disease_context": "Rare autosomal recessive non-syndromic sensorineural deafness type DFNB"
+    },
+    {
+      "variant_id": "17:7670700:G:C",
+      "chrom": "17",
+      "pos": 7670700,
+      "ref": "G",
+      "alt": "C",
+      "gene": "TP53",
+      "diseases": [
+        "Li-Fraumeni_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TP53",
+      "disease_context": "Li-Fraumeni syndrome"
+    },
+    {
+      "variant_id": "1:40091328:C:T",
+      "chrom": "1",
+      "pos": 40091328,
+      "ref": "C",
+      "alt": "T",
+      "gene": "PPT1",
+      "diseases": [
+        "Neuronal_ceroid_lipofuscinosis_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "PPT1",
+      "disease_context": "Infantile CLN1 disease"
+    },
+    {
+      "variant_id": "2:43973606:C:G",
+      "chrom": "2",
+      "pos": 43973606,
+      "ref": "C",
+      "alt": "G",
+      "gene": "LRPPRC",
+      "diseases": [
+        "Congenital_lactic_acidosis_Saguenay-Lac-Saint-Jean_type"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LRPPRC",
+      "disease_context": "Congenital lactic acidosis, Saguenay-Lac-Saint-Jean type"
+    },
+    {
+      "variant_id": "18:23536743:G:A",
+      "chrom": "18",
+      "pos": 23536743,
+      "ref": "G",
+      "alt": "A",
+      "gene": "NPC1",
+      "diseases": [
+        "Niemann-Pick_disease_type_C",
+        "Niemann-Pick_disease_type_C1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "NPC1",
+      "disease_context": "Niemann-Pick disease type C, severe perinatal form"
+    },
+    {
+      "variant_id": "13:32341198:T:A",
+      "chrom": "13",
+      "pos": 32341198,
+      "ref": "T",
+      "alt": "A",
+      "gene": "BRCA2",
+      "diseases": [
+        "Hereditary_breast_ovarian_cancer_syndrome",
+        "Hereditary_cancer-predisposing_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "BRCA2",
+      "disease_context": "Hereditary breast and/or ovarian cancer syndrome"
+    },
+    {
+      "variant_id": "2:71561750:A:G",
+      "chrom": "2",
+      "pos": 71561750,
+      "ref": "A",
+      "alt": "G",
+      "gene": "DYSF",
+      "diseases": [
+        "Neuromuscular_disease_caused_by_qualitative_or_quantitative_defects_of_dysferlin",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2B"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DYSF",
+      "disease_context": "Dysferlin-related limb-girdle muscular dystrophy R2"
+    },
+    {
+      "variant_id": "17:43090944:C:G",
+      "chrom": "17",
+      "pos": 43090944,
+      "ref": "C",
+      "alt": "G",
+      "gene": "BRCA1",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome",
+        "Hereditary_breast_ovarian_cancer_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "BRCA1",
+      "disease_context": "Hereditary breast and/or ovarian cancer syndrome"
+    },
+    {
+      "variant_id": "15:34233934:G:A",
+      "chrom": "15",
+      "pos": 34233934,
+      "ref": "G",
+      "alt": "A",
+      "gene": "SLC12A6",
+      "diseases": [
+        "Charcot-Marie-Tooth_disease",
+        "Agenesis_of_the_corpus_callosum_with_peripheral_neuropathy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "EMC4",
+      "disease_context": "Charcot-Marie-Tooth disease"
+    },
+    {
+      "variant_id": "10:97611535:G:T",
+      "chrom": "10",
+      "pos": 97611535,
+      "ref": "G",
+      "alt": "T",
+      "gene": "HOGA1",
+      "diseases": [
+        "Primary_hyperoxaluria_type_3"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "HOGA1",
+      "disease_context": "Primary hyperoxaluria type 3"
+    },
+    {
+      "variant_id": "22:19724112:C:G",
+      "chrom": "22",
+      "pos": 19724112,
+      "ref": "C",
+      "alt": "G",
+      "gene": "GP1BB",
+      "diseases": [
+        "Bernard_Soulier_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GP1BB",
+      "disease_context": "Bernard-Soulier syndrome"
+    },
+    {
+      "variant_id": "17:18139603:C:T",
+      "chrom": "17",
+      "pos": 18139603,
+      "ref": "C",
+      "alt": "T",
+      "gene": "MYO15A",
+      "diseases": [
+        "Autosomal_recessive_nonsyndromic_hearing_loss_9"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MYO15A",
+      "disease_context": "Rare autosomal recessive non-syndromic sensorineural deafness type DFNB"
+    },
+    {
+      "variant_id": "3:129433172:C:T",
+      "chrom": "3",
+      "pos": 129433172,
+      "ref": "C",
+      "alt": "T",
+      "gene": "MBD4",
+      "diseases": [
+        "Inborn_genetic_diseases",
+        "MBD4-related_disorder"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "EFCAB12",
+      "disease_context": "Inborn genetic diseases"
+    },
+    {
+      "variant_id": "5:37243012:C:G",
+      "chrom": "5",
+      "pos": 37243012,
+      "ref": "C",
+      "alt": "G",
+      "gene": "CPLANE1",
+      "diseases": [
+        "Orofaciodigital_syndrome_type_6",
+        "Joubert_syndrome_17"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CPLANE1",
+      "disease_context": "Orofaciodigital syndrome type 6"
+    },
+    {
+      "variant_id": "X:71224239:G:A",
+      "chrom": "X",
+      "pos": 71224239,
+      "ref": "G",
+      "alt": "A",
+      "gene": "GJB1",
+      "diseases": [
+        "Charcot-Marie-Tooth_Neuropathy_X"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GJB1",
+      "disease_context": "X-linked Charcot-Marie-Tooth disease type 1"
+    },
+    {
+      "variant_id": "4:88058104:G:A",
+      "chrom": "4",
+      "pos": 88058104,
+      "ref": "G",
+      "alt": "A",
+      "gene": "PKD2",
+      "diseases": [
+        "PKD2-related_disorder",
+        "Autosomal_dominant_polycystic_kidney_disease",
+        "Polycystic_kidney_disease_2"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "PKD2",
+      "disease_context": "Autosomal dominant polycystic kidney disease"
+    },
+    {
+      "variant_id": "1:229432568:C:G",
+      "chrom": "1",
+      "pos": 229432568,
+      "ref": "C",
+      "alt": "G",
+      "gene": "ACTA1",
+      "diseases": [
+        "Actin_accumulation_myopathy",
+        "Alpha-actinopathy"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "ACTA1",
+      "disease_context": "Severe congenital nemaline myopathy"
+    },
+    {
+      "variant_id": "10:89228368:C:A",
+      "chrom": "10",
+      "pos": 89228368,
+      "ref": "C",
+      "alt": "A",
+      "gene": "LIPA",
+      "diseases": [
+        "Lysosomal_acid_lipase_deficiency",
+        "Cholesteryl_ester_storage_disease",
+        "Wolman_disease"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LIPA",
+      "disease_context": "Cholesteryl ester storage disease"
+    },
+    {
+      "variant_id": "3:149210191:C:T",
+      "chrom": "3",
+      "pos": 149210191,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CP",
+      "diseases": [
+        "Inborn_genetic_diseases",
+        "Neurodegeneration_with_brain_iron_accumulation",
+        "Deficiency_of_ferroxidase"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "CP",
+      "disease_context": "Aceruloplasminemia"
+    },
+    {
+      "variant_id": "1:183243203:C:T",
+      "chrom": "1",
+      "pos": 183243203,
+      "ref": "C",
+      "alt": "T",
+      "gene": "LAMC2",
+      "diseases": [
+        "Junctional_epidermolysis_bullosa_gravis_of_Herlitz",
+        "Epidermolysis_bullosa_junctional_3B_severe",
+        "Junctional_epidermolysis_bullosa",
+        "Junctional_epidermolysis_bullosa_non-Herlitz_type"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LAMC2",
+      "disease_context": "Intermediate generalized junctional epidermolysis bullosa"
+    },
+    {
+      "variant_id": "1:75734772:T:A",
+      "chrom": "1",
+      "pos": 75734772,
+      "ref": "T",
+      "alt": "A",
+      "gene": "ACADM",
+      "diseases": [
+        "Medium-chain_acyl-coenzyme_A_dehydrogenase_deficiency"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ACADM",
+      "disease_context": "Medium chain acyl-CoA dehydrogenase deficiency"
+    },
+    {
+      "variant_id": "17:8003354:G:A",
+      "chrom": "17",
+      "pos": 8003354,
+      "ref": "G",
+      "alt": "A",
+      "gene": "GUCY2D",
+      "diseases": [
+        "Leber_congenital_amaurosis",
+        "Night_blindness_congenital_stationary_type1i",
+        "Leber_congenital_amaurosis_1",
+        "Cone_dystrophy",
+        "Cone-rod_dystrophy_6",
+        "GUCY2D-related_recessive_retinopathy",
+        "Choroidal_dystrophy_central_areolar_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GUCY2D",
+      "disease_context": "Cone rod dystrophy"
+    },
+    {
+      "variant_id": "5:177513475:G:A",
+      "chrom": "5",
+      "pos": 177513475,
+      "ref": "G",
+      "alt": "A",
+      "gene": "DDX41",
+      "diseases": [
+        "DDX41-related_hematologic_malignancy_predisposition_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DDX41",
+      "disease_context": "DDX41-related hematologic malignancy predisposition syndrome"
+    },
+    {
+      "variant_id": "1:44881723:G:A",
+      "chrom": "1",
+      "pos": 44881723,
+      "ref": "G",
+      "alt": "A",
+      "gene": "EIF2B3",
+      "diseases": [
+        "Vanishing_white_matter_disease",
+        "Leukoencephalopathy_with_vanishing_white_matter_3"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "EIF2B3",
+      "disease_context": "Late infantile CACH syndrome"
+    },
+    {
+      "variant_id": "X:74529442:G:A",
+      "chrom": "X",
+      "pos": 74529442,
+      "ref": "G",
+      "alt": "A",
+      "gene": "SLC16A2",
+      "diseases": [
+        "Spastic_paraplegia"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "SLC16A2",
+      "disease_context": "Allan-Herndon-Dudley syndrome"
+    },
+    {
+      "variant_id": "8:144084041:G:T",
+      "chrom": "8",
+      "pos": 144084041,
+      "ref": "G",
+      "alt": "T",
+      "gene": "GPAA1",
+      "diseases": [
+        "Glycosylphosphatidylinositol_biosynthesis_defect_15"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "EXOSC4",
+      "disease_context": "Glycosylphosphatidylinositol biosynthesis defect 15"
+    },
+    {
+      "variant_id": "6:32039426:T:A",
+      "chrom": "6",
+      "pos": 32039426,
+      "ref": "T",
+      "alt": "A",
+      "gene": "LOC106780800",
+      "diseases": [
+        "Inborn_genetic_diseases",
+        "Congenital_adrenal_hyperplasia",
+        "Classic_congenital_adrenal_hyperplasia_due_to_21-hydroxylase_deficiency"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "C4B",
+      "disease_context": "Systemic lupus erythematosus"
+    },
+    {
+      "variant_id": "8:67158480:C:T",
+      "chrom": "8",
+      "pos": 67158480,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CSPP1",
+      "diseases": [
+        "Joubert_syndrome_21"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "CSPP1",
+      "disease_context": "Meckel syndrome"
+    },
+    {
+      "variant_id": "6:33180320:G:A",
+      "chrom": "6",
+      "pos": 33180320,
+      "ref": "G",
+      "alt": "A",
+      "gene": "COL11A2",
+      "diseases": [
+        "Autosomal_dominant_nonsyndromic_hearing_loss_13",
+        "Otospondylomegaepiphyseal_dysplasia_autosomal_dominant",
+        "Autosomal_recessive_nonsyndromic_hearing_loss_53",
+        "Otospondylomegaepiphyseal_dysplasia_autosomal_recessive",
+        "Fibrochondrogenesis_2"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "COL11A2",
+      "disease_context": "Autosomal dominant otospondylomegaepiphyseal dysplasia"
+    },
+    {
+      "variant_id": "16:56892951:A:G",
+      "chrom": "16",
+      "pos": 56892951,
+      "ref": "A",
+      "alt": "G",
+      "gene": "SLC12A3",
+      "diseases": [
+        "Familial_hypokalemia-hypomagnesemia"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "SLC12A3",
+      "disease_context": "Gitelman syndrome"
+    },
+    {
+      "variant_id": "14:95091369:T:C",
+      "chrom": "14",
+      "pos": 95091369,
+      "ref": "T",
+      "alt": "C",
+      "gene": "DICER1",
+      "diseases": [
+        "Pleuropulmonary_blastoma",
+        "DICER1-related_tumor_predisposition"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DICER1",
+      "disease_context": "DICER1 tumor-predisposition syndrome"
+    },
+    {
+      "variant_id": "2:71553110:G:C",
+      "chrom": "2",
+      "pos": 71553110,
+      "ref": "G",
+      "alt": "C",
+      "gene": "DYSF",
+      "diseases": [
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2B"
+      ],
+      "gold": "pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DYSF",
+      "disease_context": "Dysferlin-related limb-girdle muscular dystrophy R2"
+    },
+    {
+      "variant_id": "15:89629387:G:A",
+      "chrom": "15",
+      "pos": 89629387,
+      "ref": "G",
+      "alt": "A",
+      "gene": "KIF7",
+      "diseases": [
+        "Acrocallosal_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "KIF7",
+      "disease_context": "Acrocallosal syndrome"
+    },
+    {
+      "variant_id": "19:12665801:C:A",
+      "chrom": "19",
+      "pos": 12665801,
+      "ref": "C",
+      "alt": "A",
+      "gene": "MAN2B1",
+      "diseases": [
+        "Deficiency_of_alpha-mannosidase"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "MAN2B1",
+      "disease_context": "Alpha-mannosidosis, infantile form"
+    },
+    {
+      "variant_id": "22:50626674:A:T",
+      "chrom": "22",
+      "pos": 50626674,
+      "ref": "A",
+      "alt": "T",
+      "gene": "ARSA",
+      "diseases": [
+        "Metachromatic_leukodystrophy"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ARSA",
+      "disease_context": "Metachromatic leukodystrophy, adult form"
+    },
+    {
+      "variant_id": "17:58695074:C:T",
+      "chrom": "17",
+      "pos": 58695074,
+      "ref": "C",
+      "alt": "T",
+      "gene": "RAD51C",
+      "diseases": [
+        "Fanconi_anemia_complementation_group_O",
+        "Breast-ovarian_cancer_familial_susceptibility_to_3"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "IGBP1C",
+      "disease_context": "Fanconi anemia complementation group O"
+    },
+    {
+      "variant_id": "10:103054367:C:T",
+      "chrom": "10",
+      "pos": 103054367,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CNNM2",
+      "diseases": [
+        "Renal_hypomagnesemia_6",
+        "Hypomagnesemia_seizures_and_intellectual_disability_1",
+        "See_cases"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CNNM2",
+      "disease_context": "Primary hypomagnesemia-generalized seizures-intellectual disability-obesity syndrome"
+    },
+    {
+      "variant_id": "6:131583810:C:T",
+      "chrom": "6",
+      "pos": 131583810,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ARG1",
+      "diseases": [
+        "Arginase_deficiency"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "ARG1",
+      "disease_context": "Argininemia"
+    },
+    {
+      "variant_id": "17:47289730:T:A",
+      "chrom": "17",
+      "pos": 47289730,
+      "ref": "T",
+      "alt": "A",
+      "gene": "ITGB3",
+      "diseases": [
+        "Glanzmann_thrombasthenia"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ITGB3",
+      "disease_context": "Glanzmann thrombasthenia"
+    },
+    {
+      "variant_id": "2:71520855:G:A",
+      "chrom": "2",
+      "pos": 71520855,
+      "ref": "G",
+      "alt": "A",
+      "gene": "DYSF",
+      "diseases": [
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DYSF",
+      "disease_context": "Dysferlin-related limb-girdle muscular dystrophy R2"
+    },
+    {
+      "variant_id": "19:11113334:G:C",
+      "chrom": "19",
+      "pos": 11113334,
+      "ref": "G",
+      "alt": "C",
+      "gene": "LDLR",
+      "diseases": [
+        "Familial_hypercholesterolemia",
+        "Hypercholesterolemia_familial_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LDLR",
+      "disease_context": "Homozygous familial hypercholesterolemia"
+    },
+    {
+      "variant_id": "5:138827650:C:T",
+      "chrom": "5",
+      "pos": 138827650,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CTNNA1",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome",
+        "Hereditary_diffuse_gastric_adenocarcinoma"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CTNNA1",
+      "disease_context": "Hereditary diffuse gastric cancer"
+    },
+    {
+      "variant_id": "5:71626668:C:T",
+      "chrom": "5",
+      "pos": 71626668,
+      "ref": "C",
+      "alt": "T",
+      "gene": "MCCC2",
+      "diseases": [
+        "3-methylcrotonyl-CoA_carboxylase_2_deficiency",
+        "Methylcrotonyl-CoA_carboxylase_deficiency"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MCCC2",
+      "disease_context": "3-methylcrotonyl-CoA carboxylase deficiency"
+    },
+    {
+      "variant_id": "7:147300239:C:T",
+      "chrom": "7",
+      "pos": 147300239,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CNTNAP2",
+      "diseases": [
+        "See_cases",
+        "Cortical_dysplasia-focal_epilepsy_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "CNTNAP2",
+      "disease_context": "CNTNAP2-related developmental and epileptic encephalopathy"
+    },
+    {
+      "variant_id": "8:144058535:G:T",
+      "chrom": "8",
+      "pos": 144058535,
+      "ref": "G",
+      "alt": "T",
+      "gene": "OPLAH",
+      "diseases": [
+        "5-Oxoprolinase_deficiency"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "OPLAH",
+      "disease_context": "5-oxoprolinase deficiency"
+    },
+    {
+      "variant_id": "X:31929602:C:T",
+      "chrom": "X",
+      "pos": 31929602,
+      "ref": "C",
+      "alt": "T",
+      "gene": "DMD",
+      "diseases": [
+        "Duchenne_muscular_dystrophy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DMD",
+      "disease_context": "Symptomatic form of muscular dystrophy of Duchenne and Becker in female carriers"
+    },
+    {
+      "variant_id": "2:178616544:C:A",
+      "chrom": "2",
+      "pos": 178616544,
+      "ref": "C",
+      "alt": "A",
+      "gene": "TTN",
+      "diseases": [
+        "Dilated_cardiomyopathy_1G",
+        "Cardiovascular_phenotype",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2J"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TTN",
+      "disease_context": "Autosomal recessive centronuclear myopathy"
+    },
+    {
+      "variant_id": "9:34514639:G:A",
+      "chrom": "9",
+      "pos": 34514639,
+      "ref": "G",
+      "alt": "A",
+      "gene": "DNAI1",
+      "diseases": [
+        "Primary_ciliary_dyskinesia"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DNAI1",
+      "disease_context": "Primary ciliary dyskinesia"
+    },
+    {
+      "variant_id": "12:47989787:C:A",
+      "chrom": "12",
+      "pos": 47989787,
+      "ref": "C",
+      "alt": "A",
+      "gene": "COL2A1",
+      "diseases": [
+        "Stickler_syndrome_type_I_nonsyndromic_ocular"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "COL2A1",
+      "disease_context": "Stickler syndrome type 1"
+    },
+    {
+      "variant_id": "X:38287248:G:C",
+      "chrom": "X",
+      "pos": 38287248,
+      "ref": "G",
+      "alt": "C",
+      "gene": "RPGR",
+      "diseases": [
+        "Primary_ciliary_dyskinesia",
+        "Retinitis_pigmentosa_3",
+        "RPGR-related_retinopathy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "RPGR",
+      "disease_context": "Primary ciliary dyskinesia"
+    },
+    {
+      "variant_id": "17:80110950:G:A",
+      "chrom": "17",
+      "pos": 80110950,
+      "ref": "G",
+      "alt": "A",
+      "gene": "GAA",
+      "diseases": [
+        "Glycogen_storage_disease_type_II"
+      ],
+      "gold": "pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GAA",
+      "disease_context": "Glycogen storage disease due to acid maltase deficiency, infantile onset"
+    },
+    {
+      "variant_id": "22:50626153:C:T",
+      "chrom": "22",
+      "pos": 50626153,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ARSA",
+      "diseases": [
+        "Metachromatic_leukodystrophy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ARSA",
+      "disease_context": "Metachromatic leukodystrophy, adult form"
+    },
+    {
+      "variant_id": "6:129192764:C:T",
+      "chrom": "6",
+      "pos": 129192764,
+      "ref": "C",
+      "alt": "T",
+      "gene": "LAMA2",
+      "diseases": [
+        "LAMA2-related_muscular_dystrophy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LAMA2",
+      "disease_context": "Laminin subunit alpha 2-related congenital muscular dystrophy"
+    },
+    {
+      "variant_id": "2:178635990:C:A",
+      "chrom": "2",
+      "pos": 178635990,
+      "ref": "C",
+      "alt": "A",
+      "gene": "TTN",
+      "diseases": [
+        "Dilated_cardiomyopathy_1G",
+        "Cardiovascular_phenotype",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2J"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TTN",
+      "disease_context": "Autosomal recessive centronuclear myopathy"
+    },
+    {
+      "variant_id": "1:228145588:C:T",
+      "chrom": "1",
+      "pos": 228145588,
+      "ref": "C",
+      "alt": "T",
+      "gene": "GUK1",
+      "diseases": [
+        "Mitochondrial_dna_depletion_syndrome_21"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "GJC2",
+      "disease_context": "Pelizaeus-Merzbacher-like disease due to GJC2 mutation"
+    },
+    {
+      "variant_id": "X:153729227:C:A",
+      "chrom": "X",
+      "pos": 153729227,
+      "ref": "C",
+      "alt": "A",
+      "gene": "ABCD1",
+      "diseases": [
+        "ABCD1-related_disorder",
+        "Adrenoleukodystrophy"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "ABCD1",
+      "disease_context": "Hirschsprung disease"
+    },
+    {
+      "variant_id": "9:3288218:C:T",
+      "chrom": "9",
+      "pos": 3288218,
+      "ref": "C",
+      "alt": "T",
+      "gene": "RFX3",
+      "diseases": [
+        "Inborn_genetic_diseases"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "RFX3",
+      "disease_context": "Inborn genetic diseases"
+    },
+    {
+      "variant_id": "X:108614946:G:C",
+      "chrom": "X",
+      "pos": 108614946,
+      "ref": "G",
+      "alt": "C",
+      "gene": "COL4A5",
+      "diseases": [
+        "X-linked_Alport_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "COL4A5",
+      "disease_context": "X-linked Alport syndrome-diffuse leiomyomatosis"
+    },
+    {
+      "variant_id": "15:42730728:G:A",
+      "chrom": "15",
+      "pos": 42730728,
+      "ref": "G",
+      "alt": "A",
+      "gene": "CDAN1",
+      "diseases": [
+        "Anemia_congenital_dyserythropoietic_type_1a"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CDAN1",
+      "disease_context": "Congenital dyserythropoietic anemia type I"
+    },
+    {
+      "variant_id": "9:35684527:A:T",
+      "chrom": "9",
+      "pos": 35684527,
+      "ref": "A",
+      "alt": "T",
+      "gene": "TPM2",
+      "diseases": [
+        "Arthrogryposis_distal_type_1A"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CA9",
+      "disease_context": "Arthrogryposis distal type 1A"
+    },
+    {
+      "variant_id": "18:23545071:T:G",
+      "chrom": "18",
+      "pos": 23545071,
+      "ref": "T",
+      "alt": "G",
+      "gene": "NPC1",
+      "diseases": [
+        "Niemann-Pick_disease_type_C1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "NPC1",
+      "disease_context": "Niemann-Pick disease type C, severe perinatal form"
+    },
+    {
+      "variant_id": "X:101398525:T:C",
+      "chrom": "X",
+      "pos": 101398525,
+      "ref": "T",
+      "alt": "C",
+      "gene": "GLA",
+      "diseases": [
+        "Fabry_disease"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GLA",
+      "disease_context": "Fabry disease"
+    },
+    {
+      "variant_id": "X:108571838:G:C",
+      "chrom": "X",
+      "pos": 108571838,
+      "ref": "G",
+      "alt": "C",
+      "gene": "COL4A5",
+      "diseases": [
+        "X-linked_Alport_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "COL4A5",
+      "disease_context": "X-linked Alport syndrome-diffuse leiomyomatosis"
+    },
+    {
+      "variant_id": "11:77162148:A:G",
+      "chrom": "11",
+      "pos": 77162148,
+      "ref": "A",
+      "alt": "G",
+      "gene": "MYO7A",
+      "diseases": [
+        "Autosomal_recessive_nonsyndromic_hearing_loss_2"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MYO7A",
+      "disease_context": "Rare autosomal recessive non-syndromic sensorineural deafness type DFNB"
+    },
+    {
+      "variant_id": "13:48465191:T:C",
+      "chrom": "13",
+      "pos": 48465191,
+      "ref": "T",
+      "alt": "C",
+      "gene": "RB1",
+      "diseases": [
+        "Retinoblastoma"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "likely_benign",
+      "counted_criteria": [
+        "BP4"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "RB1",
+      "disease_context": "Monosomy 13q14 syndrome"
+    },
+    {
+      "variant_id": "10:98417672:G:T",
+      "chrom": "10",
+      "pos": 98417672,
+      "ref": "G",
+      "alt": "T",
+      "gene": "HPS1",
+      "diseases": [
+        "Hermansky-Pudlak_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "HPS1",
+      "disease_context": "Hermansky-Pudlak syndrome due to BLOC-3 deficiency"
+    },
+    {
+      "variant_id": "10:47322729:C:T",
+      "chrom": "10",
+      "pos": 47322729,
+      "ref": "C",
+      "alt": "T",
+      "gene": "GDF2",
+      "diseases": [
+        "Telangiectasia_hereditary_hemorrhagic_type_5"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GDF2",
+      "disease_context": "Hereditary hemorrhagic telangiectasia"
+    },
+    {
+      "variant_id": "19:12896968:C:T",
+      "chrom": "19",
+      "pos": 12896968,
+      "ref": "C",
+      "alt": "T",
+      "gene": "GCDH",
+      "diseases": [
+        "Glutaric_aciduria_type_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "GCDH",
+      "disease_context": "Glutaryl-CoA dehydrogenase deficiency"
+    },
+    {
+      "variant_id": "2:174754380:T:A",
+      "chrom": "2",
+      "pos": 174754380,
+      "ref": "T",
+      "alt": "A",
+      "gene": "CHRNA1",
+      "diseases": [
+        "Lethal_multiple_pterygium_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CHRNA1",
+      "disease_context": "Lethal multiple pterygium syndrome"
+    },
+    {
+      "variant_id": "22:50626152:A:G",
+      "chrom": "22",
+      "pos": 50626152,
+      "ref": "A",
+      "alt": "G",
+      "gene": "ARSA",
+      "diseases": [
+        "Metachromatic_leukodystrophy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ARSA",
+      "disease_context": "Metachromatic leukodystrophy, adult form"
+    },
+    {
+      "variant_id": "9:6595092:A:G",
+      "chrom": "9",
+      "pos": 6595092,
+      "ref": "A",
+      "alt": "G",
+      "gene": "GLDC",
+      "diseases": [
+        "Glycine_encephalopathy_1",
+        "Glycine_encephalopathy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GLDC",
+      "disease_context": "Atypical glycine encephalopathy"
+    },
+    {
+      "variant_id": "9:34647962:G:T",
+      "chrom": "9",
+      "pos": 34647962,
+      "ref": "G",
+      "alt": "T",
+      "gene": "GALT",
+      "diseases": [
+        "Galactosemia"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "GALT",
+      "disease_context": "Classic galactosemia"
+    },
+    {
+      "variant_id": "1:216198408:C:A",
+      "chrom": "1",
+      "pos": 216198408,
+      "ref": "C",
+      "alt": "A",
+      "gene": "USH2A-AS1",
+      "diseases": [
+        "Usher_syndrome_type_2A"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "USH2A",
+      "disease_context": "Usher syndrome type 2"
+    },
+    {
+      "variant_id": "X:47173182:C:T",
+      "chrom": "X",
+      "pos": 47173182,
+      "ref": "C",
+      "alt": "T",
+      "gene": "RBM10",
+      "diseases": [
+        "TARP_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "likely_benign",
+      "counted_criteria": [
+        "BP4"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "RBM10",
+      "disease_context": "TARP syndrome"
+    },
+    {
+      "variant_id": "7:21864658:G:C",
+      "chrom": "7",
+      "pos": 21864658,
+      "ref": "G",
+      "alt": "C",
+      "gene": "DNAH11",
+      "diseases": [
+        "Primary_ciliary_dyskinesia"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DNAH11",
+      "disease_context": "Primary ciliary dyskinesia"
+    },
+    {
+      "variant_id": "2:178664099:C:T",
+      "chrom": "2",
+      "pos": 178664099,
+      "ref": "C",
+      "alt": "T",
+      "gene": "TTN",
+      "diseases": [
+        "Dilated_cardiomyopathy_1G",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2J"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TTN",
+      "disease_context": "Autosomal recessive centronuclear myopathy"
+    },
+    {
+      "variant_id": "11:118519793:G:A",
+      "chrom": "11",
+      "pos": 118519793,
+      "ref": "G",
+      "alt": "A",
+      "gene": "KMT2A",
+      "diseases": [
+        "Wiedemann-Steiner_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "KMT2A",
+      "disease_context": "Wiedemann-Steiner syndrome"
+    },
+    {
+      "variant_id": "16:1747027:A:C",
+      "chrom": "16",
+      "pos": 1747027,
+      "ref": "A",
+      "alt": "C",
+      "gene": "MAPK8IP3",
+      "diseases": [
+        "Neurodevelopmental_disorder_with_or_without_variable_brain_abnormalities%3B_NEDBA"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "MAPK8IP3",
+      "disease_context": "Non-specific syndromic intellectual disability"
+    },
+    {
+      "variant_id": "6:109467736:T:C",
+      "chrom": "6",
+      "pos": 109467736,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ZBTB24",
+      "diseases": [
+        "Immunodeficiency-centromeric_instability-facial_anomalies_syndrome_2"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "ZBTB24",
+      "disease_context": "ICF syndrome"
+    },
+    {
+      "variant_id": "8:71244637:A:T",
+      "chrom": "8",
+      "pos": 71244637,
+      "ref": "A",
+      "alt": "T",
+      "gene": "EYA1",
+      "diseases": [
+        "Branchiootorenal_syndrome_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "EYA1",
+      "disease_context": "BOR syndrome"
+    },
+    {
+      "variant_id": "X:55015631:A:G",
+      "chrom": "X",
+      "pos": 55015631,
+      "ref": "A",
+      "alt": "G",
+      "gene": "ALAS2",
+      "diseases": [
+        "X-linked_sideroblastic_anemia_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ALAS2",
+      "disease_context": "X-linked sideroblastic anemia"
+    },
+    {
+      "variant_id": "11:66870418:G:A",
+      "chrom": "11",
+      "pos": 66870418,
+      "ref": "G",
+      "alt": "A",
+      "gene": "PC",
+      "diseases": [
+        "Pyruvate_carboxylase_deficiency"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "PC",
+      "disease_context": "Pyruvate carboxylase deficiency, benign type"
+    },
+    {
+      "variant_id": "1:17044786:G:A",
+      "chrom": "1",
+      "pos": 17044786,
+      "ref": "G",
+      "alt": "A",
+      "gene": "SDHB",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "SDHB",
+      "disease_context": "Cowden syndrome"
+    },
+    {
+      "variant_id": "11:17413392:A:T",
+      "chrom": "11",
+      "pos": 17413392,
+      "ref": "A",
+      "alt": "T",
+      "gene": "LOC110121471",
+      "diseases": [
+        "Hereditary_hyperinsulinism"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "ABCC8",
+      "disease_context": "Autosomal dominant hyperinsulinism due to SUR1 deficiency"
+    },
+    {
+      "variant_id": "12:120978876:C:A",
+      "chrom": "12",
+      "pos": 120978876,
+      "ref": "C",
+      "alt": "A",
+      "gene": "HNF1A",
+      "diseases": [
+        "Maturity_onset_diabetes_mellitus_in_young"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "HNF1A",
+      "disease_context": "Hyperinsulinism due to HNF1A deficiency"
+    },
+    {
+      "variant_id": "2:43977043:G:A",
+      "chrom": "2",
+      "pos": 43977043,
+      "ref": "G",
+      "alt": "A",
+      "gene": "LRPPRC",
+      "diseases": [
+        "Congenital_lactic_acidosis_Saguenay-Lac-Saint-Jean_type"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LRPPRC",
+      "disease_context": "Congenital lactic acidosis, Saguenay-Lac-Saint-Jean type"
+    },
+    {
+      "variant_id": "8:6444587:C:T",
+      "chrom": "8",
+      "pos": 6444587,
+      "ref": "C",
+      "alt": "T",
+      "gene": "MCPH1",
+      "diseases": [
+        "Microcephaly_1_primary_autosomal_recessive"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MCPH1",
+      "disease_context": "Autosomal recessive primary microcephaly"
+    },
+    {
+      "variant_id": "2:227118733:C:T",
+      "chrom": "2",
+      "pos": 227118733,
+      "ref": "C",
+      "alt": "T",
+      "gene": "COL4A4",
+      "diseases": [
+        "Hematuria_benign_familial_1",
+        "Autosomal_recessive_Alport_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "COL4A4",
+      "disease_context": "Autosomal dominant Alport syndrome"
+    },
+    {
+      "variant_id": "10:124398027:A:G",
+      "chrom": "10",
+      "pos": 124398027,
+      "ref": "A",
+      "alt": "G",
+      "gene": "OAT",
+      "diseases": [
+        "Ornithine_aminotransferase_deficiency"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "OAT",
+      "disease_context": "Gyrate atrophy of choroid and retina"
+    },
+    {
+      "variant_id": "9:91724476:G:C",
+      "chrom": "9",
+      "pos": 91724476,
+      "ref": "G",
+      "alt": "C",
+      "gene": "ROR2",
+      "diseases": [
+        "Autosomal_recessive_Robinow_syndrome",
+        "Brachydactyly_type_B1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ROR2",
+      "disease_context": "Autosomal recessive Robinow syndrome"
+    },
+    {
+      "variant_id": "X:130129999:T:A",
+      "chrom": "X",
+      "pos": 130129999,
+      "ref": "T",
+      "alt": "A",
+      "gene": "AIFM1",
+      "diseases": [
+        "Deafness_X-linked_5"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "likely_benign",
+      "counted_criteria": [
+        "BP4"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "AIFM1",
+      "disease_context": "X-linked hereditary sensory and autonomic neuropathy with deafness"
+    },
+    {
+      "variant_id": "17:31235602:T:A",
+      "chrom": "17",
+      "pos": 31235602,
+      "ref": "T",
+      "alt": "A",
+      "gene": "NF1",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome",
+        "Cardiovascular_phenotype"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "NF1",
+      "disease_context": "Neurofibromatosis-Noonan syndrome"
+    },
+    {
+      "variant_id": "X:48685604:A:C",
+      "chrom": "X",
+      "pos": 48685604,
+      "ref": "A",
+      "alt": "C",
+      "gene": "WAS",
+      "diseases": [
+        "Wiskott-Aldrich_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "WAS",
+      "disease_context": "Wiskott-Aldrich syndrome"
+    },
+    {
+      "variant_id": "15:48421950:A:C",
+      "chrom": "15",
+      "pos": 48421950,
+      "ref": "A",
+      "alt": "C",
+      "gene": "FBN1",
+      "diseases": [
+        "Familial_thoracic_aortic_aneurysm_and_aortic_dissection",
+        "Marfan_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "FBN1",
+      "disease_context": "Marfan syndrome type 1"
+    },
+    {
+      "variant_id": "3:48594367:C:T",
+      "chrom": "3",
+      "pos": 48594367,
+      "ref": "C",
+      "alt": "T",
+      "gene": "COL7A1",
+      "diseases": [
+        "Pretibial_dystrophic_epidermolysis_bullosa",
+        "Epidermolysis_bullosa_pruriginosa",
+        "Recessive_dystrophic_epidermolysis_bullosa",
+        "Generalized_dominant_dystrophic_epidermolysis_bullosa",
+        "Nonsyndromic_congenital_nail_disorder_8",
+        "Transient_bullous_dermolysis_of_the_newborn",
+        "Dominant_dystrophic_epidermolysis_bullosa_with_absence_of_skin"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "COL7A1",
+      "disease_context": "Localized dystrophic epidermolysis bullosa, nails only"
+    },
+    {
+      "variant_id": "3:38554311:A:C",
+      "chrom": "3",
+      "pos": 38554311,
+      "ref": "A",
+      "alt": "C",
+      "gene": "SCN5A",
+      "diseases": [
+        "Long_QT_syndrome_3"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "SCN5A",
+      "disease_context": "Hereditary sick sinus syndrome"
+    },
+    {
+      "variant_id": "7:107689198:C:G",
+      "chrom": "7",
+      "pos": 107689198,
+      "ref": "C",
+      "alt": "G",
+      "gene": "SLC26A4",
+      "diseases": [
+        "Pendred_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "likely_benign",
+      "counted_criteria": [
+        "BP4"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "SLC26A4",
+      "disease_context": "Pendred syndrome"
+    },
+    {
+      "variant_id": "4:122355991:G:T",
+      "chrom": "4",
+      "pos": 122355991,
+      "ref": "G",
+      "alt": "T",
+      "gene": "BLTP1",
+      "diseases": [
+        "Alkuraya-Kucinskas_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "BLTP1",
+      "disease_context": "KIAA1109-related early lethal congenital brain malformations-arthrogryposis syndrome"
+    },
+    {
+      "variant_id": "17:68512548:G:A",
+      "chrom": "17",
+      "pos": 68512548,
+      "ref": "G",
+      "alt": "A",
+      "gene": "PRKAR1A",
+      "diseases": [
+        "Carney_complex_type_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "PRKAR1A",
+      "disease_context": "Carney complex"
+    },
+    {
+      "variant_id": "3:158646784:G:A",
+      "chrom": "3",
+      "pos": 158646784,
+      "ref": "G",
+      "alt": "A",
+      "gene": "GFM1",
+      "diseases": [
+        "Hepatoencephalopathy_due_to_combined_oxidative_phosphorylation_defect_type_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GFM1",
+      "disease_context": "Hepatoencephalopathy due to combined oxidative phosphorylation defect type 1"
+    },
+    {
+      "variant_id": "14:67756147:T:A",
+      "chrom": "14",
+      "pos": 67756147,
+      "ref": "T",
+      "alt": "A",
+      "gene": "ZFYVE26",
+      "diseases": [
+        "Spastic_paraplegia"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "ZFYVE26",
+      "disease_context": "Kjellin syndrome"
+    },
+    {
+      "variant_id": "X:101398846:G:C",
+      "chrom": "X",
+      "pos": 101398846,
+      "ref": "G",
+      "alt": "C",
+      "gene": "GLA",
+      "diseases": [
+        "Fabry_disease"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GLA",
+      "disease_context": "Fabry disease"
+    },
+    {
+      "variant_id": "14:45137161:G:T",
+      "chrom": "14",
+      "pos": 45137161,
+      "ref": "G",
+      "alt": "T",
+      "gene": "FANCM",
+      "diseases": [
+        "Fanconi_anemia"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "FANCM",
+      "disease_context": "Fanconi anemia"
+    },
+    {
+      "variant_id": "5:38504123:T:C",
+      "chrom": "5",
+      "pos": 38504123,
+      "ref": "T",
+      "alt": "C",
+      "gene": "LIFR",
+      "diseases": [
+        "Stuve-Wiedemann_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LIFR",
+      "disease_context": "St\u00fcve-Wiedemann syndrome"
+    },
+    {
+      "variant_id": "2:178775203:C:A",
+      "chrom": "2",
+      "pos": 178775203,
+      "ref": "C",
+      "alt": "A",
+      "gene": "TTN",
+      "diseases": [
+        "Dilated_cardiomyopathy_1G",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2J"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TTN",
+      "disease_context": "Autosomal recessive centronuclear myopathy"
+    },
+    {
+      "variant_id": "8:99013936:G:C",
+      "chrom": "8",
+      "pos": 99013936,
+      "ref": "G",
+      "alt": "C",
+      "gene": "VPS13B",
+      "diseases": [
+        "Cohen_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "VPS13B",
+      "disease_context": "Cohen syndrome"
+    },
+    {
+      "variant_id": "15:40650380:T:C",
+      "chrom": "15",
+      "pos": 40650380,
+      "ref": "T",
+      "alt": "C",
+      "gene": "KNL1",
+      "diseases": [
+        "KNL1-related_disorder"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "KNL1",
+      "disease_context": "Autosomal recessive primary microcephaly"
+    },
+    {
+      "variant_id": "2:178649553:C:T",
+      "chrom": "2",
+      "pos": 178649553,
+      "ref": "C",
+      "alt": "T",
+      "gene": "TTN",
+      "diseases": [
+        "Dilated_cardiomyopathy_1G",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2J"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TTN",
+      "disease_context": "Autosomal recessive centronuclear myopathy"
+    },
+    {
+      "variant_id": "22:26607934:G:C",
+      "chrom": "22",
+      "pos": 26607934,
+      "ref": "G",
+      "alt": "C",
+      "gene": "CRYBB1",
+      "diseases": [
+        "Cataract_17_multiple_types"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "CRYBB1",
+      "disease_context": "Cataract-microcornea syndrome"
+    },
+    {
+      "variant_id": "6:52064953:A:T",
+      "chrom": "6",
+      "pos": 52064953,
+      "ref": "A",
+      "alt": "T",
+      "gene": "PKHD1",
+      "diseases": [
+        "Polycystic_kidney_disease_4"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "PKHD1",
+      "disease_context": "Autosomal recessive polycystic kidney disease"
+    },
+    {
+      "variant_id": "12:120997472:A:G",
+      "chrom": "12",
+      "pos": 120997472,
+      "ref": "A",
+      "alt": "G",
+      "gene": "HNF1A",
+      "diseases": [
+        "Diabetes_mellitus_type_1",
+        "Type_2_diabetes_mellitus",
+        "Nonpapillary_renal_cell_carcinoma",
+        "Maturity-onset_diabetes_of_the_young_type_3",
+        "Type_1_diabetes_mellitus_20",
+        "Hepatic_adenomas_familial"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "HNF1A",
+      "disease_context": "Chromophobe renal cell carcinoma"
+    },
+    {
+      "variant_id": "2:48510025:T:C",
+      "chrom": "2",
+      "pos": 48510025,
+      "ref": "T",
+      "alt": "C",
+      "gene": "PPP1R21",
+      "diseases": [
+        "Neurodevelopmental_disorder_with_hypotonia_facial_dysmorphism_and_brain_abnormalities"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "PPP1R21",
+      "disease_context": "Neurodevelopmental disorder with hypotonia facial dysmorphism and brain abnormalities"
+    },
+    {
+      "variant_id": "1:236838463:T:A",
+      "chrom": "1",
+      "pos": 236838463,
+      "ref": "T",
+      "alt": "A",
+      "gene": "MTR",
+      "diseases": [
+        "Methylcobalamin_deficiency_type_cblG"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MTR",
+      "disease_context": "Methylcobalamin deficiency type cblG"
+    },
+    {
+      "variant_id": "3:129432502:C:T",
+      "chrom": "3",
+      "pos": 129432502,
+      "ref": "C",
+      "alt": "T",
+      "gene": "MBD4",
+      "diseases": [
+        "Inborn_genetic_diseases"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "EFCAB12",
+      "disease_context": "Inborn genetic diseases"
+    },
+    {
+      "variant_id": "13:23203755:C:T",
+      "chrom": "13",
+      "pos": 23203755,
+      "ref": "C",
+      "alt": "T",
+      "gene": "SGCG",
+      "diseases": [
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2C"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "SGCG",
+      "disease_context": "Gamma-sarcoglycan-related limb-girdle muscular dystrophy R5"
+    },
+    {
+      "variant_id": "2:31337739:G:A",
+      "chrom": "2",
+      "pos": 31337739,
+      "ref": "G",
+      "alt": "A",
+      "gene": "XDH",
+      "diseases": [
+        "Hereditary_xanthinuria_type_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "XDH",
+      "disease_context": "Xanthinuria type I"
+    },
+    {
+      "variant_id": "6:79002043:G:A",
+      "chrom": "6",
+      "pos": 79002043,
+      "ref": "G",
+      "alt": "A",
+      "gene": "PHIP",
+      "diseases": [
+        "PHIP-related_behavioral_problems-intellectual_disability-obesity-dysmorphic_features_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "PHIP",
+      "disease_context": "PHIP-related behavioral problems-intellectual disability-obesity-dysmorphic features syndrome"
+    },
+    {
+      "variant_id": "1:11199261:A:G",
+      "chrom": "1",
+      "pos": 11199261,
+      "ref": "A",
+      "alt": "G",
+      "gene": "MTOR",
+      "diseases": [
+        "Inborn_genetic_diseases"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ANGPTL7",
+      "disease_context": "Inborn genetic diseases"
+    },
+    {
+      "variant_id": "19:11120198:A:G",
+      "chrom": "19",
+      "pos": 11120198,
+      "ref": "A",
+      "alt": "G",
+      "gene": "LDLR",
+      "diseases": [
+        "Familial_hypercholesterolemia"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LDLR",
+      "disease_context": "Homozygous familial hypercholesterolemia"
+    },
+    {
+      "variant_id": "2:178546368:C:A",
+      "chrom": "2",
+      "pos": 178546368,
+      "ref": "C",
+      "alt": "A",
+      "gene": "TTN",
+      "diseases": [
+        "Cardiovascular_phenotype"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "TTN",
+      "disease_context": "Autosomal recessive centronuclear myopathy"
+    },
+    {
+      "variant_id": "2:43837956:C:T",
+      "chrom": "2",
+      "pos": 43837956,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ABCG5",
+      "diseases": [
+        "Sitosterolemia"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ABCG5",
+      "disease_context": "Sitosterolemia"
+    },
+    {
+      "variant_id": "1:62543745:C:A",
+      "chrom": "1",
+      "pos": 62543745,
+      "ref": "C",
+      "alt": "A",
+      "gene": "DOCK7",
+      "diseases": [
+        "Developmental_and_epileptic_encephalopathy_23"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DOCK7",
+      "disease_context": "Early-onset epileptic encephalopathy-cortical blindness-intellectual disability-facial dysmorphism syndrome"
+    },
+    {
+      "variant_id": "6:49456079:C:G",
+      "chrom": "6",
+      "pos": 49456079,
+      "ref": "C",
+      "alt": "G",
+      "gene": "MMUT",
+      "diseases": [
+        "Methylmalonic_aciduria_due_to_complete_methylmalonyl-CoA_mutase_deficiency"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_single_submitter",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "MMUT",
+      "disease_context": "Vitamin B12-unresponsive methylmalonic acidemia type mut0"
+    },
+    {
+      "variant_id": "2:178707525:C:G",
+      "chrom": "2",
+      "pos": 178707525,
+      "ref": "C",
+      "alt": "G",
+      "gene": "TTN",
+      "diseases": [
+        "Dilated_cardiomyopathy_1G",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2J"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TTN",
+      "disease_context": "Autosomal recessive centronuclear myopathy"
+    },
+    {
+      "variant_id": "19:38490074:A:G",
+      "chrom": "19",
+      "pos": 38490074,
+      "ref": "A",
+      "alt": "G",
+      "gene": "RYR1",
+      "diseases": [
+        "RYR1-related_disorder"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "RYR1",
+      "disease_context": "Central core disease"
+    },
+    {
+      "variant_id": "X:101398789:T:C",
+      "chrom": "X",
+      "pos": 101398789,
+      "ref": "T",
+      "alt": "C",
+      "gene": "GLA",
+      "diseases": [
+        "Fabry_disease"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GLA",
+      "disease_context": "Fabry disease"
+    },
+    {
+      "variant_id": "8:117830228:A:G",
+      "chrom": "8",
+      "pos": 117830228,
+      "ref": "A",
+      "alt": "G",
+      "gene": "EXT1",
+      "diseases": [
+        "Multiple_congenital_exostosis"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "EXT1",
+      "disease_context": "Trichorhinophalangeal syndrome type 2"
+    },
+    {
+      "variant_id": "13:23332933:A:G",
+      "chrom": "13",
+      "pos": 23332933,
+      "ref": "A",
+      "alt": "G",
+      "gene": "SACS",
+      "diseases": [
+        "Charlevoix-Saguenay_spastic_ataxia"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "SACS",
+      "disease_context": "Autosomal recessive spastic ataxia of Charlevoix-Saguenay"
+    },
+    {
+      "variant_id": "6:73480070:A:G",
+      "chrom": "6",
+      "pos": 73480070,
+      "ref": "A",
+      "alt": "G",
+      "gene": "MTO1",
+      "diseases": [
+        "Mitochondrial_hypertrophic_cardiomyopathy_with_lactic_acidosis_due_to_MTO1_deficiency"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MTO1",
+      "disease_context": "Mitochondrial hypertrophic cardiomyopathy with lactic acidosis due to MTO1 deficiency"
+    },
+    {
+      "variant_id": "7:139872234:G:A",
+      "chrom": "7",
+      "pos": 139872234,
+      "ref": "G",
+      "alt": "A",
+      "gene": "TBXAS1",
+      "diseases": [
+        "Ghosal_hematodiaphyseal_dysplasia"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TBXAS1",
+      "disease_context": "Ghosal hematodiaphyseal dysplasia"
+    },
+    {
+      "variant_id": "5:128338047:C:G",
+      "chrom": "5",
+      "pos": 128338047,
+      "ref": "C",
+      "alt": "G",
+      "gene": "FBN2",
+      "diseases": [
+        "Congenital_contractural_arachnodactyly"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "FBN2",
+      "disease_context": "Congenital contractural arachnodactyly"
+    },
+    {
+      "variant_id": "16:68346194:C:T",
+      "chrom": "16",
+      "pos": 68346194,
+      "ref": "C",
+      "alt": "T",
+      "gene": "PRMT7",
+      "diseases": [
+        "Short_stature-brachydactyly-obesity-global_developmental_delay_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "likely_pathogenic",
+      "counted_criteria": [
+        "PVS1"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "PRMT7",
+      "disease_context": "Short stature-brachydactyly-obesity-global developmental delay syndrome"
+    },
+    {
+      "variant_id": "2:38074994:A:C",
+      "chrom": "2",
+      "pos": 38074994,
+      "ref": "A",
+      "alt": "C",
+      "gene": "CYP1B1",
+      "diseases": [
+        "Anterior_segment_dysgenesis_6",
+        "Glaucoma_3A"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "CYP1B1",
+      "disease_context": "Peters anomaly"
+    },
+    {
+      "variant_id": "4:186286496:A:G",
+      "chrom": "4",
+      "pos": 186286496,
+      "ref": "A",
+      "alt": "G",
+      "gene": "F11",
+      "diseases": [
+        "Hereditary_factor_XI_deficiency_disease"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "F11",
+      "disease_context": "Congenital factor XI deficiency"
+    },
+    {
+      "variant_id": "19:41410942:T:C",
+      "chrom": "19",
+      "pos": 41410942,
+      "ref": "T",
+      "alt": "C",
+      "gene": "BCKDHA",
+      "diseases": [
+        "Maple_syrup_urine_disease"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "BCKDHA",
+      "disease_context": "Intermediate maple syrup urine disease"
+    },
+    {
+      "variant_id": "12:47980941:C:A",
+      "chrom": "12",
+      "pos": 47980941,
+      "ref": "C",
+      "alt": "A",
+      "gene": "COL2A1",
+      "diseases": [
+        "Type_2_collagenopathy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "COL2A1",
+      "disease_context": "Autosomal dominant otospondylomegaepiphyseal dysplasia"
+    },
+    {
+      "variant_id": "1:156136121:G:A",
+      "chrom": "1",
+      "pos": 156136121,
+      "ref": "G",
+      "alt": "A",
+      "gene": "LMNA",
+      "diseases": [
+        "Charcot-Marie-Tooth_disease_type_2",
+        "Emery-Dreifuss_muscular_dystrophy_2_autosomal_dominant"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "LMNA",
+      "disease_context": "Congenital muscular dystrophy due to LMNA mutation"
+    },
+    {
+      "variant_id": "11:108289759:T:C",
+      "chrom": "11",
+      "pos": 108289759,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ATM",
+      "diseases": [
+        "Ataxia-telangiectasia_syndrome",
+        "Familial_cancer_of_breast",
+        "Hereditary_cancer-predisposing_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ATM",
+      "disease_context": "Ataxia-telangiectasia"
+    },
+    {
+      "variant_id": "11:119026678:G:C",
+      "chrom": "11",
+      "pos": 119026678,
+      "ref": "G",
+      "alt": "C",
+      "gene": "SLC37A4",
+      "diseases": [
+        "Glucose-6-phosphate_transport_defect"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "TRAPPC4",
+      "disease_context": "Non-specific syndromic intellectual disability"
+    },
+    {
+      "variant_id": "5:233571:C:A",
+      "chrom": "5",
+      "pos": 233571,
+      "ref": "C",
+      "alt": "A",
+      "gene": "SDHA",
+      "diseases": [
+        "Paragangliomas_5",
+        "Mitochondrial_complex_II_deficiency_nuclear_type_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "SDHA",
+      "disease_context": "Familial isolated dilated cardiomyopathy"
+    },
+    {
+      "variant_id": "9:36227267:A:G",
+      "chrom": "9",
+      "pos": 36227267,
+      "ref": "A",
+      "alt": "G",
+      "gene": "GNE",
+      "diseases": [
+        "Sialuria",
+        "GNE_myopathy"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "GNE",
+      "disease_context": "Sialuria"
+    },
+    {
+      "variant_id": "X:153694803:G:C",
+      "chrom": "X",
+      "pos": 153694803,
+      "ref": "G",
+      "alt": "C",
+      "gene": "SLC6A8",
+      "diseases": [
+        "Creatine_transporter_deficiency"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "SLC6A8",
+      "disease_context": "X-linked creatine transporter deficiency"
+    },
+    {
+      "variant_id": "8:99861910:C:T",
+      "chrom": "8",
+      "pos": 99861910,
+      "ref": "C",
+      "alt": "T",
+      "gene": "VPS13B",
+      "diseases": [
+        "Cohen_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "VPS13B",
+      "disease_context": "Cohen syndrome"
+    },
+    {
+      "variant_id": "15:76311349:C:T",
+      "chrom": "15",
+      "pos": 76311349,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ETFA",
+      "diseases": [
+        "Multiple_acyl-CoA_dehydrogenase_deficiency"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ETFA",
+      "disease_context": "Multiple acyl-CoA dehydrogenase deficiency, mild type"
+    },
+    {
+      "variant_id": "1:216190294:A:G",
+      "chrom": "1",
+      "pos": 216190294,
+      "ref": "A",
+      "alt": "G",
+      "gene": "USH2A",
+      "diseases": [
+        "Usher_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "USH2A",
+      "disease_context": "Usher syndrome type 2"
+    },
+    {
+      "variant_id": "14:76499909:C:G",
+      "chrom": "14",
+      "pos": 76499909,
+      "ref": "C",
+      "alt": "G",
+      "gene": "ESRRB",
+      "diseases": [
+        "Autosomal_recessive_nonsyndromic_hearing_loss_35"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ESRRB",
+      "disease_context": "Rare autosomal recessive non-syndromic sensorineural deafness type DFNB"
+    },
+    {
+      "variant_id": "12:120988896:G:T",
+      "chrom": "12",
+      "pos": 120988896,
+      "ref": "G",
+      "alt": "T",
+      "gene": "HNF1A",
+      "diseases": [
+        "Monogenic_diabetes"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "practice_guideline",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "HNF1A",
+      "disease_context": "Hyperinsulinism due to HNF1A deficiency"
+    },
+    {
+      "variant_id": "19:12666542:C:T",
+      "chrom": "19",
+      "pos": 12666542,
+      "ref": "C",
+      "alt": "T",
+      "gene": "MAN2B1",
+      "diseases": [
+        "Deficiency_of_alpha-mannosidase"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "MAN2B1",
+      "disease_context": "Alpha-mannosidosis, infantile form"
+    },
+    {
+      "variant_id": "15:72731458:G:A",
+      "chrom": "15",
+      "pos": 72731458,
+      "ref": "G",
+      "alt": "A",
+      "gene": "BBS4",
+      "diseases": [
+        "Bardet-Biedl_syndrome",
+        "Bardet-Biedl_syndrome_4"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "BBS4",
+      "disease_context": "Bardet-Biedl syndrome"
+    },
+    {
+      "variant_id": "11:44124874:G:T",
+      "chrom": "11",
+      "pos": 44124874,
+      "ref": "G",
+      "alt": "T",
+      "gene": "EXT2",
+      "diseases": [
+        "Inborn_genetic_diseases"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "likely_pathogenic",
+      "counted_criteria": [
+        "PVS1"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "EXT2",
+      "disease_context": "Multiple osteochondromas"
+    },
+    {
+      "variant_id": "15:48481690:C:T",
+      "chrom": "15",
+      "pos": 48481690,
+      "ref": "C",
+      "alt": "T",
+      "gene": "FBN1",
+      "diseases": [
+        "Marfan_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "FBN1",
+      "disease_context": "Marfan syndrome type 1"
+    },
+    {
+      "variant_id": "15:42360096:C:A",
+      "chrom": "15",
+      "pos": 42360096,
+      "ref": "C",
+      "alt": "A",
+      "gene": "CAPN3",
+      "diseases": [
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2A",
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CAPN3",
+      "disease_context": "Calpain-3-related limb-girdle muscular dystrophy R1"
+    },
+    {
+      "variant_id": "13:48453020:C:T",
+      "chrom": "13",
+      "pos": 48453020,
+      "ref": "C",
+      "alt": "T",
+      "gene": "RB1",
+      "diseases": [
+        "Retinoblastoma"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "RB1",
+      "disease_context": "Monosomy 13q14 syndrome"
+    },
+    {
+      "variant_id": "2:98380230:C:T",
+      "chrom": "2",
+      "pos": 98380230,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CNGA3",
+      "diseases": [
+        "Achromatopsia_2",
+        "Retinal_dystrophy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "CNGA3",
+      "disease_context": "Achromatopsia"
+    },
+    {
+      "variant_id": "3:142466434:G:A",
+      "chrom": "3",
+      "pos": 142466434,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ATR",
+      "diseases": [
+        "Seckel_syndrome_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ATR",
+      "disease_context": "Seckel syndrome"
+    },
+    {
+      "variant_id": "17:7905118:C:T",
+      "chrom": "17",
+      "pos": 7905118,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CHD3",
+      "diseases": [
+        "Snijders_Blok-Campeau_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "CHD3",
+      "disease_context": "CHD3-related developmental delay-speech delay-intellectual disability-abnormalities of vision-facial dysmorphism syndrome"
+    },
+    {
+      "variant_id": "12:109595118:G:T",
+      "chrom": "12",
+      "pos": 109595118,
+      "ref": "G",
+      "alt": "T",
+      "gene": "MVK",
+      "diseases": [
+        "Mevalonic_aciduria",
+        "Porokeratosis_3_disseminated_superficial_actinic_type",
+        "Hyperimmunoglobulin_D_with_periodic_fever"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "MVK",
+      "disease_context": "Mevalonic aciduria"
+    },
+    {
+      "variant_id": "19:38512244:G:C",
+      "chrom": "19",
+      "pos": 38512244,
+      "ref": "G",
+      "alt": "C",
+      "gene": "RYR1",
+      "diseases": [
+        "RYR1-related_disorder"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "RYR1",
+      "disease_context": "Central core disease"
+    },
+    {
+      "variant_id": "7:75982236:C:G",
+      "chrom": "7",
+      "pos": 75982236,
+      "ref": "C",
+      "alt": "G",
+      "gene": "POR",
+      "diseases": [
+        "Congenital_adrenal_hyperplasia_due_to_cytochrome_P450_oxidoreductase_deficiency"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "POR",
+      "disease_context": "Congenital adrenal hyperplasia due to cytochrome P450 oxidoreductase deficiency"
+    },
+    {
+      "variant_id": "X:107642466:C:T",
+      "chrom": "X",
+      "pos": 107642466,
+      "ref": "C",
+      "alt": "T",
+      "gene": "PRPS1",
+      "diseases": [
+        "Charcot-Marie-Tooth_Neuropathy_X"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "PRPS1",
+      "disease_context": "X-linked Charcot-Marie-Tooth disease type 5"
+    },
+    {
+      "variant_id": "15:48446810:C:T",
+      "chrom": "15",
+      "pos": 48446810,
+      "ref": "C",
+      "alt": "T",
+      "gene": "FBN1",
+      "diseases": [
+        "Familial_thoracic_aortic_aneurysm_and_aortic_dissection",
+        "Marfan_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "FBN1",
+      "disease_context": "Marfan syndrome type 1"
+    },
+    {
+      "variant_id": "X:149487063:A:G",
+      "chrom": "X",
+      "pos": 149487063,
+      "ref": "A",
+      "alt": "G",
+      "gene": "IDS",
+      "diseases": [
+        "Mucopolysaccharidosis_MPS-II"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "IDS",
+      "disease_context": "Mucopolysaccharidosis type 2, attenuated form"
+    },
+    {
+      "variant_id": "13:23332425:A:T",
+      "chrom": "13",
+      "pos": 23332425,
+      "ref": "A",
+      "alt": "T",
+      "gene": "SACS",
+      "diseases": [
+        "Spastic_paraplegia"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "SACS",
+      "disease_context": "Autosomal recessive spastic ataxia of Charlevoix-Saguenay"
+    },
+    {
+      "variant_id": "17:47944704:G:A",
+      "chrom": "17",
+      "pos": 47944704,
+      "ref": "G",
+      "alt": "A",
+      "gene": "PNPO",
+      "diseases": [
+        "Pyridoxal_phosphate-responsive_seizures"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "PNPO",
+      "disease_context": "Pyridoxamine-5-phosphate deficiency-developmental and epileptic encephalopathy"
+    },
+    {
+      "variant_id": "8:41724555:C:T",
+      "chrom": "8",
+      "pos": 41724555,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ANK1",
+      "diseases": [
+        "Hereditary_spherocytosis_type_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "ANK1",
+      "disease_context": "Hereditary spherocytosis"
+    },
+    {
+      "variant_id": "15:61936654:G:A",
+      "chrom": "15",
+      "pos": 61936654,
+      "ref": "G",
+      "alt": "A",
+      "gene": "VPS13C",
+      "diseases": [
+        "Young-onset_Parkinson_disease"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "likely_pathogenic",
+      "counted_criteria": [
+        "PVS1"
+      ],
+      "engine_concordance": "concordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "VPS13C",
+      "disease_context": "Young-onset Parkinson disease"
+    },
+    {
+      "variant_id": "11:61957445:T:A",
+      "chrom": "11",
+      "pos": 61957445,
+      "ref": "T",
+      "alt": "A",
+      "gene": "BEST1",
+      "diseases": [
+        "Retinal_dystrophy"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "BEST1",
+      "disease_context": "Retinitis pigmentosa"
+    },
+    {
+      "variant_id": "16:89935418:A:G",
+      "chrom": "16",
+      "pos": 89935418,
+      "ref": "A",
+      "alt": "G",
+      "gene": "TUBB3",
+      "diseases": [
+        "Complex_cortical_dysplasia_with_other_brain_malformations_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TUBB3",
+      "disease_context": "Cortical dysgenesis with pontocerebellar hypoplasia due to TUBB3 mutation"
+    },
+    {
+      "variant_id": "5:14364818:T:C",
+      "chrom": "5",
+      "pos": 14364818,
+      "ref": "T",
+      "alt": "C",
+      "gene": "TRIO",
+      "diseases": [
+        "Micrognathia-recurrent_infections-behavioral_abnormalities-mild_intellectual_disability_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "TRIO",
+      "disease_context": "Micrognathia-recurrent infections-behavioral abnormalities-mild intellectual disability syndrome"
+    },
+    {
+      "variant_id": "17:58695010:T:A",
+      "chrom": "17",
+      "pos": 58695010,
+      "ref": "T",
+      "alt": "A",
+      "gene": "RAD51C",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "IGBP1C",
+      "disease_context": "Hereditary cancer-predisposing syndrome"
+    },
+    {
+      "variant_id": "5:13839534:A:T",
+      "chrom": "5",
+      "pos": 13839534,
+      "ref": "A",
+      "alt": "T",
+      "gene": "DNAH5",
+      "diseases": [
+        "Primary_ciliary_dyskinesia"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [
+        "PM2",
+        "PP3"
+      ],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "DNAH5",
+      "disease_context": "Primary ciliary dyskinesia"
+    },
+    {
+      "variant_id": "11:57602083:C:T",
+      "chrom": "11",
+      "pos": 57602083,
+      "ref": "C",
+      "alt": "T",
+      "gene": "SERPING1",
+      "diseases": [
+        "Hereditary_angioedema_type_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "SERPING1",
+      "disease_context": "Hereditary angioedema type 2"
+    },
+    {
+      "variant_id": "2:151507010:G:A",
+      "chrom": "2",
+      "pos": 151507010,
+      "ref": "G",
+      "alt": "A",
+      "gene": "RIF1",
+      "diseases": [
+        "Nemaline_myopathy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "discordant",
+      "engine_concordance_basis": "significance_compared",
+      "gene_matched": "NEB",
+      "disease_context": "Severe congenital nemaline myopathy"
+    },
+    {
+      "variant_id": "6:24278070:G:A",
+      "chrom": "6",
+      "pos": 24278070,
+      "ref": "G",
+      "alt": "A",
+      "gene": "DCDC2",
+      "diseases": [
+        "Nephronophthisis_19"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided_multiple_submitters_no_conflicts",
+      "computed": "vus",
+      "counted_criteria": [],
+      "engine_concordance": "unknown",
+      "engine_concordance_basis": "condition_not_confirmed",
+      "gene_matched": "DCDC2",
+      "disease_context": "Isolated neonatal sclerosing cholangitis"
+    }
+  ]
+}

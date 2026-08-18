@@ -17,6 +17,8 @@ class FamilyEvidence(BaseModel):
     de_novo_confirmed: bool | None = None
     de_novo_stated: bool | None = None
     consanguinity: bool | None = None
+    unaffected_carrier_observed: bool | None = None
+    unaffected_carrier_adult: bool | None = None
     source: str | None = None
 
 

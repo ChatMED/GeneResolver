@@ -54,7 +54,18 @@ _LLM_SYSTEM = (
     "null if not stated as a number.\n"
     "n_unaffected_nonsegregating: the number of unaffected relatives explicitly stated to NOT "
     "carry the variant (or not show the phenotype), if a specific count is given; null if not "
-    "stated as a number."
+    "stated as a number.\n"
+    "unaffected_carrier_observed: true ONLY if the text explicitly states a relative was TESTED "
+    "and found to CARRY the same variant/genotype (homozygous, hemizygous, or heterozygous as "
+    "relevant to the inheritance pattern) while remaining clinically UNAFFECTED by the disease; "
+    "false if the text explicitly states no unaffected carrier was found; null if not mentioned. "
+    "Do not confuse this with n_unaffected_nonsegregating above, which is about relatives who do "
+    "NOT carry the variant -- this field is specifically about relatives who DO carry it and are "
+    "still unaffected.\n"
+    "unaffected_carrier_adult: true if that same unaffected carrier is stated to be an adult "
+    "(18+) or past the disease's usual age of onset; false if stated to be a child or otherwise "
+    "younger than the expected age of onset; null if not stated or if unaffected_carrier_observed "
+    "is not true."
 )
 
 
@@ -69,6 +80,8 @@ class _DemographicsExtraction(BaseModel):
     segregation_observed: bool | None = None
     n_affected_segregating: int | None = None
     n_unaffected_nonsegregating: int | None = None
+    unaffected_carrier_observed: bool | None = None
+    unaffected_carrier_adult: bool | None = None
 
 
 
@@ -90,7 +103,9 @@ def _llm_extract(note: str, backend: str | None = None) -> _DemographicsExtracti
                         '"family_history_statements": [...], "consanguinity": <bool|null>, '
                         '"de_novo_stated": <bool|null>, "de_novo_confirmed": <bool|null>, '
                         '"segregation_observed": <bool|null>, "n_affected_segregating": <int|null>, '
-                        '"n_unaffected_nonsegregating": <int|null>}, nothing else.)',
+                        '"n_unaffected_nonsegregating": <int|null>, '
+                        '"unaffected_carrier_observed": <bool|null>, '
+                        '"unaffected_carrier_adult": <bool|null>}, nothing else.)',
             schema_model=_DemographicsExtraction, max_tokens=_LLM_MAX_TOKENS,
             backend=backend,
         )
@@ -128,6 +143,8 @@ def run(state: CaseState, backend: str | None = None) -> CaseState:
         segregation_observed = llm_result.segregation_observed
         n_affected_segregating = llm_result.n_affected_segregating
         n_unaffected_nonsegregating = llm_result.n_unaffected_nonsegregating
+        unaffected_carrier_observed = llm_result.unaffected_carrier_observed
+        unaffected_carrier_adult = llm_result.unaffected_carrier_adult
     else:
         age = None
         age_months = None
@@ -139,6 +156,8 @@ def run(state: CaseState, backend: str | None = None) -> CaseState:
         segregation_observed = None
         n_affected_segregating = None
         n_unaffected_nonsegregating = None
+        unaffected_carrier_observed = None
+        unaffected_carrier_adult = None
 
     state.age_months = age_months
     if age_months is not None:
@@ -166,6 +185,10 @@ def run(state: CaseState, backend: str | None = None) -> CaseState:
     state.segregation_observed = segregation_observed
     state.n_affected_segregating = n_affected_segregating
     state.n_unaffected_nonsegregating = n_unaffected_nonsegregating
+    state.unaffected_carrier_observed = unaffected_carrier_observed
+    state.unaffected_carrier_adult = unaffected_carrier_adult
+    if unaffected_carrier_observed is not None:
+        parsed.append(f"unaffected_carrier_observed={unaffected_carrier_observed}")
     if de_novo_confirmed is not None:
         parsed.append(f"de_novo_confirmed={de_novo_confirmed}")
     elif de_novo_stated is not None:

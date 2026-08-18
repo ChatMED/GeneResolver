@@ -68,8 +68,6 @@ def _uniprot_essential_region(gene: str, position: int) -> dict | None:
 
 _PP2_MISSENSE_Z_THRESHOLD = 3.09
 
-_BS2_HOMOZYGOTE_THRESHOLD = 1
-
 _PP4_PHENOTYPE_MATCH_THRESHOLD = 0.5
 
 _SPLICEAI_PP3_THRESHOLD = 0.20
@@ -770,47 +768,62 @@ def _bs4(variant: AnnotatedVariant, context: VariantDiseaseContext) -> Criterion
 
 
 def _bp1(variant: AnnotatedVariant, context: VariantDiseaseContext) -> CriterionResult:
+    """BP1: missense variant in a gene where the gene's OWN known pathogenic variants
+    are primarily truncating -- a curated fact about that gene's disease mechanism.
+    Approximated by classifying the gene's ClinVar pathogenic/likely-pathogenic
+    variants as truncating vs. missense (known_pathogenic_residues.truncating_fraction),
+    NOT by general population missense-constraint (gnomAD Z-score), which measures
+    genome-wide selective tolerance for missense change and is a different question
+    from what this specific gene's disease-causing variants look like."""
     code = "BP1"
-    version = "bp1_v1.0_proxy"
+    version = "bp1_v2.0_truncating_fraction"
     if variant.consequence != "missense_variant":
         return _not_applicable(code, EvidenceDirection.BENIGN,
                                 "BP1 applies to missense variants only.", version)
-    if context.disease_mechanism != "loss_of_function":
+    if not known_pathogenic_residues.is_available():
         return _not_evaluated(
             code, EvidenceDirection.BENIGN,
-            "Established loss-of-function disease mechanism is not confirmed -- "
-            "this proxy only applies when the gene's disease is already known "
-            "to be LoF-driven.",
-            ["gene_disease_mechanism=loss_of_function"], version,
+            "Known-pathogenic-variant reference (ClinVar variant_summary) is not available.",
+            ["known_pathogenic_residues data"], version,
         )
     gene = variant.gene or context.gene
-    constraint = gnomad_constraint.get_constraint(gene) if gene else None
-    mis_z = constraint.get("mis_z") if constraint else None
-    if mis_z is None:
+    if not gene:
+        return _not_evaluated(code, EvidenceDirection.BENIGN, "No gene symbol available.",
+                               ["gene"], version)
+    fraction, n = known_pathogenic_residues.truncating_fraction(gene)
+    if fraction is None:
         return _not_evaluated(
             code, EvidenceDirection.BENIGN,
-            "gnomAD missense-constraint (Z-score) data is unavailable for this gene.",
-            ["gnomad missense Z-score (gnomad.v4.1.constraint_metrics.tsv)"], version,
+            f"Fewer than {known_pathogenic_residues.BP1_MIN_CLASSIFIED} of this "
+            f"gene's ClinVar pathogenic/likely-pathogenic variants could be "
+            f"classified as truncating or missense ({n} found) -- too few to "
+            "establish whether this gene's known pathogenic variants are "
+            "primarily truncating.",
+            ["known_pathogenic_residues truncating/missense classification"], version,
         )
     evidence = [EvidenceItem(
-        evidence_id=f"gnomad_constraint:{gene}:bp1", evidence_type="gene_constraint",
-        source="gnomAD", value={"missense_z": mis_z},
+        evidence_id=f"known_pathogenic_residues:{gene}:bp1", evidence_type="gene_mechanism",
+        source="ClinVar variant_summary (truncating/missense classification)",
+        value={"truncating_fraction": round(fraction, 3), "n_classified": n},
     )]
-    if mis_z <= 0:
+    threshold = known_pathogenic_residues.BP1_TRUNCATING_FRACTION_THRESHOLD
+    if fraction >= threshold:
         return _result(
             code, CriterionStatus.MET, EvidenceDirection.BENIGN,
-            f"Gene missense Z-score ({mis_z}) shows no population-level missense "
-            "constraint, consistent with (not proof of) missense variants not "
-            "being this gene's known LoF-associated disease mechanism -- a "
-            "disclosed proxy, not a curated gene-mechanism fact.",
+            f"{round(fraction * 100, 1)}% of this gene's {n} classified ClinVar "
+            f"pathogenic/likely-pathogenic variants are truncating (nonsense, "
+            f"frameshift, or canonical splice) -- at or above the disclosed "
+            f"{threshold:.0%} threshold for 'primarily truncating', consistent "
+            "with BP1's gene-mechanism premise.",
             strength=EvidenceStrength.SUPPORTING, evidence_items=evidence,
-            evaluator_version=version, source_versions=_gnomad_source_versions(),
+            evaluator_version=version,
         )
     return _result(
         code, CriterionStatus.NOT_MET, EvidenceDirection.BENIGN,
-        f"Gene missense Z-score ({mis_z}) shows population-level missense "
-        "constraint -- missense variants ARE plausibly relevant to this gene's "
-        "disease mechanism, so this proxy does not support BP1.",
+        f"Only {round(fraction * 100, 1)}% of this gene's {n} classified ClinVar "
+        f"pathogenic/likely-pathogenic variants are truncating -- missense "
+        "variants ARE an established part of this gene's disease mechanism, so "
+        "BP1 does not apply.",
         evidence_items=evidence, evaluator_version=version,
         source_versions=_gnomad_source_versions(),
     )
@@ -995,54 +1008,53 @@ _RECESSIVE_INHERITANCE_MODELS = {"autosomal_recessive", "x_linked_recessive"}
 
 
 def _bs2(variant: AnnotatedVariant, context: VariantDiseaseContext) -> CriterionResult:
+    """BS2: observed in a healthy adult individual under the genotype state relevant to
+    the disease's inheritance pattern (homozygous/hemizygous/heterozygous), with full
+    penetrance expected at an early age. Evaluated from an explicit clinical-narrative
+    statement about an unaffected carrier -- NOT from population-database presence,
+    which cannot confirm the observed individual's health/disease status and is
+    therefore not evidence of this criterion (see known_pathogenic_residues module
+    docstrings for the analogous BP1 reasoning)."""
     code = "BS2"
-    version = "bs2_v2.0"
-    if context.inheritance not in _RECESSIVE_INHERITANCE_MODELS:
+    version = "bs2_v3.0_narrative"
+    fe = context.family_evidence
+    if fe is None or fe.unaffected_carrier_observed is None:
         return _not_evaluated(
             code, EvidenceDirection.BENIGN,
-            "BS2's homozygote-observation evidence is only meaningful for a "
-            "CONFIRMED recessive (or X-linked recessive) disease -- this "
-            "pipeline doesn't separately track heterozygous-carrier counts "
-            "needed to evaluate BS2 for dominant inheritance, so an "
-            f"unconfirmed or non-recessive inheritance ({context.inheritance!r}) "
-            "means this criterion cannot be evaluated, not that it's met.",
-            ["inheritance=autosomal_recessive or x_linked_recessive"], version,
-        )
-    if context.disease_mechanism != "loss_of_function":
-        return _not_evaluated(
-            code, EvidenceDirection.BENIGN,
-            "Established loss-of-function disease mechanism is not confirmed "
-            "for this gene-disease pair (BS2's premise -- a fully penetrant "
-            "disorder tolerating no unaffected LoF carriers -- requires it).",
-            ["gene_disease_mechanism=loss_of_function"], version,
-        )
-    if variant.gnomad_homozygote_count is None:
-        return _not_evaluated(
-            code, EvidenceDirection.BENIGN,
-            "gnomAD homozygote-count annotation is unavailable.",
-            ["gnomad_homozygote_count"], version,
+            "No statement is available from the clinical narrative about an "
+            "unaffected relative carrying this variant's genotype state.",
+            ["family_evidence.unaffected_carrier_observed"], version,
         )
     evidence = [EvidenceItem(
-        evidence_id=f"gnomad:{context.genome_build}:{variant.variant_id}:bs2",
-        evidence_type="population_frequency", source="gnomAD",
-        value={"homozygote_count": variant.gnomad_homozygote_count},
+        evidence_id=f"family_evidence:{context.variant_id}:bs2", evidence_type="family_history",
+        source="clinical narrative (demographics, llm-extracted)",
+        value={"unaffected_carrier_observed": fe.unaffected_carrier_observed,
+               "unaffected_carrier_adult": fe.unaffected_carrier_adult},
     )]
-    if variant.gnomad_homozygote_count >= _BS2_HOMOZYGOTE_THRESHOLD:
+    if not fe.unaffected_carrier_observed:
         return _result(
-            code, CriterionStatus.MET, EvidenceDirection.BENIGN,
-            f"Observed in {variant.gnomad_homozygote_count} homozygote(s) in "
-            "gnomAD's general population -- this pipeline cannot confirm "
-            "gnomAD's cohort is unaffected specifically for this disease, so "
-            "this is a population-observation proxy, not confirmed "
-            "guideline-standard BS2 evidence.",
-            strength=EvidenceStrength.STRONG, evidence_items=evidence,
-            evaluator_version=version, source_versions=_gnomad_source_versions(),
+            code, CriterionStatus.NOT_MET, EvidenceDirection.BENIGN,
+            "Clinical narrative does not report an unaffected relative carrying "
+            "this genotype state.",
+            evidence_items=evidence, evaluator_version=version,
+        )
+    if fe.unaffected_carrier_adult is not True:
+        return _not_evaluated(
+            code, EvidenceDirection.BENIGN,
+            "An unaffected carrier is reported, but the narrative does not "
+            "confirm they are an adult / past the disease's expected age of "
+            "onset -- BS2's 'full penetrance expected at an early age' premise "
+            "cannot be confirmed without this, so MET cannot be assigned.",
+            ["family_evidence.unaffected_carrier_adult"], version,
         )
     return _result(
-        code, CriterionStatus.NOT_MET, EvidenceDirection.BENIGN,
-        "No homozygote observed in gnomAD's general population.",
-        evidence_items=evidence, evaluator_version=version,
-        source_versions=_gnomad_source_versions(),
+        code, CriterionStatus.MET, EvidenceDirection.BENIGN,
+        "Clinical narrative reports an unaffected adult relative carrying the "
+        "same genotype state (homozygous/hemizygous/heterozygous as relevant to "
+        "the inheritance pattern) without manifesting the disease past its "
+        "expected age of onset.",
+        strength=EvidenceStrength.STRONG, evidence_items=evidence,
+        evaluator_version=version,
     )
 
 

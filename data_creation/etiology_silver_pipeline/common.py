@@ -6,6 +6,11 @@ from typing import Any
 
 LABELS = ("single_gene", "chromosomal", "somatic", "multifactorial", "non_genetic")
 
+SOMATIC_SUBGROUP = {
+    "somatic_single_driver": "single_gene",
+    "somatic_multiclonal_or_undriven": "multifactorial",
+}
+
 
 def read_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))

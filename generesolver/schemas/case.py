@@ -86,6 +86,8 @@ class CaseState(BaseModel):
     segregation_observed: bool | None = None
     n_affected_segregating: int | None = None
     n_unaffected_nonsegregating: int | None = None
+    unaffected_carrier_observed: bool | None = None
+    unaffected_carrier_adult: bool | None = None
     case_class: CaseClassification | None = None
     branch_result: dict = Field(default_factory=dict)
     safety_flags: list[str] = Field(default_factory=list)

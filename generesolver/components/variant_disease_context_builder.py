@@ -96,6 +96,7 @@ def run(state: CaseState) -> CaseState:
     _family_fields = (
         state.de_novo_stated, state.de_novo_confirmed, state.segregation_observed,
         state.n_affected_segregating, state.n_unaffected_nonsegregating, state.consanguinity,
+        state.unaffected_carrier_observed, state.unaffected_carrier_adult,
     )
     if any(f is not None for f in _family_fields):
         family_evidence = FamilyEvidence(
@@ -105,6 +106,8 @@ def run(state: CaseState) -> CaseState:
             de_novo_confirmed=state.de_novo_confirmed,
             de_novo_stated=state.de_novo_stated,
             consanguinity=state.consanguinity,
+            unaffected_carrier_observed=state.unaffected_carrier_observed,
+            unaffected_carrier_adult=state.unaffected_carrier_adult,
             source="demographics (narrative, llm-extracted)",
         )
 

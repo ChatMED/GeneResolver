@@ -10,7 +10,7 @@ CASE_BRANCHING_ENABLED = os.environ.get(
     "GENERESOLVER_CASE_BRANCHING", "1"
 ).strip().lower() in ("1", "true", "yes")
 
-DEID_BACKEND = os.environ.get("GENERESOLVER_DEID_BACKEND", "deid_roberta").strip().lower()
+DEID_BACKEND = os.environ.get("GENERESOLVER_DEID_BACKEND", "openmed").strip().lower()
 
 CLAUDE_MODEL = "claude-opus-5"
 
