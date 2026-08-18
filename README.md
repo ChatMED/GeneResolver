@@ -20,7 +20,6 @@ configuration, then runs a demo case. The one large opt-in step (~23GB local VEP
 Docker image, needed for on-premise VCF annotation) is behind `--with-vep-cache`.
 It does not fetch evaluation-only corpora (GSC+, PhEval Phenopacket Store, monarch_pheval)
 
-
 ## Reproducing the paper's evaluations
 
 ```bash
