@@ -1,6 +1,6 @@
 # GeneResolver
 
-A deterministic, local-mode-capable pipeline for gene prioritization: it
+Privacy-aware, multi-agent pipeline for gene prioritization: it
 ingests a clinical note, HPO terms, and/or a VCF, decides whether a case is a single-gene
 problem before ranking, and fuses multi-source evidence (phenotype, variant, ACMG,
 literature, GWAS) into a ranked gene list — keeping the full case on-premise when
@@ -19,7 +19,6 @@ REVEL, UCSC phyloP/simpleRepeat — all idempotent, safe to re-run), checks your
 configuration, then runs a demo case. The one large opt-in step (~23GB local VEP cache +
 Docker image, needed for on-premise VCF annotation) is behind `--with-vep-cache`.
 It does not fetch evaluation-only corpora (GSC+, PhEval Phenopacket Store, monarch_pheval)
-— those belong to this project's evaluation harness, not this repo.
 
 ## Running a case
 
@@ -63,11 +62,3 @@ real output without running anything first.
   ```bash
   python run_generesolver.py --example vcf_lirical
   ```
-
-## Local-mode note
-
-`GENERESOLVER_LOCAL_MODE=1` (the default `run_generesolver.py` sets) disables external
-gnomAD/PubCaseFinder/Monarch API calls and forces local VEP annotation, so the full
-phenotype profile, genomic variants, and case narrative never leave the machine. This is
-decision support only — every output must be reviewed by a qualified clinician or
-clinical geneticist before any clinical action.
