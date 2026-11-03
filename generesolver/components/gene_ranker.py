@@ -158,10 +158,12 @@ def run(state: CaseState) -> CaseState:
             + score_constraint * gated_w_constraint
             + score_pathway * w_pathway
         )
-        final_score += _negated_hpo_penalty(gene_hpo_ids, absent_int_ids)
-        final_score += _sex_penalty(gene_hpo_ids, patient_sex)
-        final_score += _disease_match_boost(gr.score_disease_match)
-        final_score = round(min(1.0, max(0.0, final_score)), 4)
+        adjustment = (
+            _negated_hpo_penalty(gene_hpo_ids, absent_int_ids)
+            + _sex_penalty(gene_hpo_ids, patient_sex)
+            + _disease_match_boost(gr.score_disease_match)
+        )
+        final_score = round(min(1.0, max(0.0, final_score + adjustment)), 4)
 
         known_diseases = (bio.disease_associations[:5] if bio else [])
         warnings = list(gr.warnings)
@@ -181,6 +183,11 @@ def run(state: CaseState) -> CaseState:
                 score_literature=score_literature,
                 score_gwas=score_gwas,
                 score_disease_match=gr.score_disease_match,
+                score_phenotype_normalized=score_phenotype_normalized,
+                score_constraint=score_constraint,
+                score_pathway=score_pathway,
+                constraint_weight_gated=gated_w_constraint != w_constraint,
+                score_adjustment=adjustment,
                 best_variant_id=gr.best_variant_id,
                 seeded_by_diseases=list(gr.seeded_by_diseases),
                 inheritance=inheritance,

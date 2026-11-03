@@ -4,15 +4,13 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 DATA_DIR = ROOT / "data"
 HPO_DIR = DATA_DIR / "hpo"
-OUTPUTS_DIR = ROOT / "outputs"
+OUTPUTS_DIR = Path(os.environ.get("GENERESOLVER_OUTPUTS_DIR", ROOT / "outputs"))
 
 CASE_BRANCHING_ENABLED = os.environ.get(
     "GENERESOLVER_CASE_BRANCHING", "1"
 ).strip().lower() in ("1", "true", "yes")
 
 DEID_BACKEND = os.environ.get("GENERESOLVER_DEID_BACKEND", "openmed").strip().lower()
-
-CLAUDE_MODEL = "claude-opus-5"
 
 VEP_REST_URL = "https://rest.ensembl.org/vep/human/hgvs"
 GNOMAD_GRAPHQL_URL = "https://gnomad.broadinstitute.org/api"
@@ -30,9 +28,43 @@ PUBCASEFINDER_ENABLED = (
     and not LOCAL_MODE
 )
 
+# A ClinVar P/LP assertion lifts a variant's triage score to 0.95 (above the 0.75 ceiling).
+# Set GENERESOLVER_CLINVAR_TRIAGE=0 for a ClinVar-blind run, e.g. on benchmarks of published variants.
+CLINVAR_TRIAGE_ENABLED = os.environ.get(
+    "GENERESOLVER_CLINVAR_TRIAGE", "1").strip().lower() in ("1", "true", "yes")
+
+# Variant filter profile.
+#   "original" (default): the filter used for every reported result. Rarity = overall gnomAD
+#       v4.1 exome AF (VEP gnomADe_AF) < RARITY_AF_CEILING, or no AF; relevance = VEP IMPACT
+#       HIGH/MODERATE or a consequence in the hard-coded list (which includes the LOW-impact
+#       splice_region_variant).
+#   "revised": same 1% ceiling, but measured on ONE source -- the highest gnomAD v4.1 exome AF
+#       among the continental groups AFR/AMR/EAS/NFE/SAS (the same groups ACMG BA1 uses);
+#       never VEP MAX_AF (mixes 1000 Genomes) or the slivar gnomAD v2.1.1 file. Frequency
+#       "not_evaluated" is kept but counted and flagged separately from "absent".
+#       splice_region_variant counts as relevant only with SpliceAI >= SPLICEAI_RELEVANCE_MIN.
+# Revised results must be reported separately; they are not the published configuration.
+VARIANT_FILTER_PROFILE = os.environ.get(
+    "GENERESOLVER_VARIANT_FILTER_PROFILE", "original").strip().lower()
+if VARIANT_FILTER_PROFILE not in ("original", "revised"):
+    raise ValueError(f"GENERESOLVER_VARIANT_FILTER_PROFILE must be 'original' or 'revised', "
+                     f"got {VARIANT_FILTER_PROFILE!r}")
+# The 1% ceiling is the same in both profiles. Inheritance-specific ceilings (e.g. 0.1% for
+# dominant models) are NOT implemented: they change candidate selection and need validation first.
+RARITY_AF_CEILING = 0.01
+SPLICEAI_RELEVANCE_MIN = 0.2
+
+# Per-genotype read-quality filters (0 = off, the reported configuration). A missing GQ/DP
+# passes. Keep off on simulated benchmarks: PhEval spiked causal records carry GT only, so
+# filtering would remove only background calls and inflate performance.
+MIN_GENOTYPE_QUALITY = float(os.environ.get("GENERESOLVER_MIN_GQ", "0") or 0)
+MIN_READ_DEPTH = int(os.environ.get("GENERESOLVER_MIN_DP", "0") or 0)
+
 GENE_CANDIDATE_CAP = int(os.environ.get("GENERESOLVER_GENE_CANDIDATE_CAP", "30") or 0)
-VEP_LOCAL_DOCKER_IMAGE = "ensemblorg/ensembl-vep"
-VEP_LOCAL_CACHE_DIR = DATA_DIR / "vep_cache"
+VEP_LOCAL_DOCKER_IMAGE = os.environ.get(
+    "GENERESOLVER_VEP_DOCKER_IMAGE", "ensemblorg/ensembl-vep:release_116.0"
+)
+VEP_LOCAL_CACHE_DIR = Path(os.environ.get("GENERESOLVER_VEP_CACHE_DIR") or DATA_DIR / "vep_cache")
 
 SPECIFICITY_TIER_ENABLED = True
 
@@ -109,7 +141,11 @@ OT_RECALL_SEED_MAX_DISEASE_BREADTH = 15
 SHORTLIST_RECALL_SEED_TOP_K = 5
 SHORTLIST_RECALL_SEED_MAX_GENES = 20
 
-JUDGE_AUTHORITATIVE_RANK = True
+# False = tie-break mode: the LLM judge may nudge a gene by at most ±JUDGE_TIEBREAK_CAP,
+# so it can only reorder genes whose deterministic scores differ by < 2 × cap. The
+# delivered ranking then stays the evaluated deterministic ranking up to near-ties.
+JUDGE_AUTHORITATIVE_RANK = False
+JUDGE_TIEBREAK_CAP = 0.01
 JUDGE_RANK_WEIGHT = 0.70
 JUDGE_TOP_K = 30
 JUDGE_MAX_CANDIDATES = 30

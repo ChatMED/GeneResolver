@@ -1,15 +1,45 @@
+# Allow-list: the repository contains only the system, the data download/setup scripts,
+# the evaluation harness, the dataset-creation scripts, the docs and the bundled examples.
+/*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/requirements.txt
+!/pyproject.toml
+!/.env.example
+!/run_generesolver.py
+!/setup_quickstart.py
+!/setup_paper_datasets.py
+!/reproduce_paper_results.py
+!/generesolver/
+!/scripts/
+!/evaluation/
+!/data_creation/
+!/docs/
+!/examples/
+!/outputs/
+
+# Peer-review working analyses, saved results and supplementary analyses (local only)
+/evaluation/revision/
+/evaluation/paper_results/
+/evaluation/supplementary/
+# Third-party tool comparison (local only)
+/evaluation/acmg_tool_comparison.py
+/evaluation/paper_results/acmg_tool_comparison/
+
+# Bundled example outputs only; the VCF example's full-state JSONs are ~64 MB each
+/outputs/*
+!/outputs/DEMO_CASE_SINGLE_GENE/
+!/outputs/DEMO_CASE_MULTIFACTORIAL/
+!/outputs/DEMO_CASE_VCF_LIRICAL/
+!/outputs/DEMO_CASE_VARIANT_ONLY/
+/outputs/DEMO_CASE_VCF_LIRICAL/case_state.json
+/outputs/DEMO_CASE_VCF_LIRICAL/report.json
+/outputs/DEMO_CASE_VARIANT_ONLY/case_state.json
+/outputs/DEMO_CASE_VARIANT_ONLY/report.json
+
+
 __pycache__/
 *.pyc
-.venv/
-venv/
-/data/
-outputs/*/
-!outputs/DEMO_CASE_SINGLE_GENE/
-!outputs/DEMO_CASE_MULTIFACTORIAL/
-!outputs/DEMO_CASE_VCF_LIRICAL/
-.env
 *.egg-info/
-build/
-dist/
-
-.idea/
+.env

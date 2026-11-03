@@ -10,7 +10,7 @@ Source: https://zenodo.org/records/14679713 ("pheval-paper-corpora.tar.gz", ~5.7
 this is the small phenopacket-only archive on that record, not the 5.6 GB results
 archive alongside it).
 
-    python -m evaluation.stage4_phenotype_gene_ranking.download_pheval_corpora
+    python -m evaluation.table9_phenotype_gene_ranking.download_pheval_corpora
 """
 from __future__ import annotations
 

@@ -15,9 +15,21 @@ from generesolver.schemas.report import ProvenanceItem
 
 logger = logging.getLogger(__name__)
 
-_MAX_VARIANTS = 50_000
+# 0 = annotate every eligible allele (default; the Stage 5 benchmark always ran uncapped).
+# A positive value enables seeded reservoir sampling, which discards variants at random
+# BEFORE annotation and can drop the causal variant -- only for quick smoke tests.
+_MAX_VARIANTS = max(0, int(os.environ.get("GENERESOLVER_VCF_MAX_VARIANTS", "0") or 0))
+
+# Counts from the most recent load_normalized_variants() call, reported in provenance.
+LAST_LOAD_STATS: dict[str, int] = {}
 
 _VARIANT_SAMPLE_SEED = 20260811
+_PRIMARY_CONTIGS = {str(n) for n in range(1, 23)} | {"X", "Y", "MT", "M"}
+
+
+def _is_primary_contig(chrom: str) -> bool:
+    name = chrom[3:] if chrom.lower().startswith("chr") else chrom
+    return name.upper() in _PRIMARY_CONTIGS
 
 
 _BUILD_PATTERNS = {
@@ -26,7 +38,28 @@ _BUILD_PATTERNS = {
 }
 
 
-def _detect_build_from_header(header: vcfpy.Header) -> GenomeBuild:
+# Chromosome 1 length identifies the assembly regardless of naming style
+# (UCSC hg19 uses "chr1", Ensembl/NCBI GRCh38 uses "1").
+_CHR1_LENGTH_TO_BUILD = {249250621: GenomeBuild.GRCH37, 248956422: GenomeBuild.GRCH38}
+
+
+def _build_from_contig_lengths(header: vcfpy.Header) -> GenomeBuild | None:
+    try:
+        contig_lines = header.get_lines("contig")
+    except Exception:
+        return None
+    for ln in contig_lines:
+        mapping = getattr(ln, "mapping", None) or {}
+        if str(mapping.get("ID", "")).removeprefix("chr") != "1":
+            continue
+        try:
+            return _CHR1_LENGTH_TO_BUILD.get(int(mapping.get("length")))
+        except (TypeError, ValueError):
+            return None
+    return None
+
+
+def _build_from_keywords(header: vcfpy.Header) -> GenomeBuild | None:
     for line in header.lines:
         value = ""
         if hasattr(line, "value"):
@@ -36,23 +69,21 @@ def _detect_build_from_header(header: vcfpy.Header) -> GenomeBuild:
         for build, pattern in _BUILD_PATTERNS.items():
             if pattern.search(value):
                 return build
+    return None
 
-    try:
-        contig_lines = header.get_lines("contig")
-        contig_names = [
-            ln.mapping.get("ID", "")
-            for ln in contig_lines
-            if hasattr(ln, "mapping")
-        ]
-    except Exception:
-        contig_names = []
 
-    if contig_names:
-        if contig_names[0].startswith("chr"):
-            return GenomeBuild.GRCH38
-        else:
-            return GenomeBuild.GRCH37
-    return GenomeBuild.UNKNOWN
+def _detect_build_from_header(header: vcfpy.Header) -> GenomeBuild:
+    """Contig length of chromosome 1 first (definitive), then assembly keywords.
+
+    Never guessed from contig naming: without either signal the build is UNKNOWN and
+    annotation stops, so GRCh37 resources are never applied to GRCh38 coordinates.
+    """
+    by_length = _build_from_contig_lengths(header)
+    by_keyword = _build_from_keywords(header)
+    if by_length and by_keyword and by_length != by_keyword:
+        logger.warning("VCF header keywords suggest %s but chromosome 1 length matches %s; "
+                       "using the contig length.", by_keyword.value, by_length.value)
+    return by_length or by_keyword or GenomeBuild.UNKNOWN
 
 
 def _is_dragen_header(header: vcfpy.Header) -> bool:
@@ -131,6 +162,7 @@ def _parse_vcf_file(vcf_path: str) -> VCFContext:
 
     variant_count = 0
     pass_count = 0
+    nonprimary_pass_count = 0
     capped = False
 
     try:
@@ -139,6 +171,8 @@ def _parse_vcf_file(vcf_path: str) -> VCFContext:
             filters = [f.value if hasattr(f, "value") else str(f) for f in (record.FILTER or [])]
             if not filters or filters == ["PASS"]:
                 pass_count += 1
+                if not _is_primary_contig(record.CHROM):
+                    nonprimary_pass_count += 1
             if _MAX_VARIANTS > 0 and variant_count >= _MAX_VARIANTS * 10:
                 capped = True
                 break
@@ -147,17 +181,23 @@ def _parse_vcf_file(vcf_path: str) -> VCFContext:
 
     reader.close()
 
+    if nonprimary_pass_count:
+        warnings.append(
+            f"Excluded {nonprimary_pass_count} PASS record(s) on nonprimary contigs "
+            "from variant sampling because the configured VEP reference does not annotate them."
+        )
+
     if capped:
         warnings.append(
             f"VCF has >={variant_count} variants. "
-            "Large file detected — annotation will be limited to first "
-            f"{_MAX_VARIANTS} PASS variants."
+            "Large file detected; record count is a lower bound because scanning stopped. "
+            f"Annotation uses seeded reservoir sampling of up to {_MAX_VARIANTS} eligible alleles."
         )
 
     if _MAX_VARIANTS > 0 and pass_count > _MAX_VARIANTS:
         warnings.append(
-            f"VCF contains {pass_count} PASS variants — annotation will be limited "
-            f"to the first {_MAX_VARIANTS} PASS variants."
+            f"VCF scan counted {pass_count} PASS records; annotation uses seeded reservoir "
+            f"sampling of up to {_MAX_VARIANTS} eligible alleles after QUAL/genotype filtering."
         )
 
     qc_status = QCStatus.PASS
@@ -209,6 +249,8 @@ def load_pass_variants(
         for record in reader:
             filters = [f.value if hasattr(f, "value") else str(f) for f in (record.FILTER or [])]
             if filters and filters != ["PASS"]:
+                continue
+            if not _is_primary_contig(record.CHROM):
                 continue
             if min_qual and record.QUAL is not None and float(record.QUAL) < min_qual:
                 continue
@@ -423,6 +465,7 @@ def load_normalized_variants(
     min_qual: float = _MIN_QUAL,
     require_non_ref: bool = True,
 ) -> tuple[list[NormalizedVariant], int]:
+    from generesolver import config as _cfg
     if max_variants is None:
         max_variants = _MAX_VARIANTS
     uncapped = max_variants <= 0
@@ -430,14 +473,26 @@ def load_normalized_variants(
     variants: list[NormalizedVariant] = []
     n_skipped_structural = 0
     n_eligible = 0
+    stats = {"records_read": 0, "dropped_filter_not_pass": 0, "dropped_nonprimary_contig": 0,
+             "dropped_low_qual": 0, "dropped_no_alt_genotype": 0, "dropped_ref_over_50bp": 0,
+             "dropped_alt_over_50bp": 0, "dropped_symbolic_alt": 0, "dropped_low_gq": 0,
+             "dropped_low_dp": 0, "dropped_by_sampling": 0,
+             "min_qual": min_qual, "min_gq": _cfg.MIN_GENOTYPE_QUALITY, "min_dp": _cfg.MIN_READ_DEPTH,
+             "max_variants": max_variants}
     try:
         reader = vcfpy.Reader.from_path(vcf_path)
         for record in reader:
+            stats["records_read"] += 1
             filters = [f.value if hasattr(f, "value") else str(f) for f in (record.FILTER or [])]
             filter_status = ";".join(filters) if filters else "PASS"
             if filters and filters != ["PASS"]:
+                stats["dropped_filter_not_pass"] += 1
+                continue
+            if not _is_primary_contig(record.CHROM):
+                stats["dropped_nonprimary_contig"] += 1
                 continue
             if min_qual and record.QUAL is not None and float(record.QUAL) < min_qual:
+                stats["dropped_low_qual"] += 1
                 continue
 
             calls = getattr(record, "calls", None)
@@ -447,28 +502,46 @@ def load_normalized_variants(
             if require_non_ref and gt and not any(
                 a not in ("0", ".", "") for a in re.split(r"[/|]", gt)
             ):
+                stats["dropped_no_alt_genotype"] += 1
                 continue
 
             if len(record.REF) > 50:
+                stats["dropped_ref_over_50bp"] += 1
+                continue
+
+            # Missing GQ/DP passes (simulated/spiked records often carry GT only).
+            gq = call_data.get("GQ")
+            try:
+                gq = float(gq) if gq not in (None, ".", "") else None
+            except (TypeError, ValueError):
+                gq = None
+            if _cfg.MIN_GENOTYPE_QUALITY and gq is not None and gq < _cfg.MIN_GENOTYPE_QUALITY:
+                stats["dropped_low_gq"] += 1
                 continue
 
             is_multiallelic = len(record.ALT) > 1
             for alt_idx, alt in enumerate(record.ALT, start=1):
                 if not isinstance(alt, vcfpy.Substitution):
                     n_skipped_structural += 1
+                    stats["dropped_symbolic_alt"] += 1
                     continue
                 alt_str = str(alt.value)
                 if len(alt_str) > 50:
+                    stats["dropped_alt_over_50bp"] += 1
                     continue
 
                 zygosity = _zygosity_for_alt(gt, alt_idx) if gt else None
                 if zygosity == "absent":
                     continue
 
+                ref_depth, alt_depth, total_depth = _extract_ad_dp(call_data, alt_idx)
+                if _cfg.MIN_READ_DEPTH and total_depth is not None and total_depth < _cfg.MIN_READ_DEPTH:
+                    stats["dropped_low_dp"] += 1
+                    continue
+
                 norm_pos, norm_ref, norm_alt, was_changed, ref_matches = _validate_and_normalize(
                     record.CHROM, record.POS, record.REF, alt_str, genome_build,
                 )
-                ref_depth, alt_depth, total_depth = _extract_ad_dp(call_data, alt_idx)
 
                 item = NormalizedVariant(
                     chrom=record.CHROM,
@@ -497,6 +570,11 @@ def load_normalized_variants(
         variants.sort(key=lambda v: (v.chrom, v.pos))
     except Exception as exc:
         logger.error("Failed to load/normalize variants from %s: %s", vcf_path, exc)
+    stats["eligible_alleles"] = n_eligible
+    stats["dropped_by_sampling"] = max(0, n_eligible - len(variants))
+    stats["alleles_kept"] = len(variants)
+    LAST_LOAD_STATS.clear()
+    LAST_LOAD_STATS.update(stats)
     return variants, n_skipped_structural
 
 

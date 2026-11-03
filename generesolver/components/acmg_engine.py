@@ -3,7 +3,8 @@ from __future__ import annotations
 import re
 
 from generesolver.integrations import (
-    gnomad_constraint, known_pathogenic_residues, ucsc_repeats, uniprot_api, vep_api,
+    clingen_ba1_exceptions, gencode_transcripts, gnomad_constraint, known_pathogenic_residues,
+    mane_local, ucsc_repeats, uniprot_api, vep_api,
 )
 from generesolver.schemas.acmg_assessment import (
     ACMGAssessment,
@@ -33,10 +34,15 @@ _LOF_CONSEQUENCES = (
 )
 _PM4_CONSEQUENCES = {"inframe_insertion", "inframe_deletion", "stop_lost"}
 _SYNONYMOUS_CONSEQUENCES = {"synonymous_variant", "stop_retained_variant"}
+# Scope of the SVI splicing BP4/PP3 rule: synonymous and intronic only. Promoter/UTR variants act
+# through mechanisms SpliceAI does not model, so BP4 there would be unsafe.
+_NON_PROTEIN_CHANGING = _SYNONYMOUS_CONSEQUENCES | {"intron_variant"}
 
 _BA1_THRESHOLD = 0.05
+# Extra variant_ids to treat as BA1 exceptions, on top of the ClinGen SVI list
+# (clingen_ba1_exceptions.EXCEPTIONS, matched by gene + protein change).
 _BA1_EXCEPTION_VARIANTS: set[str] = set()
-_BA1_EXCEPTION_LIST_AVAILABLE = False
+_BA1_EXCEPTION_LIST_AVAILABLE = True
 
 _MIN_ADEQUATE_ALLELE_NUMBER = 2000
 
@@ -82,6 +88,13 @@ def _gnomad_source_versions() -> dict[str, str]:
 def _vep_source_versions() -> dict[str, str]:
     cache_version = getattr(vep_api, "_VEP_CACHE_VERSION", None)
     return {"vep_cache_version": str(cache_version)} if cache_version else {}
+
+
+def _repeat_overlap(chrom_pos: tuple[str, int], genome_build: object) -> bool | None:
+    # The UCSC simpleRepeat track is hg19; never query it with GRCh38 coordinates.
+    if str(getattr(genome_build, "value", genome_build)) != "GRCh37":
+        return None
+    return ucsc_repeats.in_repeat_region(*chrom_pos)
 
 
 def _variant_chrom_pos(variant: AnnotatedVariant) -> tuple[str, int] | None:
@@ -137,20 +150,185 @@ def _pvs1_exon_evidence(variant: AnnotatedVariant) -> EvidenceItem:
     )
 
 
-def _pvs1(variant: AnnotatedVariant, context: VariantDiseaseContext) -> CriterionResult:
-    code = "PVS1"
-    version = "pvs1_v6.0"
+_STRENGTH_ORDER = [EvidenceStrength.SUPPORTING, EvidenceStrength.MODERATE,
+                   EvidenceStrength.STRONG, EvidenceStrength.VERY_STRONG]
+# gnomAD v4 constraint: LOEUF upper bound below this marks a gene as LoF-intolerant.
+_PVS1_LOEUF_THRESHOLD = 0.45  # gnomAD v4.1 suggestion for Mendelian interpretation (~15% most constrained)
+_PVS1_MIN_REMOVED_FRACTION = 0.10
+_RECESSIVE_FOR_PVS1 = {"autosomal_recessive", "x_linked_recessive"}
+# PVS1 mechanism from ClinVar: other P/LP truncating variants required in the gene.
+_PVS1_CLINVAR_MIN_LOF = 5
+# Marks a PVS1 whose mechanism came from ClinVar, so ClinVar-blind scorings can drop it.
+CLINVAR_GENE_LOF_MARKER = "LoF mechanism from ClinVar gene-level evidence"
 
+
+def _downgrade(strength: EvidenceStrength, steps: int) -> EvidenceStrength:
+    return _STRENGTH_ORDER[max(0, _STRENGTH_ORDER.index(strength) - steps)]
+
+
+def _pvs1_mechanism(variant: AnnotatedVariant, context: VariantDiseaseContext) -> tuple[str | None, str]:
+    """('established' | 'inferred' | None, explanation).
+
+    Sources, in order: Orphanet association type / ClinGen HI 3; ClinVar gene-level evidence
+    (ClinGen PVS1, Abou Tayoun 2018: LoF is a known mechanism when multiple pathogenic LoF
+    variants are reported in the gene; at least _PVS1_CLINVAR_MIN_LOF others are required, so the
+    assessed variant's own record cannot establish it); then gnomAD constraint or recessive
+    inheritance (inferred, one level lower)."""
+    if context.disease_mechanism == "loss_of_function":
+        return "established", "LoF mechanism from Orphanet association type or ClinGen HI score 3"
+    if context.disease_mechanism == "gain_of_function":
+        return None, "disease mechanism is gain of function"
+    gene = variant.gene or context.gene
+    if gene and known_pathogenic_residues.is_available():
+        n_lof = (known_pathogenic_residues.type_counts(gene) or {}).get("truncating", 0)
+        # The count may include the assessed variant itself, so one is subtracted.
+        if n_lof - 1 >= _PVS1_CLINVAR_MIN_LOF:
+            return "established", (f"{CLINVAR_GENE_LOF_MARKER}: {n_lof} P/LP truncating variants in {gene} "
+                                   f"(>= {_PVS1_CLINVAR_MIN_LOF} besides this one)")
+    loeuf = (gnomad_constraint.get_constraint(variant.gene or context.gene) or {}).get("loeuf")
+    if loeuf is not None and loeuf < _PVS1_LOEUF_THRESHOLD:
+        return "inferred", f"gene is LoF-intolerant (gnomAD v4.1 LOEUF {loeuf:.2f} < {_PVS1_LOEUF_THRESHOLD})"
+    if context.inheritance in _RECESSIVE_FOR_PVS1:
+        return "inferred", f"recessive disorder ({context.inheritance}): biallelic LoF is the usual mechanism"
+    return None, "no LoF mechanism from Orphanet, ClinGen HI or gnomAD constraint"
+
+
+def _pvs1_transcript(variant: AnnotatedVariant):
+    """(Transcript | None, relevance, explanation). Relevance: 'mane' | 'ccds' | None."""
+    pos = (_variant_chrom_pos(variant) or (None, None))[1]
+    if variant.mane_status in ("MANE_Select", "MANE_Plus_Clinical"):
+        return gencode_transcripts.get(variant.transcript), "mane", "VEP transcript is MANE"
+    mane_id = mane_local.mane_select_transcript(variant.gene)
+    mane_tx = gencode_transcripts.get(mane_id)
+    if mane_tx and pos is not None and (mane_tx.exon_index(pos) is not None
+                                         or mane_tx.skipped_exon_for_splice_site(pos)):
+        return mane_tx, "mane", f"variant also lies in the gene's MANE Select transcript {mane_id}"
+    tx = gencode_transcripts.get(variant.transcript)
+    if tx and tx.has_ccds and tx.is_basic:
+        return tx, "ccds", f"transcript {tx.transcript_id} is not MANE but is a CCDS 'basic' transcript"
+    return None, None, "transcript is neither MANE nor CCDS-supported"
+
+
+def _pvs1_truncation_strength(tx, cds_pos: int, gene: str | None) -> tuple[EvidenceStrength, str]:
+    """ClinGen PVS1 tree, NMD-escape branch: Strong if the removed region is critical
+    (overlaps a UniProt functional region) or > 10% of the protein, otherwise Moderate."""
+    first_aa = cds_pos // 3 + 1
+    length = tx.protein_length or 1
+    removed = max(0.0, (length - first_aa + 1) / length)
+    critical = [r for r in (uniprot_api.get_functional_regions(gene) if gene else [])
+                if r["end"] >= first_aa]
+    if critical:
+        return EvidenceStrength.STRONG, (f"NMD escape; removed C-terminal region (aa {first_aa}-{length}) "
+                                         f"overlaps UniProt {critical[0]['type']} {critical[0]['start']}-{critical[0]['end']}")
+    if removed > _PVS1_MIN_REMOVED_FRACTION:
+        return EvidenceStrength.STRONG, f"NMD escape; removes {removed:.0%} of the protein (> 10%)"
+    return EvidenceStrength.MODERATE, f"NMD escape; removes {removed:.0%} of the protein (<= 10%)"
+
+
+def _pvs1(variant: AnnotatedVariant, context: VariantDiseaseContext) -> CriterionResult:
+    """ClinGen SVI PVS1 decision tree (Abou Tayoun et al. 2018) on GENCODE v19 transcript
+    structure. Deviations, all conservative: an LoF mechanism inferred from gnomAD constraint or
+    recessive inheritance (instead of curated evidence) and a CCDS transcript that is not MANE
+    each lower the strength one level; start-lost is Supporting because the 'pathogenic variants
+    upstream of the next in-frame start' evidence would come from ClinVar."""
+    code = "PVS1"
+    version = "pvs1_v8.1_clingen_tree_clinvar_lof"
     if variant.consequence not in _LOF_CONSEQUENCES:
         return _not_applicable(code, EvidenceDirection.PATHOGENIC,
                                 "Consequence is not a loss-of-function type.", version)
+    mechanism, mech_note = _pvs1_mechanism(variant, context)
+    if mechanism is None:
+        return _not_evaluated(code, EvidenceDirection.PATHOGENIC,
+                              f"Loss of function is not an established mechanism: {mech_note}.",
+                              ["gene_disease_mechanism=loss_of_function"], version)
+    if not gencode_transcripts.is_available():
+        return _pvs1_v6(variant, context, version)
+    tx, relevance, tx_note = _pvs1_transcript(variant)
+    if tx is None:
+        return _not_evaluated(code, EvidenceDirection.PATHOGENIC,
+                              f"Biologically relevant transcript not confirmed: {tx_note}.",
+                              ["MANE Select or CCDS transcript"], version)
+    pos = _variant_chrom_pos(variant)[1]
+    steps = (mechanism == "inferred") + (relevance == "ccds")
+    warnings = [n for n, apply in ((mech_note, mechanism == "inferred"), (tx_note, relevance == "ccds")) if apply]
+    if steps:
+        warnings.append(f"strength lowered {steps} level(s) for the inferred mechanism/transcript")
+
+    branch: str
+    if variant.consequence == _TRANSCRIPT_ABLATION_CONSEQUENCE:
+        strength, branch = EvidenceStrength.VERY_STRONG, "whole-transcript ablation"
+    elif variant.consequence == _START_LOST_CONSEQUENCE:
+        strength, branch = EvidenceStrength.SUPPORTING, ("initiation codon; upstream-pathogenic-variant "
+                                                         "evidence not used (ClinVar), so Supporting")
+    elif variant.consequence in _CANONICAL_SPLICE_CONSEQUENCES:
+        hit = tx.skipped_exon_for_splice_site(pos)
+        if hit is None:
+            return _not_evaluated(code, EvidenceDirection.PATHOGENIC,
+                                  f"Variant is not at ±1/2 of an exon boundary of {tx.transcript_id}.",
+                                  ["canonical splice position in the relevant transcript"], version)
+        idx, side = hit
+        coding = tx.coding_length_of_exon(idx)
+        prot = tx.protein_range_of_exon(idx)
+        if not coding or prot is None or idx == 0:
+            return _not_evaluated(code, EvidenceDirection.PATHOGENIC,
+                                  f"{side} site of exon {idx + 1}: skipped exon is non-coding or holds the "
+                                  "start codon, which the tree handles separately.",
+                                  ["coding exon skip"], version)
+        if coding % 3:
+            exon_start_cds = tx.cds_end_of_exon(idx) - coding + 1
+            if tx.nmd_predicted(exon_start_cds):
+                strength, branch = EvidenceStrength.VERY_STRONG, (
+                    f"{side} site; skipping exon {idx + 1} ({coding} nt) shifts the frame and NMD is predicted")
+            else:
+                strength, why = _pvs1_truncation_strength(tx, exon_start_cds, variant.gene)
+                branch = f"{side} site; frameshifting skip of exon {idx + 1}, {why}"
+        else:
+            critical = [r for r in uniprot_api.get_functional_regions(variant.gene or "")
+                        if r["start"] <= prot[1] and r["end"] >= prot[0]]
+            frac = (prot[1] - prot[0] + 1) / (tx.protein_length or 1)
+            if critical:
+                strength, why = EvidenceStrength.STRONG, f"removes part of UniProt {critical[0]['type']}"
+            elif frac > _PVS1_MIN_REMOVED_FRACTION:
+                strength, why = EvidenceStrength.STRONG, f"removes {frac:.0%} of the protein"
+            else:
+                strength, why = EvidenceStrength.MODERATE, f"removes {frac:.0%} of the protein"
+            branch = f"{side} site; in-frame skip of exon {idx + 1} (aa {prot[0]}-{prot[1]}), {why}"
+        warnings.append("exon skipping assumed; cryptic splice-site use was not modelled")
+    else:  # stop_gained / frameshift
+        cds_pos = tx.cds_offset(pos)
+        if cds_pos is None:
+            return _not_evaluated(code, EvidenceDirection.PATHOGENIC,
+                                  f"Variant is outside the coding sequence of {tx.transcript_id}.",
+                                  ["CDS position in the relevant transcript"], version)
+        if tx.nmd_predicted(cds_pos):
+            strength, branch = EvidenceStrength.VERY_STRONG, (
+                f"c.{cds_pos} is > 50 nt upstream of the last exon-exon junction: NMD predicted")
+        else:
+            strength, branch = _pvs1_truncation_strength(tx, cds_pos, variant.gene)
+        if variant.consequence == "frameshift_variant":
+            warnings.append("frameshift: NMD judged from the variant position, not the new stop codon")
+
+    strength = _downgrade(strength, steps)
+    return _result(
+        code, CriterionStatus.MET, EvidenceDirection.PATHOGENIC,
+        f"ClinGen PVS1 tree: {branch}; mechanism: {mech_note}; transcript {tx.transcript_id} ({relevance}).",
+        strength=strength, warnings=warnings,
+        evidence_items=[_pvs1_exon_evidence(variant), EvidenceItem(
+            evidence_id=f"gencode:{tx.transcript_id}:{variant.variant_id}", evidence_type="transcript_structure",
+            source=gencode_transcripts.SOURCE_VERSION,
+            value={"transcript": tx.transcript_id, "relevance": relevance, "mechanism": mechanism})],
+        evaluator_version=version,
+        source_versions={**_vep_source_versions(), "gencode": "v19"},
+    )
+
+
+def _pvs1_v6(variant: AnnotatedVariant, context: VariantDiseaseContext, version: str) -> CriterionResult:
+    """Previous rule (VEP exon field only), used when the GENCODE index is not installed."""
+    code = "PVS1"
     if context.disease_mechanism != "loss_of_function":
-        return _not_evaluated(
-            code, EvidenceDirection.PATHOGENIC,
-            "Established loss-of-function disease mechanism is not confirmed "
-            "for this gene-disease pair.",
-            ["gene_disease_mechanism=loss_of_function"], version,
-        )
+        return _not_evaluated(code, EvidenceDirection.PATHOGENIC,
+                              "Established loss-of-function disease mechanism is not confirmed.",
+                              ["gene_disease_mechanism=loss_of_function"], version)
     if variant.mane_status not in ("MANE_Select", "MANE_Plus_Clinical"):
         return _not_evaluated(
             code, EvidenceDirection.PATHOGENIC,
@@ -235,11 +413,47 @@ def _popmax_af_coverage_unconfirmed(variant: AnnotatedVariant) -> float | None:
     return variant.gnomad_af_popmax
 
 
+# BA1 (Ghosh et al. 2018): AF > 5% "in any general continental population dataset of at
+# least 2,000 observed alleles". These gnomAD v4.1 continental groups each contain thousands of
+# individuals in the exomes (far over 1,000), so a frequency from them meets the 2,000-allele
+# requirement by dataset size. Founder/bottlenecked or small groups (ASJ, FIN, MID, AMI,
+# "remaining") and 1000 Genomes populations are excluded. Per-site AN is not available in the
+# VEP cache; this is disclosed in docs/ACMG_RULES.md.
+_BA1_CONTINENTAL_POPULATIONS = ("AFR", "AMR", "EAS", "NFE", "SAS")
+_BA1_CONTINENTAL_KEY_RE = re.compile(
+    r"^gnomAD[eg]_(" + "|".join(_BA1_CONTINENTAL_POPULATIONS) + r")_AF$")
+
+
+def _continental_max_af(variant: AnnotatedVariant) -> tuple[float, str] | None:
+    best: tuple[float, str] | None = None
+    for key, af in (variant.gnomad_af_by_population or {}).items():
+        if af is None or not _BA1_CONTINENTAL_KEY_RE.match(key):
+            continue
+        if best is None or af > best[0]:
+            best = (af, key.removesuffix("_AF"))
+    return best
+
+
 def _pm2_supporting(variant: AnnotatedVariant, context: VariantDiseaseContext) -> CriterionResult:
     code = "PM2"
     version = "pm2_supporting_v7.0"
     caveat = (f"disclosed research rarity filter ({_PM2_RESEARCH_THRESHOLD}), "
               "not a guideline-derived universal PM2 threshold")
+    if variant.gnomad_frequency_status == "absent":
+        return _result(
+            code, CriterionStatus.MET, EvidenceDirection.PATHOGENIC,
+            "Variant is absent from gnomAD (the queried frequency source returned no "
+            "record for this allele). Site-level coverage could not be confirmed, so "
+            "absence is treated as a disclosed, lower-rigor rarity signal.",
+            strength=EvidenceStrength.SUPPORTING,
+            evidence_items=[EvidenceItem(
+                evidence_id=f"gnomad:{context.genome_build}:{variant.variant_id}:pm2",
+                evidence_type="population_frequency", source="gnomAD",
+                value={"af": None, "status": "absent"},
+            )],
+            warnings=["gnomAD site coverage not confirmed for an absent variant."],
+            evaluator_version=version, source_versions=_gnomad_source_versions(),
+        )
     if variant.gnomad_frequency_status != "observed":
         return _not_evaluated(code, EvidenceDirection.PATHOGENIC,
                                "Population frequency annotation is unavailable.",
@@ -284,12 +498,26 @@ def _pm2_supporting(variant: AnnotatedVariant, context: VariantDiseaseContext) -
 def _ba1(variant: AnnotatedVariant, context: VariantDiseaseContext) -> CriterionResult:
     code = "BA1"
     version = "ba1_v7.0"
+    if variant.gnomad_frequency_status == "absent":
+        return _result(code, CriterionStatus.NOT_MET, EvidenceDirection.BENIGN,
+                        "Variant is absent from gnomAD, so the stand-alone benign "
+                        "frequency threshold cannot be exceeded.",
+                        evaluator_version=version, source_versions=_gnomad_source_versions())
     if variant.gnomad_frequency_status != "observed":
         return _not_evaluated(code, EvidenceDirection.BENIGN,
                                "Population frequency annotation is unavailable.",
                                ["gnomad_frequency_status=observed"], version)
+    # 1) a popmax AF with its own allele number (optional gnomAD v2.1.1 index / online API);
+    # 2) otherwise the highest gnomAD v4.1 continental-population AF from the VEP cache;
+    # 3) otherwise a coverage-unconfirmed popmax (e.g. VEP MAX_AF incl. 1000 Genomes),
+    #    which can never make BA1 met.
     af, an, scope = _scope_matched_af_an(variant)
     coverage_confirmed = an is not None and an >= _MIN_ADEQUATE_ALLELE_NUMBER
+    if not coverage_confirmed:
+        continental = _continental_max_af(variant)
+        if continental is not None:
+            af, scope = continental[0], f"gnomad_v4.1_continental:{continental[1]}"
+            an, coverage_confirmed = None, True
     if af is None:
         af = _popmax_af_coverage_unconfirmed(variant)
         scope = "popmax_coverage_unconfirmed"
@@ -330,18 +558,23 @@ def _ba1(variant: AnnotatedVariant, context: VariantDiseaseContext) -> Criterion
             "exception', so BA1 cannot be assigned MET.",
             ["ba1_exception_list_loaded"], version,
         )
-    if variant.variant_id in _BA1_EXCEPTION_VARIANTS:
+    exception = clingen_ba1_exceptions.match(variant.gene, variant.hgvs_p, variant.variant_id)
+    if exception or variant.variant_id in _BA1_EXCEPTION_VARIANTS:
+        label = (f"{exception['gene']} {exception['transcript']}:{exception['hgvs_c']}"
+                 if exception else variant.variant_id)
         return _result(
             code, CriterionStatus.NOT_MET, EvidenceDirection.BENIGN,
-            "This variant has a documented BA1 exception; the general "
-            "stand-alone threshold does not apply here.",
+            f"This variant is on the {clingen_ba1_exceptions.SOURCE} ({label}); "
+            "the general stand-alone threshold does not apply here.",
             evidence_items=evidence, evaluator_version=version,
             source_versions=_gnomad_source_versions(),
         )
     return _result(
         code, CriterionStatus.MET, EvidenceDirection.BENIGN,
-        f"Population frequency ({af}) exceeds the stand-alone benign threshold "
-        f"({_BA1_THRESHOLD}) and the exception list was checked (no exception found).",
+        f"Population frequency ({af}, {scope}) exceeds the stand-alone benign threshold "
+        f"({_BA1_THRESHOLD}) in a continental population of >= "
+        f"{_MIN_ADEQUATE_ALLELE_NUMBER} alleles, and the variant is not on the "
+        f"{clingen_ba1_exceptions.SOURCE}.",
         strength=EvidenceStrength.STAND_ALONE, evidence_items=evidence,
         evaluator_version=version, source_versions=_gnomad_source_versions(),
     )
@@ -362,7 +595,32 @@ def _bs1(variant: AnnotatedVariant, context: VariantDiseaseContext) -> Criterion
 def _pp3_bp4(variant: AnnotatedVariant, context: VariantDiseaseContext,
              pvs1_result: CriterionResult) -> CriterionResult:
     code = "PP3/BP4"
-    version = "pp3_bp4_v2.0"
+    version = "pp3_bp4_v3.0_splicing_svi2023"
+
+    # ClinGen SVI splicing recommendations (Walker et al. 2023): for variants that do not change
+    # the protein sequence (synonymous, intronic, UTR, non-coding) SpliceAI gives BP4 (<= 0.10)
+    # or PP3 (>= 0.20); BP7 can be applied in addition for synonymous variants.
+    if (not variant.is_splice_relevant and variant.spliceai_score is not None
+            and variant.consequence in _NON_PROTEIN_CHANGING):
+        evidence = [EvidenceItem(
+            evidence_id=f"spliceai:{variant.variant_id}", evidence_type="computational_prediction",
+            source="SpliceAI", value={"delta_score": variant.spliceai_score},
+        )]
+        if variant.spliceai_score <= _SPLICEAI_BP4_THRESHOLD:
+            return _result("BP4", CriterionStatus.MET, EvidenceDirection.BENIGN,
+                           f"{variant.consequence}: SpliceAI delta {variant.spliceai_score} <= "
+                           f"{_SPLICEAI_BP4_THRESHOLD}, no predicted splicing impact (Walker 2023).",
+                           strength=EvidenceStrength.SUPPORTING, evidence_items=evidence,
+                           evaluator_version=version)
+        if variant.spliceai_score >= _SPLICEAI_PP3_THRESHOLD:
+            return _result("PP3", CriterionStatus.MET, EvidenceDirection.PATHOGENIC,
+                           f"{variant.consequence}: SpliceAI delta {variant.spliceai_score} >= "
+                           f"{_SPLICEAI_PP3_THRESHOLD}, predicted splicing impact (Walker 2023).",
+                           strength=EvidenceStrength.SUPPORTING, evidence_items=evidence,
+                           evaluator_version=version)
+        return _result(code, CriterionStatus.NOT_MET, EvidenceDirection.PATHOGENIC,
+                       "SpliceAI delta score falls in the indeterminate band (0.10-0.20).",
+                       evidence_items=evidence, evaluator_version=version)
 
     if variant.is_splice_relevant and variant.spliceai_score is not None:
         if (variant.consequence in _CANONICAL_SPLICE_CONSEQUENCES
@@ -477,12 +735,12 @@ def _pm4(variant: AnnotatedVariant, context: VariantDiseaseContext,
             "Variant position could not be parsed to check repeat-region overlap.",
             ["repeat_region_annotation"], version,
         )
-    in_repeat = ucsc_repeats.in_repeat_region(*chrom_pos)
+    in_repeat = _repeat_overlap(chrom_pos, context.genome_build)
     if in_repeat is None:
         return _not_evaluated(
             code, EvidenceDirection.PATHOGENIC,
-            "Repeat-region annotation is unavailable (UCSC simpleRepeat track "
-            "not loaded) -- cannot confirm this in-frame indel falls outside a "
+            "Repeat-region annotation is unavailable (UCSC simpleRepeat hg19 track "
+            "not loaded, or the case is not GRCh37) -- cannot confirm this in-frame indel falls outside a "
             "repetitive region with no known functional significance.",
             ["repeat_region_annotation"], version,
         )
@@ -516,11 +774,11 @@ def _bp3(variant: AnnotatedVariant, context: VariantDiseaseContext) -> Criterion
         return _not_evaluated(code, EvidenceDirection.BENIGN,
                                "Variant position could not be parsed to check repeat-region overlap.",
                                ["repeat_region_annotation"], version)
-    in_repeat = ucsc_repeats.in_repeat_region(*chrom_pos)
+    in_repeat = _repeat_overlap(chrom_pos, context.genome_build)
     if in_repeat is None:
         return _not_evaluated(code, EvidenceDirection.BENIGN,
-                               "Repeat-region annotation is unavailable (UCSC simpleRepeat "
-                               "track not loaded).",
+                               "Repeat-region annotation is unavailable (UCSC simpleRepeat hg19 "
+                               "track not loaded, or the case is not GRCh37).",
                                ["repeat_region_annotation"], version)
     evidence = [EvidenceItem(
         evidence_id=f"ucsc_simplerepeat:{variant.variant_id}:bp3", evidence_type="repeat_region",

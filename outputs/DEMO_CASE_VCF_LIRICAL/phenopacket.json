@@ -60,9 +60,9 @@
         "genomicInterpretations": [
           {
             "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
-            "interpretationStatus": "CONTRIBUTORY",
+            "interpretationStatus": "UNCERTAIN",
             "variantInterpretation": {
-              "acmgPathogenicityClassification": "LIKELY_PATHOGENIC",
+              "acmgPathogenicityClassification": "VUS",
               "variationDescriptor": {
                 "id": "chr19:13007113:G:A",
                 "geneContext": {
@@ -148,6 +148,34 @@
             "variantInterpretation": {
               "acmgPathogenicityClassification": "VUS",
               "variationDescriptor": {
+                "id": "chr2:73675227:T:TCTC",
+                "geneContext": {
+                  "symbol": "ALMS1"
+                },
+                "label": "chr2:73675227:T:TCTC"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "UNCERTAIN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "VUS",
+              "variationDescriptor": {
+                "id": "chr2:73675227:T:TCTC",
+                "geneContext": {
+                  "symbol": "ALMS1"
+                },
+                "label": "chr2:73675227:T:TCTC"
+              }
+            }
+          },
+          {
+            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
+            "interpretationStatus": "UNCERTAIN",
+            "variantInterpretation": {
+              "acmgPathogenicityClassification": "VUS",
+              "variationDescriptor": {
                 "id": "chr2:73691144:C:A",
                 "geneContext": {
                   "symbol": "ALMS1"
@@ -158,43 +186,15 @@
           },
           {
             "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
-            "interpretationStatus": "BENIGN",
+            "interpretationStatus": "UNCERTAIN",
             "variantInterpretation": {
-              "acmgPathogenicityClassification": "LIKELY_BENIGN",
+              "acmgPathogenicityClassification": "VUS",
               "variationDescriptor": {
-                "id": "chr2:73716810:G:A",
+                "id": "chr2:73691144:C:A",
                 "geneContext": {
                   "symbol": "ALMS1"
                 },
-                "label": "chr2:73716810:G:A"
-              }
-            }
-          },
-          {
-            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
-            "interpretationStatus": "BENIGN",
-            "variantInterpretation": {
-              "acmgPathogenicityClassification": "LIKELY_BENIGN",
-              "variationDescriptor": {
-                "id": "chr17:72862593:C:T",
-                "geneContext": {
-                  "symbol": "FDXR"
-                },
-                "label": "chr17:72862593:C:T"
-              }
-            }
-          },
-          {
-            "subjectOrBiosampleId": "DEMO_CASE_VCF_LIRICAL",
-            "interpretationStatus": "BENIGN",
-            "variantInterpretation": {
-              "acmgPathogenicityClassification": "LIKELY_BENIGN",
-              "variationDescriptor": {
-                "id": "chr17:72862593:C:T",
-                "geneContext": {
-                  "symbol": "FDXR"
-                },
-                "label": "chr17:72862593:C:T"
+                "label": "chr2:73691144:C:A"
               }
             }
           }
@@ -203,8 +203,8 @@
     }
   ],
   "metaData": {
-    "created": "2026-08-14T08:25:08.774472+00:00",
-    "createdBy": "GeneResolve v2",
+    "created": "2026-10-27T11:45:30.731513+00:00",
+    "createdBy": "GeneResolver v2",
     "resources": [
       {
         "id": "hp",

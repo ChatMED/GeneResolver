@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import logging
 
 from generesolver.integrations.llm_client import LLMResponseError, complete_json
@@ -47,5 +48,24 @@ def _generate(gene: str, bio: object) -> tuple[str, str]:
         f'"expert": "<3-5 detailed mechanistic sentences with pathway context for a clinical geneticist>"}}'
     )
 
-    data = complete_json(system="", user=prompt, max_tokens=1024)
-    return data.get("doctor", ""), data.get("expert", "")
+    try:
+        data = complete_json(system="", user=prompt, max_tokens=1024)
+    except LLMResponseError as exc:
+        # Some OpenAI-compatible models return several otherwise valid
+        # alternatives as a JSON array despite the request for one object.
+        try:
+            alternatives = json.loads(exc.raw_payload)
+        except (TypeError, ValueError):
+            raise exc
+        if not isinstance(alternatives, list) or not alternatives:
+            raise exc
+        data = alternatives[0]
+        if not isinstance(data, dict):
+            raise exc
+        logger.info("Mechanism model returned %d alternatives for %s; using the first.",
+                    len(alternatives), gene)
+    doctor, expert = data.get("doctor"), data.get("expert")
+    if not isinstance(doctor, str) or not doctor.strip() \
+            or not isinstance(expert, str) or not expert.strip():
+        raise LLMResponseError("Mechanism response must contain nonempty doctor and expert summaries")
+    return doctor.strip(), expert.strip()

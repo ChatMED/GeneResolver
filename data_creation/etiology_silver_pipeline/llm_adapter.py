@@ -20,6 +20,7 @@ def complete_json(
     payload: dict[str, Any],
     model: str | None = None,
     max_tokens: int = 1600,
+    temperature: float | None = None,
 ) -> dict[str, Any]:
     client = importlib.import_module(client_module)
     kwargs: dict[str, Any] = {
@@ -29,6 +30,8 @@ def complete_json(
     }
     if model:
         kwargs["model"] = model
+    if temperature is not None:
+        kwargs["temperature"] = temperature
     result = client.complete_json(**kwargs)
     if not isinstance(result, dict):
         raise TypeError(f"{client_module}.complete_json() did not return an object")

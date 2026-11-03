@@ -10,6 +10,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+from generesolver.env import load_project_env
+
+load_project_env(Path(__file__).parent)
+
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
@@ -163,14 +167,12 @@ def _config_to_namespace(cfg: dict) -> argparse.Namespace:
 
 def _check_backend() -> None:
     import os
-    backend = os.environ.get("GENERESOLVER_LLM_BACKEND", "medgemma")
-    print(f"LLM backend: {backend} (set GENERESOLVER_LLM_BACKEND to change)")
-    if backend == "medgemma" and not os.environ.get("GENERESOLVER_MEDGEMMA_BASE_URL"):
-        print("  note: GENERESOLVER_MEDGEMMA_BASE_URL is not set — using the client's default. "
-              "If this hangs or errors connecting, point it at your local vLLM server.")
-    elif backend == "claude" and not os.environ.get("ANTHROPIC_API_KEY"):
-        print("  warning: GENERESOLVER_LLM_BACKEND=claude but ANTHROPIC_API_KEY is not set — "
-              "this will fail. Set it, or unset GENERESOLVER_LLM_BACKEND to use local MedGemma.")
+    from generesolver.integrations.medgemma_client import DEFAULT_MODEL
+    model = os.environ.get("GENERESOLVER_MEDGEMMA_MODEL") or DEFAULT_MODEL
+    print(f"LLM: local MedGemma ({model})")
+    if not os.environ.get("GENERESOLVER_MEDGEMMA_BASE_URL"):
+        print("  warning: GENERESOLVER_MEDGEMMA_BASE_URL is not set — point it at your local "
+              "OpenAI-compatible MedGemma server, e.g. http://localhost:8000/v1.")
 
 
 def _resolve_args() -> argparse.Namespace:
@@ -359,6 +361,10 @@ def main() -> int:
         save_dir = OUTPUTS_DIR / state.case_id
 
     _print_summary(state, elapsed, save_dir)
+    if state.diagnostics.get("execution_failures"):
+        print("Execution failed in: " + "; ".join(state.diagnostics["execution_failures"]),
+              file=sys.stderr)
+        return 1
     return 0
 
 

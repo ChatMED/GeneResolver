@@ -23,6 +23,7 @@ from generesolver.config import (
     PHENOTYPE_DISEASE_SEED_MIN_OVERLAP,
     PHENOTYPE_DISEASE_SEED_MAX_GENES,
     PHENOTYPE_DISEASE_SEED_MAX_TOTAL_GENES,
+    CLINVAR_TRIAGE_ENABLED,
 )
 
 logger = logging.getLogger(__name__)
@@ -43,7 +44,7 @@ def _is_clinvar_pathogenic(clinvar_significance: str | None) -> bool:
 
 
 def _variant_triage_score(impact, gnomad_af, clinvar_significance=None) -> float:
-    if _is_clinvar_pathogenic(clinvar_significance):
+    if CLINVAR_TRIAGE_ENABLED and _is_clinvar_pathogenic(clinvar_significance):
         return _CLINVAR_TRIAGE_SCORE
     impact_w = {"HIGH": 0.85, "MODERATE": 0.65, "LOW": 0.45, "MODIFIER": 0.30}.get(impact or "", 0.50)
     af = gnomad_af if gnomad_af is not None else 0.0
@@ -54,7 +55,23 @@ def _variant_triage_score(impact, gnomad_af, clinvar_significance=None) -> float
 _CANDIDATE_RARITY_CEILING = 0.01
 
 
+def _triage_af(v):
+    # Original profile: overall gnomAD AF (reported Eq. 2). Revised: the filter frequency.
+    from generesolver import config as _cfg
+    return v.filter_af if _cfg.VARIANT_FILTER_PROFILE == "revised" else v.gnomad_af
+
+
 def _has_plausible_variant_evidence(gene_variants: list) -> bool:
+    from generesolver import config as _cfg
+    if _cfg.VARIANT_FILTER_PROFILE == "revised":
+        from generesolver.components.variant_annotator import is_relevant_variant, passes_rarity
+        return any(
+            is_relevant_variant(v.consequence, v.impact, is_splice_relevant=v.is_splice_relevant,
+                                spliceai=v.spliceai_score, profile="revised")
+            and passes_rarity(v.filter_af, v.filter_af_status or v.gnomad_frequency_status)
+            for v in gene_variants
+        )
+    # Original (reported) gate, unchanged.
     return any(
         v.impact in ("HIGH", "MODERATE")
         and (v.gnomad_af is None or v.gnomad_af < _CANDIDATE_RARITY_CEILING)
@@ -448,9 +465,9 @@ def _score_variant_genes(
         if gene_variants:
             best = max(
                 gene_variants,
-                key=lambda v: _variant_triage_score(v.impact, v.gnomad_af, v.clinvar_significance),
+                key=lambda v: _variant_triage_score(v.impact, _triage_af(v), v.clinvar_significance),
             )
-            score_variant = _variant_triage_score(best.impact, best.gnomad_af, best.clinvar_significance)
+            score_variant = _variant_triage_score(best.impact, _triage_af(best), best.clinvar_significance)
             best_variant_id = best.variant_id
         else:
             score_variant = 0.0

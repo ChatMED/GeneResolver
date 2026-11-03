@@ -105,20 +105,6 @@
     },
     {
       "type": {
-        "id": "HP:0000966",
-        "label": "Sweating, decreased"
-      },
-      "excluded": false
-    },
-    {
-      "type": {
-        "id": "HP:0000975",
-        "label": "Sweating"
-      },
-      "excluded": false
-    },
-    {
-      "type": {
         "id": "HP:0001638",
         "label": "Cardiomyopathy"
       },
@@ -137,6 +123,34 @@
         "label": "Heat intolerance"
       },
       "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:6000855",
+        "label": "Cold intolerance"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0002905",
+        "label": "Hyperphosphatemia"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0002901",
+        "label": "Hypocalcemia"
+      },
+      "excluded": false
+    },
+    {
+      "type": {
+        "id": "HP:0002153",
+        "label": "Hyperkalemia"
+      },
+      "excluded": false
     }
   ],
   "interpretations": [
@@ -153,8 +167,8 @@
     }
   ],
   "metaData": {
-    "created": "2026-08-14T08:51:50.858854+00:00",
-    "createdBy": "GeneResolve v2",
+    "created": "2026-11-02T08:29:49.767085+00:00",
+    "createdBy": "GeneResolver v2",
     "resources": [
       {
         "id": "hp",

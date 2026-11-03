@@ -48,6 +48,7 @@ class ProvenanceItem(BaseModel):
     timestamp: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     input_hash: str | None = None
     output_hash: str | None = None
+    details: dict = Field(default_factory=dict)
 
 
 class DoctorReport(BaseModel):

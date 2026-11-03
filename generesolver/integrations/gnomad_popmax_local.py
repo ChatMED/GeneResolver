@@ -144,7 +144,8 @@ def annotate_batch(
             row = results.setdefault(key, {})
             row["gnomad_popmax_an"] = an_entry["gnomad_popmax_an"]
             row["gnomad_popmax_population"] = an_entry["gnomad_popmax_population"]
-            row.setdefault("gnomad_popmax_af", an_entry["gnomad_popmax_af"])
+            # AF and AN must describe the same population, so the index pair wins.
+            row["gnomad_popmax_af"] = an_entry["gnomad_popmax_af"]
 
     return results
 

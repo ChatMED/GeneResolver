@@ -7,7 +7,7 @@ generate_gene_result() reads its own target path to learn ground truth before ov
 so that path must already exist (as a placeholder or a real result) -- it must NEVER be
 deleted before calling it.
 
-Usage: python -m evaluation.stage5_genome_vcf_ranking._emit_single_case <raw_dir> <results_dir> <case_id>
+Usage: python -m evaluation.table10_vcf_ablation._emit_single_case <raw_dir> <results_dir> <case_id>
 Exit 0 on success (correct row count on disk), exit 1 otherwise.
 """
 from __future__ import annotations
@@ -28,7 +28,7 @@ os.environ["PYTHONUTF8"] = "1"
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-import evaluation.stage5_genome_vcf_ranking.eval_genome_vcf_ranking as ev  # noqa: E402  (this import already seeds
+import evaluation.table10_vcf_ablation.eval_genome_vcf_ranking as ev  # noqa: E402  (this import already seeds
 # executed_results.add(ResultType.GENE) at module scope -- see that file's comment -- so the
 # destructive create_empty_pheval_result() sweep can never fire from this subprocess either)
 

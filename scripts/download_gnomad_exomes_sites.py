@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import shutil
 import urllib.request
 from pathlib import Path
 
@@ -31,6 +32,11 @@ def main() -> None:
         size_gib = vcf_path.stat().st_size / (1024 ** 3)
         print(f"already exists: {vcf_path} ({size_gib:.2f} GiB) -- delete first to re-download")
     else:
+        free_gib = shutil.disk_usage(_OUTPUT_DIR).free / (1024 ** 3)
+        if free_gib < _EXPECTED_SIZE_GIB + 5:
+            print(f"FATAL: gnomAD sites needs at least {_EXPECTED_SIZE_GIB + 5:.0f} GiB free; "
+                  f"only {free_gib:.1f} GiB is available.", file=sys.stderr)
+            sys.exit(1)
         print(f"downloading {_URL}")
         print(f"  expected size: ~{_EXPECTED_SIZE_GIB} GiB -- this will take a while")
         try:

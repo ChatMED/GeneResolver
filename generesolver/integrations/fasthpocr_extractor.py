@@ -11,16 +11,19 @@ logger = logging.getLogger(__name__)
 _HPO_OBO_FILE  = DATA_DIR / "hp.obo"
 _INDEX_DIR     = OUTPUTS_DIR / "_fasthpocr_index"
 _CR_INDEX_FILE = _INDEX_DIR / "hp.index"
+_SHARED_INDEX_FILE = DATA_DIR / "fasthpocr_index" / "hp.index"
 
 _annotator: Any | None = None
 _unavailable_reason: str | None = None
 
 
 def _ensure_index() -> Path | None:
-    _INDEX_DIR.mkdir(parents=True, exist_ok=True)
+    for candidate in (_SHARED_INDEX_FILE, _CR_INDEX_FILE,
+                      DATA_DIR.parent / "outputs" / "_fasthpocr_index" / "hp.index"):
+        if candidate.exists():
+            return candidate
 
-    if _CR_INDEX_FILE.exists():
-        return _CR_INDEX_FILE
+    _SHARED_INDEX_FILE.parent.mkdir(parents=True, exist_ok=True)
 
     if not _HPO_OBO_FILE.exists():
         logger.error(
@@ -35,13 +38,13 @@ def _ensure_index() -> Path | None:
         from FastHPOCR.IndexHPO import IndexHPO
         logger.info("Building FastHPOCR cr-index from %s (one-time, ~1-3 min)...",
                     _HPO_OBO_FILE)
-        idx = IndexHPO(str(_HPO_OBO_FILE), str(_INDEX_DIR))
+        idx = IndexHPO(str(_HPO_OBO_FILE), str(_SHARED_INDEX_FILE.parent))
         idx.index()
-        if not _CR_INDEX_FILE.exists():
+        if not _SHARED_INDEX_FILE.exists():
             logger.error("FastHPOCR index build completed but %s not present",
-                         _CR_INDEX_FILE)
+                         _SHARED_INDEX_FILE)
             return None
-        return _CR_INDEX_FILE
+        return _SHARED_INDEX_FILE
     except Exception as exc:
         logger.error("FastHPOCR index build failed: %s", exc)
         return None

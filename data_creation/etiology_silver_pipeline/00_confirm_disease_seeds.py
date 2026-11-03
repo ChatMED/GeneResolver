@@ -158,7 +158,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=Path, default=Path("work/citation_seed_diseases.json"))
     parser.add_argument("--source-dir", type=Path, default=Path("../.."))
-    parser.add_argument("--client", default="generesolver.integrations.openai_client")
+    parser.add_argument("--client", default="data_creation.llm_clients.openai_client")
     parser.add_argument("--model", default=None)
     parser.add_argument("--screened", type=int, default=15, help="PubMed results screened per disease")
     parser.add_argument("--max-candidates", type=int, default=5, help="Candidates evaluated per disease")

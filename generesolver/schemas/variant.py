@@ -66,6 +66,11 @@ class AnnotatedVariant(BaseModel):
     gnomad_filter_status: str | None = None
     gnomad_coverage: float | None = None
     gnomad_frequency_status: str = "not_evaluated"
+    # The exact frequency the candidate filter used (see config.VARIANT_FILTER_PROFILE).
+    filter_af: float | None = None
+    filter_af_source: str | None = None
+    filter_af_status: str | None = None
+    filter_profile: str | None = None
 
     sift_prediction: str | None = None
     sift_score: float | None = None

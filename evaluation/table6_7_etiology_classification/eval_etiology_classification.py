@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import random
 import sys
 import time
@@ -13,6 +14,10 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "data_creation" / "etiology_silver_pipeline"))
+# Retrieved titles contain non-ASCII text; a cp1252 console would raise inside RAG retrieval.
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8", errors="replace")
 
 from evaluation.common import kegg
 import pubmed
@@ -325,6 +330,8 @@ def load_done(out_path: Path) -> set[tuple[str, bool, bool, int]]:
 
 
 def main() -> None:
+    from generesolver.env import load_project_env
+    load_project_env(ROOT)
     parser = argparse.ArgumentParser()
     parser.add_argument("--vignettes", type=Path,
                          default=ROOT / "data_creation" / "etiology_silver_pipeline" / "output" / "gold_vignettes_v2.json")
@@ -337,10 +344,14 @@ def main() -> None:
     parser.add_argument("--rag-max-articles", type=int, default=3,
                          help="max hits kept per RAG source: PubMed abstracts, "
                               "and separately KEGG compound/disease entries")
-    parser.add_argument("--repeats", type=int, default=1)
+    parser.add_argument("--repeats", type=int, default=5,
+                         help="independent runs per configuration (paper: 5); the MedGemma response "
+                              "cache is always disabled so every run is a fresh model call")
     parser.add_argument("--seed", type=int, default=20260731)
     parser.add_argument("--limit", type=int, default=0, help="evaluate only the first N cases (smoke test)")
     args = parser.parse_args()
+    # Repeats must be real model calls: never serve MedGemma responses from the on-disk cache.
+    os.environ["GENERESOLVER_LLM_CACHE_DISABLE"] = "1"
     add_source_dir(args.source_dir)
 
     cases_all = load_cases(args.vignettes)
@@ -358,7 +369,9 @@ def main() -> None:
         print(f"Resuming: {len(done)} prediction(s) already recorded in {args.out}.")
     args.out.parent.mkdir(parents=True, exist_ok=True)
 
-    rag_cache: dict[str, str] = {}
+    # Keyed by (case, repeat): keyword extraction is a MedGemma call, so each run extracts and
+    # retrieves afresh; within one run both RAG configurations share the same context (paired).
+    rag_cache: dict[tuple[str, int], str] = {}
     total_written = len(done)
 
     headers = {"User-Agent": "etiology-silver-dataset/1.0"}
@@ -372,16 +385,17 @@ def main() -> None:
 
                     rag_text = None
                     if rag:
-                        if case["case_id"] not in rag_cache:
+                        rag_key = (case["case_id"], repeat)
+                        if rag_key not in rag_cache:
                             try:
                                 keywords = extract_keywords(case["vignette"], args.client, args.model)
-                                rag_cache[case["case_id"]] = retrieve_rag_context(
+                                rag_cache[rag_key] = retrieve_rag_context(
                                     keywords, client, args.rag_max_articles
                                 )
                             except Exception as exc:
                                 print(f"{case['case_id']}: RAG retrieval failed, will retry on next run — {exc}")
                                 continue
-                        rag_text = rag_cache[case["case_id"]]
+                        rag_text = rag_cache[rag_key]
 
                     fs_text = few_shot_text if few_shot else None
                     try:

@@ -155,9 +155,7 @@ def _dedupe(mentions: list[DiseaseMention]) -> list[DiseaseMention]:
 
 
 def run(state: CaseState, backend: str | None = None) -> CaseState:
-    text = (state.clinical_note_deidentified
-            if state.deidentification_applied
-            else (state.input.clinical_note or ""))
+    text = state.clinical_note_deidentified if state.deidentification_applied else ""
 
     mentions: list[DiseaseMention] = []
 

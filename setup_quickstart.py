@@ -14,7 +14,7 @@ WHAT THIS FETCHES BY DEFAULT (auto-downloaded, idempotent — safe to re-run):
   - ClinVar VCF (GRCh37 + GRCh38) and variant_summary.txt
   - MANE GRCh38 transcript summary
   - ClinGen gene-validity + haploinsufficiency curation
-  - UniProt HumsaVar, gnomAD exomes sites, REVEL, UCSC phyloP + simpleRepeat
+  - UniProt HumsaVar, REVEL, UCSC phyloP + simpleRepeat
 
 This now covers every task mode, including the ACMG/VCF arm's non-Docker inputs.
 
@@ -29,6 +29,7 @@ Usage:
     python setup_quickstart.py                  # data + config check + demo run
     python setup_quickstart.py --skip-demo       # data + config check only
     python setup_quickstart.py --with-vep-cache  # also fetch the ~23 GB local VEP cache
+    python setup_quickstart.py --with-gnomad-sites  # also fetch the ~59 GiB gnomAD archive
 """
 from __future__ import annotations
 
@@ -40,6 +41,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 
+from generesolver.env import load_project_env
+
+load_project_env(ROOT)
+
 _DOWNLOAD_STEPS = [
     ("scripts.download_hpo_annotations", "HPO consortium annotations"),
     ("scripts.download_orphanet", "Orphanet (Orphadata)"),
@@ -50,7 +55,8 @@ _DOWNLOAD_STEPS = [
     ("scripts.download_clinvar_variant_summary", "ClinVar variant_summary.txt"),
     ("scripts.download_mane", "MANE GRCh38 transcript summary"),
     ("scripts.download_clingen_gene_validity", "ClinGen gene-disease validity"),
-    ("scripts.download_gnomad_exomes_sites", "gnomAD exomes sites"),
+    ("scripts.download_clingen_haploinsufficiency", "ClinGen haploinsufficiency scores (PVS1 mechanism)"),
+    ("scripts.download_gencode_gtf", "GENCODE v19 transcript structure (PVS1 decision tree)"),
     ("scripts.download_revel", "REVEL missense scores"),
     ("scripts.download_uniprot_humsavar", "UniProt HumsaVar"),
     ("scripts.download_ucsc_phylop", "UCSC phyloP conservation"),
@@ -69,19 +75,11 @@ def _run_step(module: str, label: str) -> bool:
 
 def _check_config() -> None:
     print("\n--- Configuration check ---")
-    backend = os.environ.get("GENERESOLVER_LLM_BACKEND", "medgemma")
-    print(f"  GENERESOLVER_LLM_BACKEND = {backend!r} (default: medgemma, local)")
-    if backend == "medgemma":
-        base_url = os.environ.get("GENERESOLVER_MEDGEMMA_BASE_URL")
-        print(f"  GENERESOLVER_MEDGEMMA_BASE_URL = {base_url or '(not set — client default)'}")
-        if not base_url:
-            print("    -> if the demo hangs or fails to connect, set this to your local "
-                  "vLLM MedGemma endpoint.")
-    elif backend == "claude":
-        has_key = bool(os.environ.get("ANTHROPIC_API_KEY"))
-        print(f"  ANTHROPIC_API_KEY = {'set' if has_key else 'NOT SET'}")
-        if not has_key:
-            print("    -> required for backend=claude. Set it or switch back to medgemma.")
+    base_url = os.environ.get("GENERESOLVER_MEDGEMMA_BASE_URL")
+    print(f"  GENERESOLVER_MEDGEMMA_BASE_URL = {base_url or '(NOT SET)'}")
+    if not base_url:
+        print("    -> set this to your local OpenAI-compatible MedGemma 27B IT endpoint "
+              "(e.g. http://localhost:8000/v1) before running the demo.")
     local_mode = os.environ.get("GENERESOLVER_LOCAL_MODE", "0")
     print(f"  GENERESOLVER_LOCAL_MODE = {local_mode!r} "
           f"(1 = fully on-premise: disables gnomAD/PubCaseFinder/Monarch API calls, "
@@ -96,13 +94,20 @@ def main() -> None:
     ap.add_argument("--with-vep-cache", action="store_true",
                      help="also fetch the ~23 GB local VEP cache + Docker image "
                           "(needed for the +VCF arm's on-premise path)")
+    ap.add_argument("--with-gnomad-sites", action="store_true",
+                    help="optional: also build the gnomAD v2.1.1 popmax AF/AN index for a "
+                         "per-site allele-number check in BA1 (streams the ~59 GiB exomes "
+                         "sites VCF; several hours). Not needed for the reported results.")
     args = ap.parse_args()
 
     steps = list(_DOWNLOAD_STEPS)
+    if args.with_gnomad_sites:
+        steps.append(("scripts.build_gnomad_an_index", "gnomAD popmax AF/AN index (streams ~59 GiB)"))
     print("=== GeneResolver data setup ===")
     print(f"{len(steps)} data sources, then a config check"
           + ("" if args.skip_demo else " and a demo run")
-          + (", plus the VEP cache" if args.with_vep_cache else "") + ".\n")
+          + (", plus the VEP cache" if args.with_vep_cache else "")
+          + (", plus gnomAD sites" if args.with_gnomad_sites else "") + ".\n")
 
     results = [_run_step(m, label) for m, label in steps]
     if args.with_vep_cache:
@@ -115,6 +120,8 @@ def main() -> None:
         print("Some steps failed — re-run this script to retry just those (the rest are "
               "already cached and will be skipped), or fetch manually per the error above.")
 
+        raise SystemExit(1)
+
     if not args.with_vep_cache:
         print("\nNot fetched (opt-in / evaluation-only, not part of this repo):")
         print("  - Ensembl VEP local cache + Docker image (~23 GB, +VCF arm only) — "
@@ -126,7 +133,7 @@ def main() -> None:
         return
 
     print("\n=== running the demo case to confirm the pipeline works ===")
-    subprocess.run([sys.executable, "run_generesolver.py"], cwd=ROOT)
+    raise SystemExit(subprocess.run([sys.executable, "run_generesolver.py"], cwd=ROOT).returncode)
 
 
 if __name__ == "__main__":

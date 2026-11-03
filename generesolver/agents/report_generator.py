@@ -1,32 +1,91 @@
 from __future__ import annotations
 
 import logging
+import os
 
-from generesolver.config import CLAUDE_MODEL
-from generesolver.integrations.llm_client import complete_json
-from generesolver.schemas.case import CaseState
+from generesolver.integrations.llm_client import complete_json, active_backend
+from generesolver.schemas.case import CaseState, TaskMode
 from generesolver.schemas.report import DoctorReport, GeneticistAppendix, ProvenanceItem
 
 logger = logging.getLogger(__name__)
 
 
 def run(state: CaseState) -> CaseState:
+    if state.task_mode == TaskMode.LOCUS_LOOKUP:
+        state.doctor_report = _locus_report(state)
+        state.geneticist_appendix = _build_geneticist_appendix(state)
+        state.provenance.append(ProvenanceItem(
+            component="report_generator", tool_name="deterministic ClinVar record summary"
+        ))
+        state.mark_done("report_generator")
+        return state
+
+    generated = False
     try:
         state.doctor_report = _generate_doctor_report(state)
+        generated = True
     except Exception as exc:
         logger.error("Doctor report generation failed: %s", exc)
+        state.add_warning(f"Doctor report model generation failed; deterministic fallback used: {exc}")
+        state.diagnostics.setdefault("execution_failures", []).append(
+            f"report_generator model generation: {exc}"
+        )
         state.doctor_report = _fallback_doctor_report(state)
 
     state.geneticist_appendix = _build_geneticist_appendix(state)
 
+    backend = active_backend()
+    from generesolver.integrations import medgemma_client
+    model = os.environ.get("GENERESOLVER_MEDGEMMA_MODEL") or medgemma_client.DEFAULT_MODEL
     state.provenance.append(
         ProvenanceItem(
             component="report_generator",
-            tool_name=f"Claude ({CLAUDE_MODEL})",
+            tool_name=(f"{backend} ({model})" if generated else "deterministic fallback report"),
+            tool_version=(f"generation={'model' if generated else 'fallback'}; "
+                          f"backend={backend}; model={model}; "
+                          f"temperature=0; max_tokens=1024; "
+                          f"cache_disabled={os.environ.get('GENERESOLVER_LLM_CACHE_DISABLE', '0')}; "
+                          f"local_annotation={os.environ.get('GENERESOLVER_LOCAL_MODE', '0')}"),
         )
     )
     state.mark_done("report_generator")
     return state
+
+
+def _locus_report(state: CaseState) -> DoctorReport:
+    lookup = state.branch_result.get("locus_lookup") or {}
+    rsid = lookup.get("rsid") or state.input.rsid or "the requested rsID"
+    records = lookup.get("clinvar_records") or []
+    genes = list(dict.fromkeys(
+        gene for record in records for gene in record.get("gene_symbols", []) if gene
+    ))
+    if records:
+        descriptions = [
+            f"{record.get('title') or record.get('clinvar_id')}: "
+            f"{record.get('clinical_significance') or 'significance unavailable'}"
+            for record in records[:5]
+        ]
+        summary = f"ClinVar returned {len(records)} record(s) for {rsid}. " + "; ".join(descriptions)
+    else:
+        summary = f"No ClinVar record was retrieved for {rsid}."
+    report = DoctorReport(
+        case_id=state.case_id,
+        case_summary=summary,
+        top_candidate_genes=genes,
+        top_candidate_variants=[rsid] if records else [],
+        evidence_strength="ClinVar record lookup only; no patient-level evidence",
+        mechanism_explanation="",
+        uncertainty_statement=(
+            "An rsID identifies a locus or allele in a database, not the patient's genotype. "
+            "This lookup does not establish that the patient carries the variant or has a diagnosis."
+        ),
+        suggested_review_points=[
+            "Confirm the exact allele, genome build, and patient genotype before clinical interpretation."
+        ],
+    )
+    _attach_case_record(state, report)
+    report.classification = "Not assessed (locus lookup only)"
+    return report
 
 
 def _phenotype_tie_note(state: CaseState) -> str:
@@ -51,12 +110,23 @@ def _phenotype_tie_note(state: CaseState) -> str:
 def _generate_doctor_report(state: CaseState) -> DoctorReport:
     prompt = _build_prompt(state)
     data = complete_json(system="", user=prompt, max_tokens=1024)
+    required = {"case_summary": str, "top_candidate_genes": list,
+                "top_candidate_variants": list, "evidence_strength": str,
+                "mechanism_explanation": str, "uncertainty_statement": str,
+                "suggested_review_points": list}
+    if not isinstance(data, dict) or any(not isinstance(data.get(k), t)
+                                         for k, t in required.items()):
+        raise ValueError("Report model JSON did not match the required report fields")
 
-    genes = list(data.get("top_candidate_genes", []) or [])
+    known_genes = {g.gene for g in state.ranked_genes}
+    genes = [g for g in data["top_candidate_genes"] if isinstance(g, str) and g in known_genes]
     d = getattr(state, "differential_decision", None)
     if d and d.most_likely_gene:
         ordered = [d.most_likely_gene] + [g for g in genes if g != d.most_likely_gene]
-        genes = ordered
+        genes = [g for g in ordered if g in known_genes]
+    known_variants = {c.computed_acmg_assessment.variant_id for c in state.acmg_assessments}
+    data["top_candidate_variants"] = [v for v in data["top_candidate_variants"]
+                                      if isinstance(v, str) and v in known_variants]
     review = list(data.get("suggested_review_points", []) or [])
     if d and d.decisive_tests:
         for t in d.decisive_tests:
@@ -254,8 +324,9 @@ def _fallback_doctor_report(state: CaseState) -> DoctorReport:
     report = DoctorReport(
         case_id=state.case_id,
         case_summary=(
-            f"Genomic analysis identified {len(state.ranked_genes)} candidate gene(s). "
-            f"Confidence: {state.confidence_level}. Expert review is required."
+            (f"Available analysis identified {len(state.ranked_genes)} candidate gene(s). "
+             if state.ranked_genes else "No candidate genes are available from completed steps. ")
+            + f"Confidence: {state.confidence_level}. Expert review is required."
         ),
         top_candidate_genes=top_genes,
         top_candidate_variants=top_variants,

@@ -30,6 +30,7 @@ def run(state: CaseState) -> CaseState:
         _export_csv(state, case_dir / "gene_ranking.csv")
     _export_fhir(state, case_dir / "diagnostic_report.fhir.json")
     _export_phenopacket(state, case_dir / "phenopacket.json")
+    _export_markdown(state, case_dir / "report.md")
 
     logger.info("Exports written to %s", case_dir)
     state.mark_done("exporter")
@@ -450,3 +451,47 @@ def _acmg_to_ppack_status(classification: str) -> str:
         "not_classifiable": "UNKNOWN",
     }
     return mapping.get(classification, "UNKNOWN")
+
+
+def _export_markdown(state: CaseState, path: Path) -> None:
+    """Deterministic readable view of the structured results."""
+    report = state.doctor_report
+    lines = [f"# GeneResolver report: {state.case_id}", "",
+             "Preliminary decision support. Qualified clinical review is required.", "",
+             "## Classification", "",
+             report.classification if report and report.classification else "Unavailable", ""]
+    if report and report.classification_reasoning:
+        lines.extend([report.classification_reasoning, ""])
+    lines.extend(["## Summary", "", report.case_summary if report else "Unavailable", "",
+                  "## Ranked genes", ""])
+    lines.extend([f"{g.rank}. **{g.gene}** — score {g.final_score:.3f}; {g.confidence}. "
+                  f"{g.prioritization_reason}" for g in state.ranked_genes[:20]] or ["Unavailable"])
+    lines.extend(["", "## Variants", ""])
+    lines.extend([f"- {v.variant_id} ({v.gene or 'gene unavailable'}): "
+                  f"{v.consequence or 'consequence unavailable'}"
+                  for v in state.annotated_variants[:20]] or ["Unavailable"])
+    lookup = state.branch_result.get("locus_lookup") or {}
+    if lookup:
+        lines.extend(["", f"## ClinVar records for {lookup.get('rsid', 'requested locus')}", ""])
+        for record in lookup.get("clinvar_records", []):
+            lines.append(
+                f"- {record.get('clinvar_id', 'record')}: {record.get('title') or 'title unavailable'}; "
+                f"{record.get('clinical_significance') or 'significance unavailable'}; "
+                f"conditions: {', '.join(record.get('conditions') or []) or 'unavailable'}"
+            )
+        if not lookup.get("clinvar_records"):
+            lines.append("No records retrieved.")
+    lines.extend(["", "## Evidence", ""])
+    lines.extend([f"- {r.source}: {r.n_results} result(s)" + (f"; failed: {r.error}" if r.failed else "")
+                  for r in state.trace.retrievals] or ["Unavailable"])
+    lines.extend(["", "## Limitations and warnings", ""])
+    limitations = (report.investigation_limitations if report else []) + state.warnings + state.safety_flags
+    lines.extend([f"- {item}" for item in limitations] or ["None recorded"])
+    lines.extend(["", "## Execution and model provenance", ""])
+    lines.extend([f"- {p.component}: {p.tool_name}" + (f" ({p.tool_version})" if p.tool_version else "")
+                  for p in state.provenance] or ["Unavailable"])
+    lines.extend(["", "## Step status", ""])
+    for step in ("deidentifier", "vcf_input", "variant_annotator", "locus_lookup", "case_classifier",
+                 "report_generator"):
+        lines.append(f"- {step}: {'completed' if step in state.completed_steps else 'unavailable or not run'}")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")

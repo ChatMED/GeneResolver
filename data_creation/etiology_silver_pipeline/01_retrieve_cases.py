@@ -93,7 +93,7 @@ def main() -> None:
     parser.add_argument("--input", type=Path, default=Path("work/citation_seed_diseases.json"))
     parser.add_argument("--output", type=Path, default=Path("work/adult_primary_cases.json"))
     parser.add_argument("--source-dir", type=Path, default=Path("../.."))
-    parser.add_argument("--client", default="generesolver.integrations.openai_client")
+    parser.add_argument("--client", default="data_creation.llm_clients.openai_client")
     parser.add_argument("--model", default="gpt-5.4-mini")
     parser.add_argument("--max-per-disease", type=int, default=5)
     parser.add_argument("--batch-size", type=int, default=15, help="results pulled per search page")

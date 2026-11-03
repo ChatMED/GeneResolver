@@ -50,15 +50,24 @@ def get_allele_frequency(
 
     result = _query_gnomad(variant_id, dataset)
 
-    if not result and dataset == _GNOMAD_V4:
-        result = _query_gnomad(variant_id, _GNOMAD_V2)
-        if result:
-            result["dataset"] = _GNOMAD_V2
+    if result.get("af_status") != "observed" and dataset == _GNOMAD_V4:
+        fallback = _query_gnomad(variant_id, _GNOMAD_V2)
+        if fallback.get("af_status") == "observed":
+            fallback["dataset"] = _GNOMAD_V2
+            return fallback
+        if result.get("af_status") == "absent" and fallback.get("af_status") == "absent":
+            return {"af_status": "absent", "dataset": f"{_GNOMAD_V4}+{_GNOMAD_V2}"}
+        return {}
 
-    return result or {}
+    return result if result.get("af_status") in ("observed", "absent") else {}
 
 
-def _query_gnomad(variant_id: str, dataset: str) -> dict | None:
+def _is_not_found(payload: dict) -> bool:
+    errors = payload.get("errors") or []
+    return any("not found" in str(e.get("message", "")).lower() for e in errors)
+
+
+def _query_gnomad(variant_id: str, dataset: str) -> dict:
     with httpx.Client(timeout=30.0) as client:
         for attempt in range(_RETRY_ATTEMPTS):
             try:
@@ -69,21 +78,24 @@ def _query_gnomad(variant_id: str, dataset: str) -> dict | None:
                 )
                 if resp.status_code == 400:
                     logger.debug("gnomAD 400 for %s (dataset=%s): %s", variant_id, dataset, resp.text[:200])
-                    return None
+                    try:
+                        return {"af_status": "absent"} if _is_not_found(resp.json()) else {}
+                    except ValueError:
+                        return {}
                 resp.raise_for_status()
                 data = resp.json()
                 variant = (data.get("data") or {}).get("variant")
                 if not variant:
-                    return None
+                    return {"af_status": "absent"} if _is_not_found(data) or not data.get("errors") else {}
                 time.sleep(_REQUEST_INTERVAL)
-                return _parse_gnomad_result(variant, dataset)
+                return {**_parse_gnomad_result(variant, dataset), "af_status": "observed"}
             except Exception as exc:
                 if attempt < _RETRY_ATTEMPTS - 1:
                     time.sleep(1.0)
                 else:
                     logger.debug("gnomAD query failed for %s: %s", variant_id, exc)
-                    return None
-    return None
+                    return {}
+    return {}
 
 
 def _popmax(populations: list[dict] | None) -> tuple[float | None, int | None, str | None]:

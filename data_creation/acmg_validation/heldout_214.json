@@ -1,0 +1,3961 @@
+{
+  "per_variant": [
+    {
+      "variant_id": "5:60186791:G:T",
+      "chrom": "5",
+      "pos": 60186791,
+      "ref": "G",
+      "alt": "T",
+      "gene": "ERCC8",
+      "diseases": [
+        "Cockayne_syndrome",
+        "Cockayne_syndrome_type_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1715",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "4:107156512:T:A",
+      "chrom": "4",
+      "pos": 107156512,
+      "ref": "T",
+      "alt": "A",
+      "gene": "TBCK",
+      "diseases": [
+        "TBCK-related_disorder",
+        "Syndromic_Infantile_Encephalopathy",
+        "Hypotonia,_infantile,_with_psychomotor_retardation_and_characteristic_facies_3"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "225236",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "9:75309494:C:T",
+      "chrom": "9",
+      "pos": 75309494,
+      "ref": "C",
+      "alt": "T",
+      "gene": "TMC1",
+      "diseases": [
+        "TMC1-related_disorder",
+        "Rare_genetic_deafness",
+        "Autosomal_dominant_nonsyndromic_hearing_loss_36",
+        "Autosomal_recessive_nonsyndromic_hearing_loss_7",
+        "Hearing_loss,_autosomal_recessive"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "4103",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "3:176750838:T:C",
+      "chrom": "3",
+      "pos": 176750838,
+      "ref": "T",
+      "alt": "C",
+      "gene": "TBL1XR1",
+      "diseases": [
+        "TBL1XR1-related_disorder",
+        "Pierpont_syndrome",
+        "Malignant_lymphoma,_large_B-cell,_diffuse"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "225874",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "6:45399753:C:T",
+      "chrom": "6",
+      "pos": 45399753,
+      "ref": "C",
+      "alt": "T",
+      "gene": "RUNX2",
+      "diseases": [
+        "Cleidocranial_dysostosis"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "829868",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "18:21487603:C:T",
+      "chrom": "18",
+      "pos": 21487603,
+      "ref": "C",
+      "alt": "T",
+      "gene": "LAMA3",
+      "diseases": [
+        "Epidermolysis_bullosa,_junctional_2B,_severe",
+        "Laryngo-onycho-cutaneous_syndrome",
+        "Epidermolysis_bullosa,_junctional_2A,_intermediate",
+        "Junctional_epidermolysis_bullosa_gravis_of_Herlitz"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "8792",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "7:140501302:T:C",
+      "chrom": "7",
+      "pos": 140501302,
+      "ref": "T",
+      "alt": "C",
+      "gene": "BRAF",
+      "diseases": [
+        "BRAF-related_disorder",
+        "Noonan_syndrome_7",
+        "LEOPARD_syndrome_3",
+        "Lung_cancer",
+        "Colorectal_cancer",
+        "Melanoma,_cutaneous_malignant,_susceptibility_to,_1",
+        "Cardiofaciocutaneous_syndrome_1",
+        "Noonan_syndrome_and_Noonan-related_syndrome",
+        "Cardiovascular_phenotype",
+        "Cardio-facio-cutaneous_syndrome",
+        "RASopathy",
+        "Noonan_syndrome_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "13973",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "18:21115443:T:C",
+      "chrom": "18",
+      "pos": 21115443,
+      "ref": "T",
+      "alt": "C",
+      "gene": "NPC1",
+      "diseases": [
+        "Niemann-Pick_disease,_type_C",
+        "Niemann-Pick_disease,_type_C1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2959",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "12:102157979:C:T",
+      "chrom": "12",
+      "pos": 102157979,
+      "ref": "C",
+      "alt": "T",
+      "gene": "GNPTAB",
+      "diseases": [
+        "GNPTAB-mucolipidosis",
+        "GNPTAB-Related_Disorders",
+        "Mucolipidosis",
+        "Mucolipidosis_type_II",
+        "Pseudo-Hurler_polydystrophy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2768",
+      "clinvar_mc": [
+        "splice_donor_variant"
+      ]
+    },
+    {
+      "variant_id": "14:29236938:C:CG",
+      "chrom": "14",
+      "pos": 29236938,
+      "ref": "C",
+      "alt": "CG",
+      "gene": "FOXG1",
+      "diseases": [
+        "FOXG1-related_disorder",
+        "Inborn_genetic_diseases",
+        "FOXG1_disorder",
+        "Abnormal_cerebral_morphology"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "95268",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "11:64972164:G:A",
+      "chrom": "11",
+      "pos": 64972164,
+      "ref": "G",
+      "alt": "A",
+      "gene": "CAPN1",
+      "diseases": [
+        "Autosomal_recessive_spastic_paraplegia_type_76"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "802687",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "9:35689792:ATCT:A",
+      "chrom": "9",
+      "pos": 35689792,
+      "ref": "ATCT",
+      "alt": "A",
+      "gene": "TPM2",
+      "diseases": [
+        "TPM2-related_disorder",
+        "Congenital_myopathy_23",
+        "Arthrogryposis,_distal,_type_1A"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "140486",
+      "clinvar_mc": [
+        "inframe_deletion"
+      ]
+    },
+    {
+      "variant_id": "X:136649818:C:T",
+      "chrom": "X",
+      "pos": 136649818,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ZIC3",
+      "diseases": [
+        "Heterotaxy,_visceral,_1,_X-linked"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "11433",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "10:123279677:G:C",
+      "chrom": "10",
+      "pos": 123279677,
+      "ref": "G",
+      "alt": "C",
+      "gene": "FGFR2",
+      "diseases": [
+        "Saethre-Chotzen_syndrome",
+        "Familial_scaphocephaly_syndrome,_McGillivray_type",
+        "Jackson-Weiss_syndrome",
+        "Gastric_cancer",
+        "Bent_bone_dysplasia_syndrome_1",
+        "Crouzon_syndrome",
+        "Pfeiffer_syndrome",
+        "Beare-Stevenson_cutis_gyrata_syndrome",
+        "Acrocephalosyndactyly_type_I",
+        "Antley-Bixler_syndrome_without_genital_anomalies_or_disordered_steroidogenesis",
+        "Levy-Hollister_syndrome",
+        "Fetal_anomalies_with_a_likely_genetic_cause",
+        "FGFR2-related_disorder",
+        "Inborn_genetic_diseases",
+        "FGFR2-related_craniosynostosis",
+        "Endometrial_carcinoma"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "13272",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "1:43232522:CGGCGAAGAGCAGATCA:C",
+      "chrom": "1",
+      "pos": 43232522,
+      "ref": "CGGCGAAGAGCAGATCA",
+      "alt": "C",
+      "gene": "P3H1",
+      "diseases": [
+        "Osteogenesis_imperfecta_type_8"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2733877",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "4:107168420:CTTCA:C",
+      "chrom": "4",
+      "pos": 107168420,
+      "ref": "CTTCA",
+      "alt": "C",
+      "gene": "TBCK",
+      "diseases": [
+        "Hypotonia,_infantile,_with_psychomotor_retardation_and_characteristic_facies_3",
+        "Hypotonia,_infantile,_with_psychomotor_retardation_and_characteristic_facies_1",
+        "TBCK-related_disorder"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "225240",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "5:16477845:G:C",
+      "chrom": "5",
+      "pos": 16477845,
+      "ref": "G",
+      "alt": "C",
+      "gene": "RETREG1",
+      "diseases": [
+        "Charcot-Marie-Tooth_disease",
+        "Hereditary_sensory_and_autonomic_neuropathy_type_2",
+        "Neuropathy,_hereditary_sensory_and_autonomic,_type_2B"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "328",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "19:38780855:A:G",
+      "chrom": "19",
+      "pos": 38780855,
+      "ref": "A",
+      "alt": "G",
+      "gene": "SPINT2",
+      "diseases": [
+        "SPINT2-related_disorder",
+        "Congenital_secretory_sodium_diarrhea_3"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "5205",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "4:107156504:GT:G",
+      "chrom": "4",
+      "pos": 107156504,
+      "ref": "GT",
+      "alt": "G",
+      "gene": "TBCK",
+      "diseases": [
+        "Hypotonia,_infantile,_with_psychomotor_retardation_and_characteristic_facies_3"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "225241",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "9:135866303:C:T",
+      "chrom": "9",
+      "pos": 135866303,
+      "ref": "C",
+      "alt": "T",
+      "gene": "GFI1B",
+      "diseases": [
+        "Platelet-type_bleeding_disorder_17"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "102428",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "15:48776128:C:T",
+      "chrom": "15",
+      "pos": 48776128,
+      "ref": "C",
+      "alt": "T",
+      "gene": "FBN1",
+      "diseases": [
+        "Familial_thoracic_aortic_aneurysm_and_aortic_dissection",
+        "Marfan_syndrome",
+        "FBN1-related_disorder"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "16429",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "19:36339962:C:T",
+      "chrom": "19",
+      "pos": 36339962,
+      "ref": "C",
+      "alt": "T",
+      "gene": "NPHS1",
+      "diseases": [
+        "Type_2_diabetes_mellitus",
+        "Finnish_congenital_nephrotic_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "556151",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "22:17690429:C:G",
+      "chrom": "22",
+      "pos": 17690429,
+      "ref": "C",
+      "alt": "G",
+      "gene": "ADA2",
+      "diseases": [
+        "ADA2-related_disorder",
+        "Autoinflammatory_syndrome",
+        "Deficiency_of_adenosine_deaminase_2",
+        "Sneddon_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1076271",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "1:115256532:C:T",
+      "chrom": "1",
+      "pos": 115256532,
+      "ref": "C",
+      "alt": "T",
+      "gene": "NRAS",
+      "diseases": [
+        "Cardiovascular_phenotype",
+        "RASopathy",
+        "NRAS-related_disorder",
+        "Noonan_syndrome_6",
+        "Noonan_syndrome_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "13903",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "4:107115874:C:T",
+      "chrom": "4",
+      "pos": 107115874,
+      "ref": "C",
+      "alt": "T",
+      "gene": "TBCK",
+      "diseases": [
+        "Hypotonia,_infantile,_with_psychomotor_retardation_and_characteristic_facies_3",
+        "Abnormality_of_the_nervous_system",
+        "Dysmorphism",
+        "Ventral_septal_defect",
+        "Delayed_reflexes",
+        "Hypotonia",
+        "Seizure",
+        "Global_developmental_delay"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "183338",
+      "clinvar_mc": [
+        "splice_donor_variant"
+      ]
+    },
+    {
+      "variant_id": "X:76776310:G:A",
+      "chrom": "X",
+      "pos": 76776310,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ATRX",
+      "diseases": [
+        "Alpha_thalassemia-X-linked_intellectual_disability_syndrome",
+        "Intellectual_disability-hypotonic_facies_syndrome,_X-linked,_1",
+        "ATRX-related_disorder"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "11728",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "19:38774325:G:GTA",
+      "chrom": "19",
+      "pos": 38774325,
+      "ref": "G",
+      "alt": "GTA",
+      "gene": "SPINT2",
+      "diseases": [
+        "Congenital_secretory_sodium_diarrhea_3"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "3062101",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "17:17699358:G:GC",
+      "chrom": "17",
+      "pos": 17699358,
+      "ref": "G",
+      "alt": "GC",
+      "gene": "RAI1",
+      "diseases": [
+        "Smith-Magenis_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "3907775",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "9:108484867:G:A",
+      "chrom": "9",
+      "pos": 108484867,
+      "ref": "G",
+      "alt": "A",
+      "gene": "TMEM38B",
+      "diseases": [
+        "Osteogenesis_imperfecta_type_14",
+        "TMEM38B-related_disorder"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1323694",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "9:101907166:A:G",
+      "chrom": "9",
+      "pos": 101907166,
+      "ref": "A",
+      "alt": "G",
+      "gene": "TGFBR1",
+      "diseases": [
+        "Familial_thoracic_aortic_aneurysm_and_aortic_dissection"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1310495",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "22:32894440:C:T",
+      "chrom": "22",
+      "pos": 32894440,
+      "ref": "C",
+      "alt": "T",
+      "gene": "FBXO7",
+      "diseases": [
+        "Parkinsonian-pyramidal_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "4809",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "10:43609950:C:G",
+      "chrom": "10",
+      "pos": 43609950,
+      "ref": "C",
+      "alt": "G",
+      "gene": "RET",
+      "diseases": [
+        "Hereditary_cancer-predisposing_syndrome",
+        "Multiple_endocrine_neoplasia_type_2A",
+        "Multiple_endocrine_neoplasia_type_2B",
+        "Familial_medullary_thyroid_carcinoma",
+        "Multiple_endocrine_neoplasia,_type_2",
+        "Pheochromocytoma"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "13918",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "11:64950354:T:TC",
+      "chrom": "11",
+      "pos": 64950354,
+      "ref": "T",
+      "alt": "TC",
+      "gene": "CAPN1",
+      "diseases": [
+        "CAPN1-related_disorder",
+        "Autosomal_recessive_spastic_paraplegia_type_76"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "817644",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "12:25398279:C:T",
+      "chrom": "12",
+      "pos": 25398279,
+      "ref": "C",
+      "alt": "T",
+      "gene": "KRAS",
+      "diseases": [
+        "Pediatric_systemic_lupus_erythematosus",
+        "KRAS-related_disorder",
+        "Noonan_syndrome_and_Noonan-related_syndrome",
+        "Cardiovascular_phenotype",
+        "Cardio-facio-cutaneous_syndrome",
+        "Noonan_syndrome",
+        "Cardiofaciocutaneous_syndrome_2",
+        "Noonan_syndrome_3",
+        "RASopathy",
+        "Endometrial_carcinoma"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "12589",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "12:102158291:G:A",
+      "chrom": "12",
+      "pos": 102158291,
+      "ref": "G",
+      "alt": "A",
+      "gene": "GNPTAB",
+      "diseases": [
+        "Mucolipidosis_type_II",
+        "Pseudo-Hurler_polydystrophy",
+        "Mucolipidosis"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "839203",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "19:41848135:G:A",
+      "chrom": "19",
+      "pos": 41848135,
+      "ref": "G",
+      "alt": "A",
+      "gene": "TGFB1",
+      "diseases": [
+        "TGFB1-related_disorder",
+        "Camurati-Engelmann_disease_type_1",
+        "Diaphyseal_dysplasia",
+        "See_cases"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "12531",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "22:41551019:C:T",
+      "chrom": "22",
+      "pos": 41551019,
+      "ref": "C",
+      "alt": "T",
+      "gene": "EP300",
+      "diseases": [
+        "Inborn_genetic_diseases",
+        "Rubinstein-Taybi_syndrome_due_to_EP300_haploinsufficiency"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "253312",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "5:64181325:C:CA",
+      "chrom": "5",
+      "pos": 64181325,
+      "ref": "C",
+      "alt": "CA",
+      "gene": "CWC27",
+      "diseases": [
+        "Retinal_dystrophy",
+        "Metaphyseal_chondrodysplasia-retinitis_pigmentosa_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "426073",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "17:10544634:C:T",
+      "chrom": "17",
+      "pos": 10544634,
+      "ref": "C",
+      "alt": "T",
+      "gene": "MYH3",
+      "diseases": [
+        "Freeman-Sheldon_syndrome",
+        "Contractures,_pterygia,_and_spondylocarpotarsal_fusion_syndrome_1A",
+        "Contractures,_pterygia,_and_variable_skeletal_fusions_syndrome_1B",
+        "Arthrogryposis,_distal,_type_2B3",
+        "MYH3-related_disorder"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "14138",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "15:48752455:C:T",
+      "chrom": "15",
+      "pos": 48752455,
+      "ref": "C",
+      "alt": "T",
+      "gene": "FBN1",
+      "diseases": [
+        "Familial_thoracic_aortic_aneurysm_and_aortic_dissection",
+        "Marfan_syndrome",
+        "Geleophysic_dysplasia_2",
+        "FBN1-related_disorder"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "29697",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "9:123182239:C:T",
+      "chrom": "9",
+      "pos": 123182239,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CDK5RAP2",
+      "diseases": [
+        "Microcephaly_3,_primary,_autosomal_recessive"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "158146",
+      "clinvar_mc": [
+        "splice_acceptor_variant"
+      ]
+    },
+    {
+      "variant_id": "4:107169430:T:TA",
+      "chrom": "4",
+      "pos": 107169430,
+      "ref": "T",
+      "alt": "TA",
+      "gene": "TBCK",
+      "diseases": [
+        "Hypotonia,_infantile,_with_psychomotor_retardation_and_characteristic_facies_3"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "429339",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "17:65346383:G:A",
+      "chrom": "17",
+      "pos": 65346383,
+      "ref": "G",
+      "alt": "A",
+      "gene": "PSMD12",
+      "diseases": [
+        "Stankiewicz-Isidor_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "427779",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "10:50690894:G:A",
+      "chrom": "10",
+      "pos": 50690894,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ERCC6",
+      "diseases": [
+        "ERCC6-related_disorder",
+        "Inborn_genetic_diseases",
+        "Cockayne_syndrome_type_2"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "190158",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "16:78142343:G:A",
+      "chrom": "16",
+      "pos": 78142343,
+      "ref": "G",
+      "alt": "A",
+      "gene": "WWOX",
+      "diseases": [
+        "Autosomal_recessive_spinocerebellar_ataxia_12",
+        "Developmental_and_epileptic_encephalopathy,_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "372547",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "9:37428529:C:CA",
+      "chrom": "9",
+      "pos": 37428529,
+      "ref": "C",
+      "alt": "CA",
+      "gene": "GRHPR",
+      "diseases": [
+        "GRHPR-related_disorders",
+        "Primary_hyperoxaluria,_type_II"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "371016",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "16:68713838:AG:A",
+      "chrom": "16",
+      "pos": 68713838,
+      "ref": "AG",
+      "alt": "A",
+      "gene": "CDH3",
+      "diseases": [
+        "Macular_dystrophy",
+        "Congenital_hypotrichosis_with_juvenile_macular_dystrophy",
+        "EEM_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "17641",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "21:38862599:C:T",
+      "chrom": "21",
+      "pos": 38862599,
+      "ref": "C",
+      "alt": "T",
+      "gene": "DYRK1A",
+      "diseases": [
+        "DYRK1A-related_disorder",
+        "Global_developmental_delay",
+        "DYRK1A-related_intellectual_disability_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "279970",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "9:138651532:G:A",
+      "chrom": "9",
+      "pos": 138651532,
+      "ref": "G",
+      "alt": "A",
+      "gene": "KCNT1",
+      "diseases": [
+        "Developmental_and_epileptic_encephalopathy,_14",
+        "Autosomal_dominant_nocturnal_frontal_lobe_epilepsy_5",
+        "Epilepsy",
+        "KCNT1-related_disorder"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "126421",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "8:61654460:C:T",
+      "chrom": "8",
+      "pos": 61654460,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CHD7",
+      "diseases": [
+        "CHD7-related_disorder",
+        "Inborn_genetic_diseases",
+        "not_specified",
+        "CHARGE_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "195321",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "9:98011506:TC:T",
+      "chrom": "9",
+      "pos": 98011506,
+      "ref": "TC",
+      "alt": "T",
+      "gene": "FANCC",
+      "diseases": [
+        "FANCC-related_disorder",
+        "Hereditary_cancer-predisposing_syndrome",
+        "Fanconi_anemia",
+        "Fanconi_anemia_complementation_group_C"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "12049",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "1:17322554:G:A",
+      "chrom": "1",
+      "pos": 17322554,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ATP13A2",
+      "diseases": [
+        "Inborn_genetic_diseases",
+        "Autosomal_recessive_spastic_paraplegia_type_78",
+        "Kufor-Rakeb_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "520750",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "1:11190804:C:T",
+      "chrom": "1",
+      "pos": 11190804,
+      "ref": "C",
+      "alt": "T",
+      "gene": "MTOR",
+      "diseases": [
+        "MTOR-related_disorder",
+        "Rare_genetic_intellectual_disability",
+        "CEBALID_syndrome",
+        "Macrocephaly-intellectual_disability-neurodevelopmental_disorder-small_thorax_syndrome",
+        "Isolated_focal_cortical_dysplasia_type_II",
+        "Overgrowth_syndrome_and/or_cerebral_malformations_due_to_abnormalities_in_MTOR_pathway_genes",
+        "Inborn_genetic_diseases",
+        "Intellectual_disability",
+        "Severe_intellectual_disability"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "217823",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "9:135787681:G:A",
+      "chrom": "9",
+      "pos": 135787681,
+      "ref": "G",
+      "alt": "A",
+      "gene": "TSC1",
+      "diseases": [
+        "Tuberous_sclerosis_1",
+        "Tuberous_sclerosis_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "49119",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "11:64953810:G:A",
+      "chrom": "11",
+      "pos": 64953810,
+      "ref": "G",
+      "alt": "A",
+      "gene": "CAPN1",
+      "diseases": [],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "987432",
+      "clinvar_mc": [
+        "splice_donor_variant"
+      ]
+    },
+    {
+      "variant_id": "14:24709842:G:A",
+      "chrom": "14",
+      "pos": 24709842,
+      "ref": "G",
+      "alt": "A",
+      "gene": "TINF2",
+      "diseases": [
+        "TINF2-related_disorder",
+        "Dyskeratosis_congenita",
+        "Dyskeratosis_congenita,_autosomal_dominant_3",
+        "Dyskeratosis_congenita,_autosomal_dominant_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "5627",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "9:133342110:A:G",
+      "chrom": "9",
+      "pos": 133342110,
+      "ref": "A",
+      "alt": "G",
+      "gene": "ASS1",
+      "diseases": [
+        "Citrullinemia",
+        "Citrullinemia_type_I"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "198386",
+      "clinvar_mc": [
+        "splice_acceptor_variant"
+      ]
+    },
+    {
+      "variant_id": "1:197070597:TTC:T",
+      "chrom": "1",
+      "pos": 197070597,
+      "ref": "TTC",
+      "alt": "T",
+      "gene": "ASPM",
+      "diseases": [
+        "ASPM-related_disorder",
+        "Inborn_genetic_diseases",
+        "Microcephaly_5,_primary,_autosomal_recessive",
+        "Microcephaly_1,_primary,_autosomal_recessive"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "21606",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "17:29665753:C:CTT",
+      "chrom": "17",
+      "pos": 29665753,
+      "ref": "C",
+      "alt": "CTT",
+      "gene": "NF1",
+      "diseases": [
+        "Neurofibromatosis,_type_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1365791",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "19:42754086:T:C",
+      "chrom": "19",
+      "pos": 42754086,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ERF",
+      "diseases": [
+        "ERF-related_disorder",
+        "Chitayat_syndrome",
+        "Inborn_genetic_diseases"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "267443",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "1:247587794:C:T",
+      "chrom": "1",
+      "pos": 247587794,
+      "ref": "C",
+      "alt": "T",
+      "gene": "NLRP3",
+      "diseases": [
+        "Autoinflammatory_syndrome",
+        "NLRP3-related_disorder",
+        "Cryopyrin_associated_periodic_syndrome",
+        "Familial_amyloid_nephropathy_with_urticaria_AND_deafness",
+        "Chronic_infantile_neurological,_cutaneous_and_articular_syndrome",
+        "Familial_cold_autoinflammatory_syndrome_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "97909",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "21:36259163:T:C",
+      "chrom": "21",
+      "pos": 36259163,
+      "ref": "T",
+      "alt": "C",
+      "gene": "RUNX1",
+      "diseases": [
+        "Hereditary_thrombocytopenia_and_hematologic_cancer_predisposition_syndrome",
+        "Hereditary_thrombocytopenia_and_hematological_cancer_predisposition_syndrome_associated_with_RUNX1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "14465",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "10:134598876:G:C",
+      "chrom": "10",
+      "pos": 134598876,
+      "ref": "G",
+      "alt": "C",
+      "gene": "NKX6-2",
+      "diseases": [
+        "NKX6-2-related_disorder",
+        "Spastic_ataxia_8,_autosomal_recessive,_with_hypomyelinating_leukodystrophy"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "430623",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "2:158630626:C:T",
+      "chrom": "2",
+      "pos": 158630626,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ACVR1",
+      "diseases": [
+        "ACVR1-related_disorder",
+        "Inborn_genetic_diseases",
+        "Progressive_myositis_ossificans",
+        "Epicanthus"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "18309",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "20:44523342:CTA:C",
+      "chrom": "20",
+      "pos": 44523342,
+      "ref": "CTA",
+      "alt": "C",
+      "gene": "CTSA",
+      "diseases": [
+        "Combined_deficiency_of_sialidase_AND_beta_galactosidase"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "225877",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "11:6638385:C:T",
+      "chrom": "11",
+      "pos": 6638385,
+      "ref": "C",
+      "alt": "T",
+      "gene": "TPP1",
+      "diseases": [
+        "TPP1-related_disorder",
+        "Inborn_genetic_diseases",
+        "Neuronal_ceroid_lipofuscinosis_2",
+        "Autosomal_recessive_spinocerebellar_ataxia_7",
+        "Neuronal_ceroid_lipofuscinosis"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "207574",
+      "clinvar_mc": [
+        "splice_acceptor_variant"
+      ]
+    },
+    {
+      "variant_id": "16:67645346:CAAAG:C",
+      "chrom": "16",
+      "pos": 67645346,
+      "ref": "CAAAG",
+      "alt": "C",
+      "gene": "CTCF",
+      "diseases": [
+        "Inborn_genetic_diseases",
+        "CTCF-related_neurodevelopmental_disorder",
+        "Intellectual_disability"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "521287",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "15:28228568:T:C",
+      "chrom": "15",
+      "pos": 28228568,
+      "ref": "T",
+      "alt": "C",
+      "gene": "OCA2",
+      "diseases": [
+        "SKIN/HAIR/EYE_PIGMENTATION_1,_BLUE/NONBLUE_EYES",
+        "Tyrosinase-positive_oculocutaneous_albinism",
+        "Oculocutaneous_albinism"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2677403",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "8:90983441:ATTTGT:A",
+      "chrom": "8",
+      "pos": 90983441,
+      "ref": "ATTTGT",
+      "alt": "A",
+      "gene": "NBN",
+      "diseases": [
+        "Microcephaly,_normal_intelligence_and_immunodeficiency",
+        "Familial_cancer_of_breast",
+        "Paediatric_disorders",
+        "NBN-related_disorder",
+        "Familial_prostate_cancer",
+        "Breast_and/or_ovarian_cancer",
+        "Acute_lymphoid_leukemia",
+        "Aplastic_anemia",
+        "Hereditary_cancer-predisposing_syndrome",
+        "Carcinoma_of_pancreas",
+        "Hepatocellular_carcinoma",
+        "Breast-ovarian_cancer,_familial,_susceptibility_to,_1",
+        "Microcephaly",
+        "Lissencephaly",
+        "Breast_carcinoma",
+        "Malignant_tumor_of_breast"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "6940",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "8:100712000:CAT:C",
+      "chrom": "8",
+      "pos": 100712000,
+      "ref": "CAT",
+      "alt": "C",
+      "gene": "VPS13B",
+      "diseases": [
+        "Abnormality_of_the_eye",
+        "Cohen_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "242548",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "17:4837519:G:A",
+      "chrom": "17",
+      "pos": 4837519,
+      "ref": "G",
+      "alt": "A",
+      "gene": "GP1BA",
+      "diseases": [
+        "Pseudo_von_Willebrand_disease",
+        "Bernard-Soulier_syndrome,_type_A2,_autosomal_dominant",
+        "Bernard_Soulier_syndrome",
+        "Nonarteritic_anterior_ischemic_optic_neuropathy,_susceptibility_to",
+        "Bernard-Soulier_syndrome,_type_A1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "4157",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "18:42531913:G:A",
+      "chrom": "18",
+      "pos": 42531913,
+      "ref": "G",
+      "alt": "A",
+      "gene": "SETBP1",
+      "diseases": [
+        "Intellectual_disability,_autosomal_dominant_29",
+        "SETBP1-related_disorder",
+        "Schinzel-Giedion_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1035",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "14:29237456:C:CT",
+      "chrom": "14",
+      "pos": 29237456,
+      "ref": "C",
+      "alt": "CT",
+      "gene": "FOXG1",
+      "diseases": [
+        "FOXG1_disorder",
+        "Rett_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1325763",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "8:116616110:G:A",
+      "chrom": "8",
+      "pos": 116616110,
+      "ref": "G",
+      "alt": "A",
+      "gene": "TRPS1",
+      "diseases": [
+        "Inborn_genetic_diseases",
+        "Trichorhinophalangeal_dysplasia_type_I",
+        "Trichorhinophalangeal_syndrome,_type_III",
+        "TRPS1-related_disorder"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "574440",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "1:200635683:GA:G",
+      "chrom": "1",
+      "pos": 200635683,
+      "ref": "GA",
+      "alt": "G",
+      "gene": "DDX59",
+      "diseases": [
+        "Orofaciodigital_syndrome_V"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "801603",
+      "clinvar_mc": [
+        "frameshift_variant"
+      ]
+    },
+    {
+      "variant_id": "15:38591587:C:T",
+      "chrom": "15",
+      "pos": 38591587,
+      "ref": "C",
+      "alt": "T",
+      "gene": "SPRED1",
+      "diseases": [
+        "Cardiovascular_phenotype",
+        "Legius_syndrome"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "372718",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "4:107183260:G:A",
+      "chrom": "4",
+      "pos": 107183260,
+      "ref": "G",
+      "alt": "A",
+      "gene": "TBCK",
+      "diseases": [
+        "Syndromic_Infantile_Encephalopathy",
+        "TBCK-related_disorder",
+        "Hypotonia,_infantile,_with_psychomotor_retardation_and_characteristic_facies_3",
+        "Inborn_genetic_diseases"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "225235",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "7:92762645:G:T",
+      "chrom": "7",
+      "pos": 92762645,
+      "ref": "G",
+      "alt": "T",
+      "gene": "SAMD9L",
+      "diseases": [
+        "SAMD9L-related_disorder",
+        "Ataxia-pancytopenia_syndrome",
+        "Monosomy_7_myelodysplasia_and_leukemia_syndrome_1"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "242372",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "12:103234252:T:C",
+      "chrom": "12",
+      "pos": 103234252,
+      "ref": "T",
+      "alt": "C",
+      "gene": "PAH",
+      "diseases": [
+        "PAH-related_disorder",
+        "Phenylketonuria",
+        "See_cases",
+        "Hyperphenylalaninemia"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "593",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "3:33114129:A:G",
+      "chrom": "3",
+      "pos": 33114129,
+      "ref": "A",
+      "alt": "G",
+      "gene": "GLB1",
+      "diseases": [
+        "Mucopolysaccharidosis,_MPS-IV-B",
+        "GM1_gangliosidosis",
+        "GM1_gangliosidosis_type_2",
+        "Infantile_GM1_gangliosidosis",
+        "GM1_gangliosidosis_type_3"
+      ],
+      "gold": "pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "926",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "20:43251680:C:T",
+      "chrom": "20",
+      "pos": 43251680,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ADA",
+      "diseases": [
+        "ADA-related_disorder",
+        "Severe_combined_immunodeficiency,_autosomal_recessive,_T_cell-negative,_B_cell-negative,_NK_cell-negative,_due_to_adenosine_deaminase_deficiency"
+      ],
+      "gold": "pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "1968",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "1:55340807:C:T",
+      "chrom": "1",
+      "pos": 55340807,
+      "ref": "C",
+      "alt": "T",
+      "gene": "DHCR24",
+      "diseases": [
+        "DHCR24-related_disorders",
+        "Desmosterolosis"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "4369",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "16:68712731:G:A",
+      "chrom": "16",
+      "pos": 68712731,
+      "ref": "G",
+      "alt": "A",
+      "gene": "CDH3",
+      "diseases": [
+        "CDH3-related_disorder"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2137841",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "17:4836699:C:G",
+      "chrom": "17",
+      "pos": 4836699,
+      "ref": "C",
+      "alt": "G",
+      "gene": "GP1BA",
+      "diseases": [
+        "Bernard_Soulier_syndrome"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "4087790",
+      "clinvar_mc": [
+        "nonsense"
+      ]
+    },
+    {
+      "variant_id": "11:64974114:C:T",
+      "chrom": "11",
+      "pos": 64974114,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CAPN1",
+      "diseases": [],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "871873",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "9:135796816:A:C",
+      "chrom": "9",
+      "pos": 135796816,
+      "ref": "A",
+      "alt": "C",
+      "gene": "TSC1",
+      "diseases": [
+        "Tuberous_sclerosis_syndrome",
+        "Tuberous_sclerosis_1"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "5104",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "19:10935787:G:A",
+      "chrom": "19",
+      "pos": 10935787,
+      "ref": "G",
+      "alt": "A",
+      "gene": "DNM2",
+      "diseases": [
+        "Centronuclear_myopathy",
+        "Charcot-Marie-Tooth_disease_dominant_intermediate_B",
+        "Autosomal_dominant_centronuclear_myopathy"
+      ],
+      "gold": "likely_pathogenic",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "931135",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "9:80863212:T:C",
+      "chrom": "9",
+      "pos": 80863212,
+      "ref": "T",
+      "alt": "C",
+      "gene": "CEP78",
+      "diseases": [
+        "CEP78-related_disorder",
+        "not_specified"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "667088",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "9:139914893:C:T",
+      "chrom": "9",
+      "pos": 139914893,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ABCA2",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1299165",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "10:115364585:A:G",
+      "chrom": "10",
+      "pos": 115364585,
+      "ref": "A",
+      "alt": "G",
+      "gene": "NRAP",
+      "diseases": [
+        "not_specified",
+        "NRAP-related_disorder"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2640848",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "15:32450704:G:A",
+      "chrom": "15",
+      "pos": 32450704,
+      "ref": "G",
+      "alt": "A",
+      "gene": "CHRNA7",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "768688",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "15:41308365:A:C",
+      "chrom": "15",
+      "pos": 41308365,
+      "ref": "A",
+      "alt": "C",
+      "gene": "INO80",
+      "diseases": [
+        "INO80-related_disorder"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2428538",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "X:2853146:C:T",
+      "chrom": "X",
+      "pos": 2853146,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ARSL",
+      "diseases": [
+        "Chondrodysplasia_punctata,_brachytelephalangic,_autosomal",
+        "not_specified"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2729141",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "1:16058489:C:T",
+      "chrom": "1",
+      "pos": 16058489,
+      "ref": "C",
+      "alt": "T",
+      "gene": "PLEKHM2",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "772290",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "2:112615933:T:C",
+      "chrom": "2",
+      "pos": 112615933,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ANAPC1",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "4887583",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "2:219505465:G:A",
+      "chrom": "2",
+      "pos": 219505465,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ZNF142",
+      "diseases": [
+        "ZNF142-related_disorder",
+        "Neurodevelopmental_disorder_with_impaired_speech_and_hyperkinetic_movements"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1675839",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "12:125302104:G:A",
+      "chrom": "12",
+      "pos": 125302104,
+      "ref": "G",
+      "alt": "A",
+      "gene": "SCARB1",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "720609",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "3:49723823:A:G",
+      "chrom": "3",
+      "pos": 49723823,
+      "ref": "A",
+      "alt": "G",
+      "gene": "MST1",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "769603",
+      "clinvar_mc": [
+        "missense_variant",
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "1:36367581:C:T",
+      "chrom": "1",
+      "pos": 36367581,
+      "ref": "C",
+      "alt": "T",
+      "gene": "AGO1",
+      "diseases": [
+        "AGO1-related_disorder"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "708164",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "3:47454399:G:C",
+      "chrom": "3",
+      "pos": 47454399,
+      "ref": "G",
+      "alt": "C",
+      "gene": "PTPN23",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "789935",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "3:58183636:G:A",
+      "chrom": "3",
+      "pos": 58183636,
+      "ref": "G",
+      "alt": "A",
+      "gene": "DNASE1L3",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1146799",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "15:32460485:C:T",
+      "chrom": "15",
+      "pos": 32460485,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CHRNA7",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "770431",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "7:127953238:G:A",
+      "chrom": "7",
+      "pos": 127953238,
+      "ref": "G",
+      "alt": "A",
+      "gene": "RBM28",
+      "diseases": [
+        "RBM28-related_disorder"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "788269",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "15:62211566:G:C",
+      "chrom": "15",
+      "pos": 62211566,
+      "ref": "G",
+      "alt": "C",
+      "gene": "VPS13C",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "725846",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "18:31325914:T:C",
+      "chrom": "18",
+      "pos": 31325914,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ASXL3",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1217451",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "11:64508670:C:T",
+      "chrom": "11",
+      "pos": 64508670,
+      "ref": "C",
+      "alt": "T",
+      "gene": "RASGRP2",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1214691",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "18:10705417:G:A",
+      "chrom": "18",
+      "pos": 10705417,
+      "ref": "G",
+      "alt": "A",
+      "gene": "PIEZO2",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "728895",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "1:94512565:C:T",
+      "chrom": "1",
+      "pos": 94512565,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ABCA4",
+      "diseases": [
+        "ABCA4-related_retinopathy",
+        "ABCA4-related_disorder",
+        "not_specified",
+        "Retinal_dystrophy",
+        "Stargardt_disease",
+        "MACULAR_DEGENERATION,_AGE-RELATED,_2,_SUSCEPTIBILITY_TO",
+        "Age_related_macular_degeneration_2",
+        "Severe_early-childhood-onset_retinal_dystrophy",
+        "Stargardt_disease_3"
+      ],
+      "gold": "likely_benign",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "7913",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "9:4117933:C:G",
+      "chrom": "9",
+      "pos": 4117933,
+      "ref": "C",
+      "alt": "G",
+      "gene": "GLIS3",
+      "diseases": [
+        "not_specified",
+        "Neonatal_diabetes_mellitus_with_congenital_hypothyroidism"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "196581",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "16:87925430:T:C",
+      "chrom": "16",
+      "pos": 87925430,
+      "ref": "T",
+      "alt": "C",
+      "gene": "CA5A",
+      "diseases": [
+        "not_specified",
+        "CA5A-related_disorder",
+        "Hyperammonemic_encephalopathy_due_to_carbonic_anhydrase_VA_deficiency"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "559305",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "1:214830592:A:G",
+      "chrom": "1",
+      "pos": 214830592,
+      "ref": "A",
+      "alt": "G",
+      "gene": "CENPF",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "735749",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "1:210857261:C:T",
+      "chrom": "1",
+      "pos": 210857261,
+      "ref": "C",
+      "alt": "T",
+      "gene": "KCNH1",
+      "diseases": [
+        "KCNH1-related_disorder",
+        "not_specified",
+        "Inborn_genetic_diseases"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1634135",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "19:55450462:C:A",
+      "chrom": "19",
+      "pos": 55450462,
+      "ref": "C",
+      "alt": "A",
+      "gene": "NLRP7",
+      "diseases": [
+        "Hydatidiform_mole",
+        "Hydatidiform_mole,_recurrent,_1"
+      ],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "330164",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "11:64508669:G:C",
+      "chrom": "11",
+      "pos": 64508669,
+      "ref": "G",
+      "alt": "C",
+      "gene": "RASGRP2",
+      "diseases": [],
+      "gold": "likely_benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1219388",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "5:131705949:T:C",
+      "chrom": "5",
+      "pos": 131705949,
+      "ref": "T",
+      "alt": "C",
+      "gene": "SLC22A5",
+      "diseases": [
+        "not_specified",
+        "Renal_carnitine_transport_defect"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "94099",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "19:11347493:T:C",
+      "chrom": "19",
+      "pos": 11347493,
+      "ref": "T",
+      "alt": "C",
+      "gene": "DOCK6",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1170730",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "11:75279846:C:T",
+      "chrom": "11",
+      "pos": 75279846,
+      "ref": "C",
+      "alt": "T",
+      "gene": "SERPINH1",
+      "diseases": [
+        "Osteogenesis_imperfecta_type_10",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "306107",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "1:237881770:C:T",
+      "chrom": "1",
+      "pos": 237881770,
+      "ref": "C",
+      "alt": "T",
+      "gene": "RYR2",
+      "diseases": [
+        "Cardiac_arrhythmia",
+        "Cardiovascular_phenotype",
+        "not_specified",
+        "Cardiomyopathy",
+        "Catecholaminergic_polymorphic_ventricular_tachycardia_1",
+        "Arrhythmogenic_right_ventricular_dysplasia_2",
+        "Catecholaminergic_polymorphic_ventricular_tachycardia"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "43699",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "2:128176040:A:T",
+      "chrom": "2",
+      "pos": 128176040,
+      "ref": "A",
+      "alt": "T",
+      "gene": "PROC",
+      "diseases": [
+        "not_specified",
+        "Thrombophilia_due_to_protein_C_deficiency,_autosomal_dominant"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "255808",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "2:223161889:A:G",
+      "chrom": "2",
+      "pos": 223161889,
+      "ref": "A",
+      "alt": "G",
+      "gene": "PAX3",
+      "diseases": [
+        "Waardenburg_syndrome",
+        "not_specified",
+        "Waardenburg_syndrome_type_1",
+        "Waardenburg_syndrome_type_3",
+        "Craniofacial-deafness-hand_syndrome"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "195432",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "12:54905815:C:G",
+      "chrom": "12",
+      "pos": 54905815,
+      "ref": "C",
+      "alt": "G",
+      "gene": "NCKAP1L",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2121884",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "22:19868218:A:G",
+      "chrom": "22",
+      "pos": 19868218,
+      "ref": "A",
+      "alt": "G",
+      "gene": "TXNRD2",
+      "diseases": [
+        "not_specified",
+        "Glucocorticoid_deficiency_5",
+        "Cardiovascular_phenotype",
+        "Primary_dilated_cardiomyopathy"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "263369",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "3:18427924:G:T",
+      "chrom": "3",
+      "pos": 18427924,
+      "ref": "G",
+      "alt": "T",
+      "gene": "SATB1",
+      "diseases": [],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1230415",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "22:19969106:A:G",
+      "chrom": "22",
+      "pos": 19969106,
+      "ref": "A",
+      "alt": "G",
+      "gene": "ARVCF",
+      "diseases": [],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1260521",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "16:16272670:T:C",
+      "chrom": "16",
+      "pos": 16272670,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ABCC6",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1168619",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "17:76423097:G:A",
+      "chrom": "17",
+      "pos": 76423097,
+      "ref": "G",
+      "alt": "A",
+      "gene": "DNAH17",
+      "diseases": [
+        "DNAH17-related_disorder",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "402672",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "3:123167249:G:A",
+      "chrom": "3",
+      "pos": 123167249,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ADCY5",
+      "diseases": [
+        "not_specified",
+        "Dyskinesia_with_orofacial_involvement,_autosomal_dominant"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1164246",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "16:31336719:G:A",
+      "chrom": "16",
+      "pos": 31336719,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ITGAM",
+      "diseases": [
+        "ITGAM-related_disorder"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1164321",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "8:75274141:T:G",
+      "chrom": "8",
+      "pos": 75274141,
+      "ref": "T",
+      "alt": "G",
+      "gene": "GDAP1",
+      "diseases": [
+        "not_specified",
+        "Charcot-Marie-Tooth_disease_axonal_type_2K",
+        "Charcot-Marie-Tooth_disease_recessive_intermediate_A",
+        "Charcot-Marie-Tooth_disease_type_4A",
+        "Charcot-Marie-Tooth_disease",
+        "Charcot-Marie-Tooth_disease,_axonal,_with_vocal_cord_paresis,_autosomal_recessive"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "261065",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "5:145539996:T:G",
+      "chrom": "5",
+      "pos": 145539996,
+      "ref": "T",
+      "alt": "G",
+      "gene": "LARS1",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "138083",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "3:191093175:T:A",
+      "chrom": "3",
+      "pos": 191093175,
+      "ref": "T",
+      "alt": "A",
+      "gene": "CCDC50",
+      "diseases": [
+        "not_specified",
+        "Autosomal_dominant_nonsyndromic_hearing_loss_44"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "48158",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "4:95173779:T:C",
+      "chrom": "4",
+      "pos": 95173779,
+      "ref": "T",
+      "alt": "C",
+      "gene": "SMARCAD1",
+      "diseases": [
+        "Basan_syndrome",
+        "Keratoderma_with_scleroatrophy_of_the_extremities",
+        "Adermatoglyphia"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1220932",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "12:108956433:C:T",
+      "chrom": "12",
+      "pos": 108956433,
+      "ref": "C",
+      "alt": "T",
+      "gene": "ISCU",
+      "diseases": [
+        "Hereditary_myopathy_with_lactic_acidosis_due_to_ISCU_deficiency"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "559222",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "14:97299853:A:G",
+      "chrom": "14",
+      "pos": 97299853,
+      "ref": "A",
+      "alt": "G",
+      "gene": "VRK1",
+      "diseases": [
+        "not_specified",
+        "Isolated_microphthalmia_2",
+        "Pontocerebellar_hypoplasia_type_1A"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "130731",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "16:56904587:C:G",
+      "chrom": "16",
+      "pos": 56904587,
+      "ref": "C",
+      "alt": "G",
+      "gene": "SLC12A3",
+      "diseases": [
+        "not_specified",
+        "Familial_hypokalemia-hypomagnesemia"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "504886",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "10:122624679:G:A",
+      "chrom": "10",
+      "pos": 122624679,
+      "ref": "G",
+      "alt": "A",
+      "gene": "WDR11",
+      "diseases": [
+        "Hypogonadotropic_hypogonadism_14_with_or_without_anosmia"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1231978",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "1:209811886:T:G",
+      "chrom": "1",
+      "pos": 209811886,
+      "ref": "T",
+      "alt": "G",
+      "gene": "LAMB3",
+      "diseases": [
+        "Amelogenesis_imperfecta_type_1A",
+        "Junctional_epidermolysis_bullosa",
+        "not_specified",
+        "Junctional_epidermolysis_bullosa,_non-Herlitz_type",
+        "Junctional_epidermolysis_bullosa_gravis_of_Herlitz"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "255592",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "11:103047007:C:A",
+      "chrom": "11",
+      "pos": 103047007,
+      "ref": "C",
+      "alt": "A",
+      "gene": "DYNC2H1",
+      "diseases": [
+        "Jeune_thoracic_dystrophy",
+        "not_specified",
+        "Asphyxiating_thoracic_dystrophy_3"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "167011",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "19:46443886:C:A",
+      "chrom": "19",
+      "pos": 46443886,
+      "ref": "C",
+      "alt": "A",
+      "gene": "NOVA2",
+      "diseases": [
+        "NOVA2-related_disorder",
+        "Neurodevelopmental_disorder_with_or_without_autistic_features_and/or_structural_brain_abnormalities"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1326995",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "11:61165731:C:CA",
+      "chrom": "11",
+      "pos": 61165731,
+      "ref": "C",
+      "alt": "CA",
+      "gene": "TMEM216",
+      "diseases": [
+        "not_specified",
+        "Joubert_syndrome_1",
+        "Joubert_syndrome"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "167734",
+      "clinvar_mc": [
+        "splice_acceptor_variant"
+      ]
+    },
+    {
+      "variant_id": "10:96313960:A:C",
+      "chrom": "10",
+      "pos": 96313960,
+      "ref": "A",
+      "alt": "C",
+      "gene": "HELLS",
+      "diseases": [
+        "Immunodeficiency-centromeric_instability-facial_anomalies_syndrome_4",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1168418",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "16:58577421:C:T",
+      "chrom": "16",
+      "pos": 58577421,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CNOT1",
+      "diseases": [],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1224074",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "13:33628239:G:A",
+      "chrom": "13",
+      "pos": 33628239,
+      "ref": "G",
+      "alt": "A",
+      "gene": "KL",
+      "diseases": [
+        "not_specified",
+        "Tumoral_calcinosis,_hyperphosphatemic,_familial,_3"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "311692",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "4:17503382:C:T",
+      "chrom": "4",
+      "pos": 17503382,
+      "ref": "C",
+      "alt": "T",
+      "gene": "QDPR",
+      "diseases": [
+        "not_specified",
+        "Dihydropteridine_reductase_deficiency"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "255819",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "9:131418828:A:C",
+      "chrom": "9",
+      "pos": 131418828,
+      "ref": "A",
+      "alt": "C",
+      "gene": "DYNC2I2",
+      "diseases": [
+        "Short-rib_thoracic_dysplasia_11_with_or_without_polydactyly",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "516203",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "19:52249211:T:G",
+      "chrom": "19",
+      "pos": 52249211,
+      "ref": "T",
+      "alt": "G",
+      "gene": "FPR1",
+      "diseases": [
+        "not_specified",
+        "Gingival_disorder"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "402874",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "22:18908875:A:G",
+      "chrom": "22",
+      "pos": 18908875,
+      "ref": "A",
+      "alt": "G",
+      "gene": "PRODH",
+      "diseases": [
+        "not_specified",
+        "Proline_dehydrogenase_deficiency"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1169513",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "8:121210069:T:C",
+      "chrom": "8",
+      "pos": 121210069,
+      "ref": "T",
+      "alt": "C",
+      "gene": "COL14A1",
+      "diseases": [],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1237839",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "8:144995736:G:A",
+      "chrom": "8",
+      "pos": 144995736,
+      "ref": "G",
+      "alt": "A",
+      "gene": "PLEC",
+      "diseases": [
+        "Autosomal_recessive_limb-girdle_muscular_dystrophy_type_2Q",
+        "not_specified",
+        "Epidermolysis_bullosa_simplex_5C,_with_pyloric_atresia",
+        "Epidermolysis_bullosa_simplex_5B,_with_muscular_dystrophy",
+        "Epidermolysis_bullosa_simplex_with_nail_dystrophy",
+        "Epidermolysis_bullosa_simplex,_Ogna_type"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "93084",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "22:18923585:C:G",
+      "chrom": "22",
+      "pos": 18923585,
+      "ref": "C",
+      "alt": "G",
+      "gene": "PRODH",
+      "diseases": [
+        "not_specified",
+        "Proline_dehydrogenase_deficiency"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1164748",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "7:128846328:G:C",
+      "chrom": "7",
+      "pos": 128846328,
+      "ref": "G",
+      "alt": "C",
+      "gene": "SMO",
+      "diseases": [
+        "Congenital_hypothalamic_hamartoma_syndrome",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "403462",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "X:128880614:T:C",
+      "chrom": "X",
+      "pos": 128880614,
+      "ref": "T",
+      "alt": "C",
+      "gene": "XPNPEP2",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "380656",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "16:88496008:T:C",
+      "chrom": "16",
+      "pos": 88496008,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ZNF469",
+      "diseases": [
+        "not_specified",
+        "Brittle_cornea_syndrome_1",
+        "Cardiovascular_phenotype"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "320882",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "18:42529996:G:C",
+      "chrom": "18",
+      "pos": 42529996,
+      "ref": "G",
+      "alt": "C",
+      "gene": "SETBP1",
+      "diseases": [
+        "not_specified",
+        "Schinzel-Giedion_syndrome"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "159885",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "2:48010488:G:A",
+      "chrom": "2",
+      "pos": 48010488,
+      "ref": "G",
+      "alt": "A",
+      "gene": "MSH6",
+      "diseases": [
+        "Hereditary_nonpolyposis_colorectal_neoplasms",
+        "not_specified",
+        "Lynch_syndrome",
+        "Lynch_syndrome_5",
+        "Carcinoma_of_colon",
+        "Hereditary_cancer-predisposing_syndrome",
+        "Lynch_syndrome_1",
+        "Breast_carcinoma"
+      ],
+      "gold": "benign",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "36581",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "2:198362018:T:C",
+      "chrom": "2",
+      "pos": 198362018,
+      "ref": "T",
+      "alt": "C",
+      "gene": "HSPD1",
+      "diseases": [
+        "Spastic_paraplegia",
+        "not_specified",
+        "Hereditary_spastic_paraplegia",
+        "Hereditary_spastic_paraplegia_13",
+        "Leukodystrophy,_hypomyelinating,_4"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "129241",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "11:121367626:T:C",
+      "chrom": "11",
+      "pos": 121367626,
+      "ref": "T",
+      "alt": "C",
+      "gene": "SORL1",
+      "diseases": [
+        "not_specified",
+        "SORL1-related_disorder"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1209921",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "16:89167443:T:C",
+      "chrom": "16",
+      "pos": 89167443,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ACSF3",
+      "diseases": [
+        "not_specified",
+        "Combined_malonic_and_methylmalonic_acidemia",
+        "Methylmalonic_acidemia"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "136275",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "3:122003045:G:C",
+      "chrom": "3",
+      "pos": 122003045,
+      "ref": "G",
+      "alt": "C",
+      "gene": "CASR",
+      "diseases": [
+        "Autosomal_dominant_hypocalcemia_1",
+        "Familial_hypocalciuric_hypercalcemia",
+        "not_specified",
+        "Familial_hypocalciuric_hypercalcemia_1",
+        "Neonatal_severe_primary_hyperparathyroidism"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "166798",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "11:6567895:C:CTGCCCTACTGCA",
+      "chrom": "11",
+      "pos": 6567895,
+      "ref": "C",
+      "alt": "CTGCCCTACTGCA",
+      "gene": "DNHD1",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1252143",
+      "clinvar_mc": [
+        "inframe_insertion"
+      ]
+    },
+    {
+      "variant_id": "17:48703752:T:C",
+      "chrom": "17",
+      "pos": 48703752,
+      "ref": "T",
+      "alt": "C",
+      "gene": "CACNA1G",
+      "diseases": [
+        "Spinocerebellar_ataxia_type_42",
+        "Spinocerebellar_ataxia_42,_early-onset,_severe,_with_neurodevelopmental_deficits",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1192606",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "16:633354:G:A",
+      "chrom": "16",
+      "pos": 633354,
+      "ref": "G",
+      "alt": "A",
+      "gene": "PIGQ",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1226575",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "1:94466659:A:G",
+      "chrom": "1",
+      "pos": 94466659,
+      "ref": "A",
+      "alt": "G",
+      "gene": "ABCA4",
+      "diseases": [
+        "ABCA4-related_retinopathy",
+        "ABCA4-related_disorder",
+        "not_specified",
+        "Retinal_dystrophy"
+      ],
+      "gold": "benign",
+      "revstat": "reviewed_by_expert_panel",
+      "clinvar_id": "99444",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "17:39742807:C:T",
+      "chrom": "17",
+      "pos": 39742807,
+      "ref": "C",
+      "alt": "T",
+      "gene": "KRT14",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "66336",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "5:131066725:C:A",
+      "chrom": "5",
+      "pos": 131066725,
+      "ref": "C",
+      "alt": "A",
+      "gene": "FNIP1",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2116407",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "5:150696447:C:T",
+      "chrom": "5",
+      "pos": 150696447,
+      "ref": "C",
+      "alt": "T",
+      "gene": "SLC36A2",
+      "diseases": [
+        "Hyperglycinuria"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1182853",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "17:78084769:G:A",
+      "chrom": "17",
+      "pos": 78084769,
+      "ref": "G",
+      "alt": "A",
+      "gene": "GAA",
+      "diseases": [
+        "not_specified",
+        "Glycogen_storage_disease,_type_II",
+        "Cardiovascular_phenotype"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "92466",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "4:113359703:A:G",
+      "chrom": "4",
+      "pos": 113359703,
+      "ref": "A",
+      "alt": "G",
+      "gene": "ALPK1",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "2115848",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "15:41689166:C:A",
+      "chrom": "15",
+      "pos": 41689166,
+      "ref": "C",
+      "alt": "A",
+      "gene": "NDUFAF1",
+      "diseases": [
+        "Mitochondrial_complex_I_deficiency,_nuclear_type_1",
+        "Mitochondrial_complex_I_deficiency,_nuclear_type_11",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "129689",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "5:178562967:G:A",
+      "chrom": "5",
+      "pos": 178562967,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ADAMTS2",
+      "diseases": [
+        "not_specified",
+        "Ehlers-Danlos_syndrome,_dermatosparaxis_type"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "353115",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "9:73461337:T:A",
+      "chrom": "9",
+      "pos": 73461337,
+      "ref": "T",
+      "alt": "A",
+      "gene": "TRPM3",
+      "diseases": [],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1228518",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "6:36275458:T:C",
+      "chrom": "6",
+      "pos": 36275458,
+      "ref": "T",
+      "alt": "C",
+      "gene": "PNPLA1",
+      "diseases": [
+        "not_specified",
+        "Autosomal_recessive_congenital_ichthyosis_10"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "257571",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "19:35524824:T:C",
+      "chrom": "19",
+      "pos": 35524824,
+      "ref": "T",
+      "alt": "C",
+      "gene": "SCN1B",
+      "diseases": [
+        "not_specified",
+        "Brugada_syndrome_5"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "138998",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "14:78028803:A:G",
+      "chrom": "14",
+      "pos": 78028803,
+      "ref": "A",
+      "alt": "G",
+      "gene": "SPTLC2",
+      "diseases": [
+        "not_specified",
+        "Neuropathy,_hereditary_sensory_and_autonomic,_type_1C"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "314672",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "11:73670645:T:C",
+      "chrom": "11",
+      "pos": 73670645,
+      "ref": "T",
+      "alt": "C",
+      "gene": "DNAJB13",
+      "diseases": [
+        "not_specified",
+        "Primary_ciliary_dyskinesia_34"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1255518",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "11:102666316:T:C",
+      "chrom": "11",
+      "pos": 102666316,
+      "ref": "T",
+      "alt": "C",
+      "gene": "MMP1",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "403092",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "4:3215835:T:C",
+      "chrom": "4",
+      "pos": 3215835,
+      "ref": "T",
+      "alt": "C",
+      "gene": "HTT",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1559386",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "17:76433899:G:A",
+      "chrom": "17",
+      "pos": 76433899,
+      "ref": "G",
+      "alt": "A",
+      "gene": "DNAH17",
+      "diseases": [
+        "DNAH17-related_disorder",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "402675",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "12:53045623:A:AGCC",
+      "chrom": "12",
+      "pos": 53045623,
+      "ref": "A",
+      "alt": "AGCC",
+      "gene": "KRT2",
+      "diseases": [
+        "Ichthyosis_bullosa_of_Siemens"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "768549",
+      "clinvar_mc": [
+        "inframe_insertion"
+      ]
+    },
+    {
+      "variant_id": "5:60628411:G:T",
+      "chrom": "5",
+      "pos": 60628411,
+      "ref": "G",
+      "alt": "T",
+      "gene": "ZSWIM6",
+      "diseases": [],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1225463",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "10:101606861:G:T",
+      "chrom": "10",
+      "pos": 101606861,
+      "ref": "G",
+      "alt": "T",
+      "gene": "ABCC2",
+      "diseases": [
+        "Dubin-Johnson_syndrome",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "298475",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "12:9074259:C:T",
+      "chrom": "12",
+      "pos": 9074259,
+      "ref": "C",
+      "alt": "T",
+      "gene": "PHC1",
+      "diseases": [
+        "Microcephaly_11,_primary,_autosomal_recessive"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1252581",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "3:171087469:G:A",
+      "chrom": "3",
+      "pos": 171087469,
+      "ref": "G",
+      "alt": "A",
+      "gene": "TNIK",
+      "diseases": [
+        "Intellectual_disability,_autosomal_recessive_54"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1342236",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "17:76433898:T:C",
+      "chrom": "17",
+      "pos": 76433898,
+      "ref": "T",
+      "alt": "C",
+      "gene": "DNAH17",
+      "diseases": [
+        "DNAH17-related_disorder",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "402674",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "1:197073932:T:C",
+      "chrom": "1",
+      "pos": 197073932,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ASPM",
+      "diseases": [
+        "not_specified",
+        "Microcephaly_5,_primary,_autosomal_recessive"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "21586",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "8:19362768:C:T",
+      "chrom": "8",
+      "pos": 19362768,
+      "ref": "C",
+      "alt": "T",
+      "gene": "CSGALNACT1",
+      "diseases": [
+        "Skeletal_dysplasia,_mild,_with_joint_laxity_and_advanced_bone_age"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1255412",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "4:113353285:T:C",
+      "chrom": "4",
+      "pos": 113353285,
+      "ref": "T",
+      "alt": "C",
+      "gene": "ALPK1",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1280522",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "3:47162661:A:G",
+      "chrom": "3",
+      "pos": 47162661,
+      "ref": "A",
+      "alt": "G",
+      "gene": "SETD2",
+      "diseases": [
+        "Luscan-Lumish_syndrome",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "586533",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "9:117033022:T:C",
+      "chrom": "9",
+      "pos": 117033022,
+      "ref": "T",
+      "alt": "C",
+      "gene": "COL27A1",
+      "diseases": [
+        "Steel_syndrome",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1165178",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "20:10633237:G:A",
+      "chrom": "20",
+      "pos": 10633237,
+      "ref": "G",
+      "alt": "A",
+      "gene": "JAG1",
+      "diseases": [
+        "Isolated_Nonsyndromic_Congenital_Heart_Disease",
+        "Cardiovascular_phenotype",
+        "not_specified",
+        "Tetralogy_of_Fallot",
+        "Alagille_syndrome_due_to_a_JAG1_point_mutation",
+        "Deafness,_congenital_heart_defects,_and_posterior_embryotoxon"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "143063",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "2:220502367:A:C",
+      "chrom": "2",
+      "pos": 220502367,
+      "ref": "A",
+      "alt": "C",
+      "gene": "SLC4A3",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "3894667",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "7:128641226:G:C",
+      "chrom": "7",
+      "pos": 128641226,
+      "ref": "G",
+      "alt": "C",
+      "gene": "TNPO3",
+      "diseases": [
+        "Autosomal_dominant_limb-girdle_muscular_dystrophy_type_1F",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "260268",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "8:61178574:T:C",
+      "chrom": "8",
+      "pos": 61178574,
+      "ref": "T",
+      "alt": "C",
+      "gene": "CA8",
+      "diseases": [
+        "Inborn_genetic_diseases",
+        "not_specified",
+        "Cerebellar_ataxia,_intellectual_disability,_and_dysequilibrium_syndrome_3"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "128540",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "12:52867339:C:T",
+      "chrom": "12",
+      "pos": 52867339,
+      "ref": "C",
+      "alt": "T",
+      "gene": "KRT6C",
+      "diseases": [
+        "KRT6C-related_disorder",
+        "Palmoplantar_keratoderma,_nonepidermolytic,_focal_or_diffuse"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1300101",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "17:17707105:T:C",
+      "chrom": "17",
+      "pos": 17707105,
+      "ref": "T",
+      "alt": "C",
+      "gene": "RAI1",
+      "diseases": [
+        "Inborn_genetic_diseases",
+        "not_specified",
+        "Smith-Magenis_syndrome"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "96195",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "18:6986259:G:A",
+      "chrom": "18",
+      "pos": 6986259,
+      "ref": "G",
+      "alt": "A",
+      "gene": "LAMA1",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1168733",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "22:26222454:C:T",
+      "chrom": "22",
+      "pos": 26222454,
+      "ref": "C",
+      "alt": "T",
+      "gene": "MYO18B",
+      "diseases": [],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1273583",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "12:26749831:G:A",
+      "chrom": "12",
+      "pos": 26749831,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ITPR2",
+      "diseases": [
+        "Isolated_anhidrosis_with_normal_sweat_glands"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1300047",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "1:216219781:A:G",
+      "chrom": "1",
+      "pos": 216219781,
+      "ref": "A",
+      "alt": "G",
+      "gene": "USH2A",
+      "diseases": [
+        "not_specified",
+        "Retinal_dystrophy",
+        "Usher_syndrome_type_2A"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "167815",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "8:145111979:G:A",
+      "chrom": "8",
+      "pos": 145111979,
+      "ref": "G",
+      "alt": "A",
+      "gene": "OPLAH",
+      "diseases": [
+        "OPLAH-related_disorder",
+        "5-Oxoprolinase_deficiency"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1168116",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "15:100692953:G:A",
+      "chrom": "15",
+      "pos": 100692953,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ADAMTS17",
+      "diseases": [
+        "not_specified",
+        "Weill-Marchesani_4_syndrome,_recessive"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "315294",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "X:130420415:T:C",
+      "chrom": "X",
+      "pos": 130420415,
+      "ref": "T",
+      "alt": "C",
+      "gene": "IGSF1",
+      "diseases": [
+        "not_specified",
+        "X-linked_central_congenital_hypothyroidism_with_late-onset_testicular_enlargement"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1284263",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "9:14824799:G:A",
+      "chrom": "9",
+      "pos": 14824799,
+      "ref": "G",
+      "alt": "A",
+      "gene": "FREM1",
+      "diseases": [
+        "not_specified",
+        "Oculotrichoanal_syndrome"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "366154",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "2:73613031:TGGAGGA:T",
+      "chrom": "2",
+      "pos": 73613031,
+      "ref": "TGGAGGA",
+      "alt": "T",
+      "gene": "ALMS1",
+      "diseases": [
+        "Cardiovascular_phenotype",
+        "Alstrom_syndrome",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "221075",
+      "clinvar_mc": [
+        "inframe_deletion"
+      ]
+    },
+    {
+      "variant_id": "11:118947634:C:T",
+      "chrom": "11",
+      "pos": 118947634,
+      "ref": "C",
+      "alt": "T",
+      "gene": "VPS11",
+      "diseases": [
+        "Dystonia_32",
+        "Leukodystrophy,_hypomyelinating,_12"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1164301",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "14:53619544:G:A",
+      "chrom": "14",
+      "pos": 53619544,
+      "ref": "G",
+      "alt": "A",
+      "gene": "DDHD1",
+      "diseases": [
+        "not_specified",
+        "Hereditary_spastic_paraplegia_28"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "379960",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "6:80196848:C:T",
+      "chrom": "6",
+      "pos": 80196848,
+      "ref": "C",
+      "alt": "T",
+      "gene": "LCA5",
+      "diseases": [
+        "not_specified",
+        "Leber_congenital_amaurosis_1",
+        "Leber_congenital_amaurosis_5"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "167255",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "7:47925331:C:G",
+      "chrom": "7",
+      "pos": 47925331,
+      "ref": "C",
+      "alt": "G",
+      "gene": "PKD1L1",
+      "diseases": [
+        "PKD1L1-related_disorder",
+        "not_specified",
+        "Heterotaxy,_visceral,_8,_autosomal"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1288306",
+      "clinvar_mc": [
+        "missense_variant"
+      ]
+    },
+    {
+      "variant_id": "3:64587818:G:A",
+      "chrom": "3",
+      "pos": 64587818,
+      "ref": "G",
+      "alt": "A",
+      "gene": "ADAMTS9",
+      "diseases": [
+        "ADAMTS9-related_disorder"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1266552",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "5:149919739:G:C",
+      "chrom": "5",
+      "pos": 149919739,
+      "ref": "G",
+      "alt": "C",
+      "gene": "NDST1",
+      "diseases": [
+        "Intellectual_disability,_autosomal_recessive_46",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1267932",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "9:37429814:A:G",
+      "chrom": "9",
+      "pos": 37429814,
+      "ref": "A",
+      "alt": "G",
+      "gene": "GRHPR",
+      "diseases": [
+        "not_specified",
+        "Primary_hyperoxaluria,_type_II"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "21490",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "6:161139857:A:G",
+      "chrom": "6",
+      "pos": 161139857,
+      "ref": "A",
+      "alt": "G",
+      "gene": "PLG",
+      "diseases": [
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "1174953",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "9:35792423:T:C",
+      "chrom": "9",
+      "pos": 35792423,
+      "ref": "T",
+      "alt": "C",
+      "gene": "NPR2",
+      "diseases": [
+        "Tall_stature-scoliosis-macrodactyly_of_the_great_toes_syndrome",
+        "Acromesomelic_dysplasia_1,_Maroteaux_type",
+        "not_specified"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "366776",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    },
+    {
+      "variant_id": "6:51720838:T:C",
+      "chrom": "6",
+      "pos": 51720838,
+      "ref": "T",
+      "alt": "C",
+      "gene": "PKHD1",
+      "diseases": [
+        "Polycystic_kidney_disease_4",
+        "not_specified",
+        "Autosomal_recessive_polycystic_kidney_disease",
+        "Polycystic_kidney_disease"
+      ],
+      "gold": "benign",
+      "revstat": "criteria_provided,_multiple_submitters,_no_conflicts",
+      "clinvar_id": "96423",
+      "clinvar_mc": [
+        "synonymous_variant"
+      ]
+    }
+  ],
+  "source": {
+    "stage5_run": "eval_runs/_lirical_vcf_acmgv2_clinvar",
+    "vep_fingerprint": "3bf846e8d6af",
+    "seed": 20261102,
+    "excluded_from": [
+      "acmg_validation_balanced_GRCh37.json"
+    ],
+    "counts": {
+      "pathogenic": 81,
+      "likely_pathogenic": 6,
+      "likely_benign": 27,
+      "benign": 100
+    },
+    "description": "Held-out set: ClinVar >=2-star coding/splice variants (GRCh37) not in dev_400, sampled from variants annotated in a Table 10 run; never used for engine design"
+  }
+}

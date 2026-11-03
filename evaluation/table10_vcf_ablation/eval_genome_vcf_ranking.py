@@ -5,6 +5,7 @@ import io
 import json
 import logging
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -76,14 +77,25 @@ _EMIT_DELAY_S = 1.0
 
 class CONFIG:
     WARM_TEMPLATE = True
-    LIRICAL_PP = ROOT.parent / "monarch_pheval" / "corpora" / "lirical" / "default" / "phenopackets"
-    TEMPLATE = ROOT.parent / "monarch_pheval" / "testdata" / "template_vcf" / "template_exome_hg19.vcf.gz"
-    BASE = ROOT / "eval_runs" / "_lirical_vcf"
+    _CORPUS_ROOT = (ROOT / "external" / "monarch_pheval"
+                    if (ROOT / "external" / "monarch_pheval").exists()
+                    else ROOT.parent / "monarch_pheval")
+    LIRICAL_PP = _CORPUS_ROOT / "corpora" / "lirical" / "default" / "phenopackets"
+    TEMPLATE = _CORPUS_ROOT / "testdata" / "template_vcf" / "template_exome_hg19.vcf.gz"
+    # The revised variant filter never writes into the original (reported) run directory.
+    FILTER_PROFILE = os.environ.get("GENERESOLVER_VARIANT_FILTER_PROFILE", "original").strip().lower()
+    BASE = Path(os.environ.get(
+        "GENERESOLVER_STAGE5_RUN_DIR",
+        ROOT / "eval_runs" / ("_lirical_vcf" if FILTER_PROFILE == "original"
+                              else f"_lirical_vcf_{FILTER_PROFILE}_filter")))
+    # Optional earlier run whose spiked VCFs and VEP/gnomAD/GWAS caches are COPIED (never
+    # modified) into BASE. VEP flags are identical across filter profiles, so reuse is valid.
+    CACHE_SEED_DIR = os.environ.get("GENERESOLVER_STAGE5_CACHE_SEED_DIR") or None
     LIMIT = int(os.environ.get("GENERESOLVER_VCF_LIMIT", "0"))
     RUN_PHENO_ONLY_ARM = True
     BACKGROUND_LIMIT = 0
     CACHE_SAVE_EVERY = 150
-    BACKEND = "medgemma"
+    BACKEND = os.environ.get("GENERESOLVER_LLM_BACKEND", "medgemma")
 
 
 _CACHE: dict[str, dict] = {}
@@ -219,21 +231,24 @@ def _install_patches() -> None:
 
     _orig_annotate = vep_api.annotate_variants_local
 
-    def _cached_annotate(variants, canonical_only=True):
+    def _cached_annotate(variants, canonical_only=True, genome_build=None):
         global _CACHE_DIRTY
+        build = genome_build or "GRCh37"
+        # Existing cache entries are unprefixed GRCh37 keys; other builds get their own namespace.
+        prefix = "" if build == "GRCh37" else f"{build}:"
         out, miss = {}, []
         for c, p, r, a in variants:
             k = f"{str(c).lstrip('chr')}:{p}:{r}:{a}"
-            if k in _CACHE:
-                out[k] = _CACHE[k]
+            if prefix + k in _CACHE:
+                out[k] = _CACHE[prefix + k]
             else:
                 miss.append((c, p, r, a))
         if miss:
-            got = _orig_annotate(miss, canonical_only)
+            got = _orig_annotate(miss, canonical_only, build)
             for c, p, r, a in miss:
                 k = f"{str(c).lstrip('chr')}:{p}:{r}:{a}"
                 ann = got.get(k, {})
-                _CACHE[k] = ann
+                _CACHE[prefix + k] = ann
                 out[k] = ann
             _CACHE_DIRTY += 1
         return out
@@ -623,7 +638,7 @@ def _verify_and_retry_emission(raw_dir: Path, results_dir: Path, cfg, gid, label
             for sub_attempt in range(3):
                 proc = subprocess.run(
                     [str(ROOT / ".venv" / "Scripts" / "python.exe"), "-m",
-                     "evaluation.stage5_genome_vcf_ranking._emit_single_case",
+                     "evaluation.table10_vcf_ablation._emit_single_case",
                      str(raw_dir), str(results_dir), case_id],
                     cwd=str(ROOT), capture_output=True, text=True,
                 )
@@ -642,11 +657,128 @@ def _verify_and_retry_emission(raw_dir: Path, results_dir: Path, cfg, gid, label
     print(f"  [{label}] {len(raw_ids)}/{len(raw_ids)} emitted with correct row counts after retry, 0 bad")
 
 
+_MANIFEST = "run_manifest.json"
+_VEP_CACHE_FILE = "vep_cache_local_v2.json.gz"
+
+
+def _guard_run_dir(cfg) -> None:
+    """Never let one filter profile write into a directory holding another profile's results."""
+    from generesolver import config as gconfig
+    if gconfig.VARIANT_FILTER_PROFILE != cfg.FILTER_PROFILE:
+        sys.exit("GENERESOLVER_VARIANT_FILTER_PROFILE changed after import; set it before launch.")
+    man = cfg.BASE / _MANIFEST
+    has_results = (cfg.BASE / "raw_with_vcf").exists() and any((cfg.BASE / "raw_with_vcf").iterdir())
+    if man.exists():
+        prev = json.loads(man.read_text()).get("variant_filter_profile")
+        if prev != cfg.FILTER_PROFILE:
+            sys.exit(f"ABORT: {cfg.BASE} holds results of filter profile {prev!r}; this run is "
+                     f"{cfg.FILTER_PROFILE!r}. Use a separate GENERESOLVER_STAGE5_RUN_DIR.")
+    elif has_results and cfg.FILTER_PROFILE != "original":
+        sys.exit(f"ABORT: {cfg.BASE} already holds results from before run manifests existed "
+                 "(original profile). Use a separate GENERESOLVER_STAGE5_RUN_DIR.")
+
+
+def _seed_from(cfg) -> None:
+    if not cfg.CACHE_SEED_DIR:
+        return
+    seed = Path(cfg.CACHE_SEED_DIR)
+    if seed.resolve() == cfg.BASE.resolve():
+        return
+    if (seed / "spiked_vcfs").exists() and not (cfg.BASE / "spiked_vcfs").exists():
+        shutil.copytree(seed / "spiked_vcfs", cfg.BASE / "spiked_vcfs")
+    for name in (_VEP_CACHE_FILE, "gnomad_popmax_cache.json.gz", "gwas_cache.json.gz"):
+        if (seed / name).exists() and not (cfg.BASE / name).exists():
+            shutil.copy2(seed / name, cfg.BASE / name)
+            print(f"  [seed] copied {name} from {seed} (source left untouched)")
+
+
+def _write_manifest(cfg) -> None:
+    from generesolver import config as gconfig
+    from generesolver.integrations import vep_api, resource_versions
+    meta = vep_api.annotation_metadata("GRCh37")
+    # VEP cache entries carry no per-entry fingerprint; record the configuration that is
+    # adding to this cache now, and refuse a later run whose configuration differs.
+    fp_file = cfg.BASE / (_VEP_CACHE_FILE + ".fingerprint.json")
+    if fp_file.exists():
+        prev = json.loads(fp_file.read_text())
+        if prev.get("fingerprint") != meta["fingerprint"]:
+            sys.exit(f"ABORT: VEP configuration changed (cache built with {prev.get('fingerprint')}, "
+                     f"now {meta['fingerprint']}). Use a fresh run dir or delete {_VEP_CACHE_FILE}.")
+    else:
+        fp_file.write_text(json.dumps({
+            "fingerprint": meta["fingerprint"], "vep": meta,
+            "note": ("Recorded when this file was first created. Entries already in the cache "
+                     "at that point predate fingerprinting and are assumed, not proven, to come "
+                     "from this configuration."),
+            "recorded_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        }, indent=2))
+    try:
+        commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(ROOT), capture_output=True,
+                                text=True).stdout.strip()
+        dirty = bool(subprocess.run(["git", "status", "--porcelain"], cwd=str(ROOT),
+                                    capture_output=True, text=True).stdout.strip())
+    except OSError:
+        commit, dirty = None, None
+    # Hash of the code actually imported, so a run from an uncommitted working copy can still
+    # be matched to its exact source (the paper's ACMG engine could not be, see ACMG_RULES.md).
+    import hashlib
+    h, per_file = hashlib.sha256(), {}
+    for p in sorted((ROOT / "generesolver").rglob("*.py")):
+        b = p.read_bytes()
+        h.update(p.relative_to(ROOT).as_posix().encode() + b"\0" + b)
+        if p.name in ("acmg_engine.py", "variant_annotator.py", "gene_aggregator.py", "vep_api.py"):
+            per_file[p.name] = hashlib.sha256(b).hexdigest()[:16]
+    code_hash = {"generesolver_py_sha256": h.hexdigest(), "key_files": per_file}
+    # A run directory belongs to ONE code version: a resumed run on edited code would mix
+    # engine versions across cases (as happened on 2026-08-17). Abort instead.
+    if (cfg.BASE / _MANIFEST).exists():
+        prev_code = (json.loads((cfg.BASE / _MANIFEST).read_text()).get("code") or {}).get(
+            "generesolver_py_sha256")
+        if prev_code and prev_code != code_hash["generesolver_py_sha256"] \
+                and os.environ.get("GENERESOLVER_STAGE5_ALLOW_CODE_CHANGE") != "1":
+            sys.exit(f"ABORT: generesolver source changed since this run started "
+                     f"({prev_code[:12]} -> {code_hash['generesolver_py_sha256'][:12]}). "
+                     "Restore code_snapshot/ or use a fresh GENERESOLVER_STAGE5_RUN_DIR.")
+    snap = cfg.BASE / "code_snapshot"
+    if not snap.exists():
+        for sub in ("generesolver", "evaluation"):
+            shutil.copytree(ROOT / sub, snap / sub,
+                            ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "runs", "data"))
+    raw = cfg.BASE / "raw_with_vcf"
+    if (cfg.BASE / _MANIFEST).exists():
+        predates = bool(json.loads((cfg.BASE / _MANIFEST).read_text()).get("results_predate_manifest"))
+    else:
+        predates = raw.exists() and any(raw.iterdir())
+    man = {
+        "variant_filter_profile": cfg.FILTER_PROFILE,
+        # True when this directory already held results before any manifest was written: the
+        # values below describe the environment NOW, not necessarily when those results ran.
+        "results_predate_manifest": predates,
+        "rarity_af_ceiling": gconfig.RARITY_AF_CEILING,
+        "spliceai_relevance_min": gconfig.SPLICEAI_RELEVANCE_MIN,
+        "clinvar_triage": gconfig.CLINVAR_TRIAGE_ENABLED,
+        "min_qual": float(os.environ.get("GENERESOLVER_MIN_QUAL", "20") or 0),
+        "min_gq": gconfig.MIN_GENOTYPE_QUALITY, "min_dp": gconfig.MIN_READ_DEPTH,
+        "vcf_max_variants": "uncapped",
+        "llm_backend": os.environ.get("GENERESOLVER_LLM_BACKEND"),
+        "vep": meta,
+        "resources": resource_versions.collect("GRCh37"),
+        "git_commit": commit, "git_dirty": dirty, "code": code_hash,
+        "cache_seed_dir": cfg.CACHE_SEED_DIR,
+        "written_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+    (cfg.BASE / _MANIFEST).write_text(json.dumps(man, indent=2, default=str))
+    print(f"  [manifest] {cfg.BASE / _MANIFEST} (profile={cfg.FILTER_PROFILE}, "
+          f"clinvar_triage={gconfig.CLINVAR_TRIAGE_ENABLED})")
+
+
 def main():
     import os
     os.environ.setdefault("GENERESOLVER_LLM_BACKEND", CONFIG.BACKEND)
     cfg = CONFIG
     cfg.BASE.mkdir(parents=True, exist_ok=True)
+    _guard_run_dir(cfg)
+    _seed_from(cfg)
     vcf_dir = cfg.BASE / "spiked_vcfs"
     raw_vcf = cfg.BASE / "raw_with_vcf"
     raw_ph = cfg.BASE / "raw_pheno_only"
@@ -659,11 +791,13 @@ def main():
     _spike_all(cfg, vcf_dir)
 
     print("== 2. local VEP / cache / cap patches ==")
-    _cache_load(cfg.BASE / "vep_cache_local.json.gz")
+    # v2: v1 entries predate the gnomAD "absent" status used by PM2/BA1 and must not be reused.
+    _cache_load(cfg.BASE / _VEP_CACHE_FILE)
     _gnomad_popmax_cache_load(cfg.BASE / "gnomad_popmax_cache.json.gz")
     _gwas_cache_load(cfg.BASE / "gwas_cache.json.gz")
     _install_patches()
     _local_vep_selftest()
+    _write_manifest(cfg)
 
     if cfg.WARM_TEMPLATE:
         _warm_template_cache(cfg)
@@ -702,7 +836,9 @@ def main():
             try:
                 ranked = _rank(cs.case_id, cs.hpos, str(cs.vcf))
             except Exception as exc:
-                tqdm.write(f"  [vcf] {cs.case_id}: ERROR {exc}", file=sys.stderr); ranked = []
+                # No raw file on failure, so the resume check retries the case next run.
+                tqdm.write(f"  [vcf] {cs.case_id}: ERROR {exc}", file=sys.stderr)
+                continue
             rf.write_text(json.dumps(ranked))
             _cache_save()
             _gnomad_popmax_cache_save()
@@ -717,7 +853,8 @@ def main():
                 try:
                     ranked = _rank(cs.case_id, cs.hpos, None)
                 except Exception as exc:
-                    tqdm.write(f"  [ph] {cs.case_id}: ERROR {exc}", file=sys.stderr); ranked = []
+                    tqdm.write(f"  [ph] {cs.case_id}: ERROR {exc}", file=sys.stderr)
+                    continue
                 rp.write_text(json.dumps(ranked))
                 did_work = True
             _emit_pheval(json.loads(rp.read_text()), cs.pp, res_ph, gid)

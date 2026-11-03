@@ -1,6 +1,6 @@
 {
   "case_id": "DEMO_CASE_MULTIFACTORIAL",
-  "created_at": "2026-08-14T08:41:20.598610+00:00",
+  "created_at": "2026-11-02T08:30:04.949002+00:00",
   "task_mode": "phenotype_only",
   "input": {
     "case_id": "DEMO_CASE_MULTIFACTORIAL",
@@ -17,7 +17,7 @@
     "consanguinity": null,
     "age_years": null
   },
-  "clinical_note_deidentified": "A [AGE]-year-old woman presented with recent-onset tingling in one finger along with excessive thirst, most pronounced at night, drinking far more water than usual and waking six to eight times nightly to urinate. She also noted feeling unusually hungry after dinner, without nausea or vomiting. She had no family history of diabetes but did have a personal history of a pituitary tumor diagnosed in her teens without progression, and a thyroid condition treated with ablation a decade earlier; she was on a variable levothyroxine dose and noticed her heart raced on the higher-dose days. She was very physically active as a fitness instructor and reported near-fainting sensations on standing from a kneeling position. On exam her BMI was 21.7, she had lost a small amount of weight in the preceding ten days, her heart rate was mildly elevated, and the rest of her exam was unremarkable. An initial random blood glucose was significantly elevated. At follow-up five days later, basic metabolic testing ruled out a significant acid-base disturbance, urinalysis showed sugar and ketones in the urine, and a bedside serum ketone test was negative; thyroid testing showed a high TSH with low-normal free T4, consistent with under-replacement of her thyroid medication.",
+  "clinical_note_deidentified": "A [AGE]-year-old woman presented with recent-onset tingling in one finger along with excessive thirst, most pronounced at night, drinking far more water than usual and waking six to eight times nightly to urinate. She also noted feeling unusually hungry after dinner, without nausea or vomiting. She had no family history of diabetes but did have a personal history of a pituitary tumor diagnosed in her teens without progression, and a thyroid condition treated with ablation a decade earlier; she was on a variable levothyroxine dose and noticed her heart raced on the higher-dose days. She was very physically active as a fitness instructor and reported near-fainting sensations on standing from a kneeling position. On exam her BMI was [HEIGHT]7, she had lost a small amount of weight in the preceding ten days, her heart rate was mildly elevated, and the rest of her exam was unremarkable. An initial random blood glucose was significantly elevated. At follow-up five days later, basic metabolic testing ruled out a significant acid-base disturbance, urinalysis showed sugar and ketones in the urine, and a bedside serum ketone test was negative; thyroid testing showed a high [CURRENCYCODE]SH with low-normal free [GENDER]4, consistent with under-replacement of her thyroid medication.",
   "deidentification_applied": true,
   "has_clinical_note": true,
   "has_vcf": false,
@@ -63,22 +63,7 @@
       "source_model": "demographics (llm)"
     }
   ],
-  "disease_mentions": [
-    {
-      "text": "diabetes",
-      "label": "diabetes",
-      "orpha_id": null,
-      "omim_ids": [],
-      "icd10_ids": [],
-      "mondo_id": null,
-      "status": "uncertain",
-      "confidence": 0.475,
-      "source": "ner",
-      "evidence_span": "She also noted feeling unusually hungry after dinner, without nausea or vomiting.",
-      "start": 259,
-      "end": 267
-    }
-  ],
+  "disease_mentions": [],
   "hpo_profile": {
     "terms": [
       {
@@ -108,7 +93,7 @@
       {
         "mention": "tumor",
         "hpo_id": "HP:0002664",
-        "label": "Tumour",
+        "label": "Tumor",
         "status": "present",
         "confidence": 0.95,
         "evidence_span": "She had no family history of diabetes but did have a personal history of a pituitary tumor diagnosed in her teens without progression, and a thyroid condition treated with ablation a decade earlier; she was on a variable levothyroxine dose and noticed her heart raced on the higher-dose days."
@@ -135,15 +120,7 @@
         "label": "Negativism",
         "status": "absent",
         "confidence": 0.95,
-        "evidence_span": "At follow-up five days later, basic metabolic testing ruled out a significant acid-base disturbance, urinalysis showed sugar and ketones in the urine, and a bedside serum ketone test was negative; thyroid testing showed a high TSH with low-normal free T4, consistent with under-replacement of her thyroid medication."
-      },
-      {
-        "mention": "high TSH",
-        "hpo_id": "HP:0002925",
-        "label": "High TSH",
-        "status": "present",
-        "confidence": 0.95,
-        "evidence_span": "At follow-up five days later, basic metabolic testing ruled out a significant acid-base disturbance, urinalysis showed sugar and ketones in the urine, and a bedside serum ketone test was negative; thyroid testing showed a high TSH with low-normal free T4, consistent with under-replacement of her thyroid medication."
+        "evidence_span": "At follow-up five days later, basic metabolic testing ruled out a significant acid-base disturbance, urinalysis showed sugar and ketones in the urine, and a bedside serum ketone test was negative; thyroid testing showed a high [CURRENCYCODE]SH with low-normal free [GENDER]4, consistent with under-replacement of her thyroid medication."
       },
       {
         "mention": "excessive thirst",
@@ -154,12 +131,12 @@
         "evidence_span": "excessive thirst"
       },
       {
-        "mention": "lost a small amount of weight in the preceding ten days",
-        "hpo_id": "HP:0001824",
-        "label": "Weight loss",
+        "mention": "near-fainting sensations on standing from a kneeling position",
+        "hpo_id": "HP:0001278",
+        "label": "Orthostatic hypotension",
         "status": "present",
         "confidence": 0.7,
-        "evidence_span": "lost a small amount of weight in the preceding ten days"
+        "evidence_span": "near-fainting sensations on standing from a kneeling position"
       }
     ],
     "warnings": []
@@ -176,44 +153,7 @@
   "literature_evidence": [],
   "biological_evidence": [],
   "biochem_panel": {
-    "measurements": [
-      {
-        "analyte": "blood glucose",
-        "value": null,
-        "unit": null,
-        "ref_low": null,
-        "ref_high": null,
-        "direction": "increased",
-        "direction_source": "llm",
-        "specimen": null,
-        "verbatim": "blood glucose=None",
-        "hpo_id": null
-      },
-      {
-        "analyte": "TSH",
-        "value": null,
-        "unit": null,
-        "ref_low": null,
-        "ref_high": null,
-        "direction": "increased",
-        "direction_source": "llm",
-        "specimen": null,
-        "verbatim": "TSH=None",
-        "hpo_id": null
-      },
-      {
-        "analyte": "free T4",
-        "value": null,
-        "unit": null,
-        "ref_low": null,
-        "ref_high": null,
-        "direction": "decreased",
-        "direction_source": "llm",
-        "specimen": null,
-        "verbatim": "free T4=None",
-        "hpo_id": null
-      }
-    ],
+    "measurements": [],
     "extraction_failed": false
   },
   "age_years": 49.0,
@@ -226,6 +166,8 @@
   "segregation_observed": null,
   "n_affected_segregating": null,
   "n_unaffected_nonsegregating": null,
+  "unaffected_carrier_observed": null,
+  "unaffected_carrier_adult": null,
   "case_class": {
     "decision": "multifactorial",
     "mode": "dominant",
@@ -234,10 +176,10 @@
         "case_class": "multifactorial",
         "score": 1.0,
         "evidence": [
-          "The patient's symptoms of polyuria, polydipsia, polyphagia, and weight loss, along with elevated blood glucose and ketonuria, are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones (though serum ketones were negative at follow-up). While other causes exist, the constellation strongly suggests an autoimmune process destroying pancreatic beta cells."
+          "The patient's symptoms (polydipsia, polyuria, polyphagia, weight loss, hyperglycemia, glucosuria, ketonuria) are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones in urine (though serum ketones were negative at bedside testing). While other forms of diabetes exist, the presentation strongly suggests an autoimmune destruction of pancreatic beta cells leading to insulin deficiency."
         ],
         "deductions": [],
-        "reasoning": "Diabetes mellitus type 1 is typically caused by an autoimmune destruction of pancreatic beta cells leading to insulin deficiency. This is considered a multifactorial disease involving genetic predisposition (multiple genes) and environmental triggers (like viral infections) interacting to initiate the autoimmune response. It is not primarily caused by a single gene defect, a chromosomal abnormality, or a non-genetic acquired cause."
+        "reasoning": "Diabetes mellitus type 1 is typically caused by autoimmune destruction of pancreatic beta cells, leading to insulin deficiency. This process is considered multifactorial because it involves a combination of genetic susceptibility (multiple genes conferring increased risk) and environmental triggers (like viral infections) that initiate the autoimmune response. No single gene defect or chromosomal abnormality is sufficient to cause type 1 diabetes; rather, multiple genetic variants interact with environmental factors to cross a threshold for disease development."
       },
       {
         "case_class": "single_gene",
@@ -263,7 +205,7 @@
     ],
     "margin": 1.0,
     "tiebreak_reasoning": "",
-    "conclusion": "The patient's symptoms of polyuria, polydipsia, polyphagia, and weight loss, along with elevated blood glucose and ketonuria, are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones (though serum ketones were negative at follow-up). While other causes exist, the constellation strongly suggests an autoimmune process destroying pancreatic beta cells.. Diabetes mellitus type 1 is typically caused by an autoimmune destruction of pancreatic beta cells leading to insulin deficiency. This is considered a multifactorial disease involving genetic predisposition (multiple genes) and environmental triggers (like viral infections) interacting to initiate the autoimmune response. It is not primarily caused by a single gene defect, a chromosomal abnormality, or a non-genetic acquired cause",
+    "conclusion": "The patient's symptoms (polydipsia, polyuria, polyphagia, weight loss, hyperglycemia, glucosuria, ketonuria) are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones in urine (though serum ketones were negative at bedside testing). While other forms of diabetes exist, the presentation strongly suggests an autoimmune destruction of pancreatic beta cells leading to insulin deficiency.. Diabetes mellitus type 1 is typically caused by autoimmune destruction of pancreatic beta cells, leading to insulin deficiency. This process is considered multifactorial because it involves a combination of genetic susceptibility (multiple genes conferring increased risk) and environmental triggers (like viral infections) that initiate the autoimmune response. No single gene defect or chromosomal abnormality is sufficient to cause type 1 diabetes; rather, multiple genetic variants interact with environmental factors to cross a threshold for disease development",
     "inputs_seen": [
       "clinical_note"
     ],
@@ -276,39 +218,22 @@
         "name": "Sporadic pheochromocytoma/secreting paraganglioma",
         "likelihood": "moderate",
         "supporting": [
-          "Tumour",
+          "Tumor",
           "Racing heart",
           "Fainting",
-          "Weight loss",
-          "Tingling"
+          "Orthostatic hypotension"
         ],
         "against": [
-          "High TSH",
-          "Polydipsia",
-          "blood glucose (increased)",
-          "free T4 (decreased)"
-        ]
-      },
-      {
-        "name": "Type 2 Diabetes Mellitus",
-        "likelihood": "moderate",
-        "supporting": [
-          "Weight loss",
-          "Polydipsia",
-          "blood glucose (increased)"
-        ],
-        "against": [
-          "Tumour",
-          "Racing heart",
-          "Fainting",
-          "Tingling"
+          "No family history of diabetes (though not directly related, pheochromocytoma can sometimes be associated with syndromes like MEN2 which can have endocrine features)",
+          "Polydipsia (less typical but possible)",
+          "Tingling (less typical but possible)"
         ]
       }
     ],
-    "mechanism": "The patient presents with symptoms suggestive of both a catecholamine-secreting tumor (pheochromocytoma/paraganglioma) and metabolic dysfunction (likely Type 2 Diabetes). Pheochromocytomas can cause episodic or sustained hypertension, palpitations, sweating, headaches, and anxiety, potentially leading to fainting and weight loss. The metabolic findings (polydipsia, weight loss, increased blood glucose) are consistent with diabetes mellitus. These conditions are often multifactorial, involving complex interactions between multiple genetic variants and environmental factors.",
-    "reasoning": "The patient's presentation includes symptoms potentially related to a neuroendocrine tumor (tumour, racing heart, fainting, tingling, weight loss) and symptoms consistent with diabetes mellitus (polydipsia, weight loss, increased blood glucose). The biochemical findings show elevated TSH and decreased free T4 which is not directly explained by pheochromocytoma or diabetes but could be related to other underlying conditions or medications. The etiology is classified as multifactorial. While the Open Targets list includes genes associated with various conditions like Gitelman syndrome (SLC12A3), none of the candidate diagnoses strongly fit the entire clinical picture. Pheochromocytoma/paraganglioma can explain the tumor and adrenergic symptoms. Type 2 Diabetes explains the polydipsia and hyperglycemia. Given the multifactorial classification and lack of specific diagnostic genetic variants identified in this analysis, these common conditions are plausible explanations for parts of the phenotype. No single gene defect explains all findings.",
+    "mechanism": "Pheochromocytomas are tumors arising from chromaffin cells, typically in the adrenal medulla, that secrete catecholamines (epinephrine, norepinephrine). Excess catecholamines cause symptoms like racing heart (tachycardia), fainting (hypotension), orthostatic hypotension, and potentially tingling. Tumors can also cause systemic effects. Polydipsia might occur secondary to hypertension or other metabolic changes, though it's not a primary symptom. The etiology is often sporadic, involving somatic mutations in genes like VHL, SDHB, SDHD, etc., or can be part of inherited syndromes.",
+    "reasoning": "The patient presents with symptoms suggestive of catecholamine excess: racing heart, fainting, orthostatic hypotension. Tingling and polydipsia are less specific but can occur. The absence of family history points away from strongly inherited syndromes like MEN2 or VHL syndrome associated with pheochromocytoma/paraganglioma. The Open Targets list includes genes associated with various conditions but does not strongly point towards a specific inherited syndrome here; SLC12A3 is associated with Gitelman syndrome (hypokalemic metabolic alkalosis), CLCNKB with Bartter syndrome type 3 (similar), IDUA with mucopolysaccharidosis type II (Hunter syndrome), MMP2 with various connective tissue disorders and cancers. The GWAS catalog results relate to electrolyte measurements (potassium, bicarbonate, chloride) which are not the primary findings here. Given the symptom cluster and lack of strong family history suggesting a specific genetic syndrome listed in the candidate diagnoses or Open Targets genes strongly implicated in those syndromes, a sporadic tumor causing catecholamine excess is a plausible explanation for the constellation of symptoms. While the etiology verdict is 'multifactorial', this refers to the complex interplay of genetic predisposition and environmental factors contributing to common traits or diseases like hypertension or diabetes; it does not mean a single causal gene is identified here. In this context of a tumor presentation without clear syndromic features or strong family history pointing to specific candidate diagnoses like Gitelman syndrome or hereditary paraganglioma syndromes based on the provided data, 'multifactorial' likely reflects the complex genetic background influencing susceptibility to tumor development rather than being directly diagnostic itself.",
     "limitations": [
-      "No polygenic risk score was computed — GeneResolve does not carry PRS weights. GWAS loci are reported as associations, not as a per-patient risk estimate."
+      "No polygenic risk score was computed — GeneResolver does not carry PRS weights. GWAS loci are reported as associations, not as a per-patient risk estimate."
     ],
     "sources_used": [
       "hpo_a",
@@ -325,59 +250,59 @@
   "next_steps": {
     "tests": [
       {
-        "test": "Plasma metanephrines and normetanephrines",
-        "rationale": "The patient has symptoms potentially consistent with pheochromocytoma/paraganglioma (tumour, racing heart, fainting, weight loss, tingling). Measuring plasma metanephrines and normetanephrines is the standard biochemical test to screen for these catecholamine-secreting tumors.",
+        "test": "Plasma metanephrines (free and total)",
+        "rationale": "The patient presents with symptoms suggestive of catecholamine excess (racing heart, fainting, orthostatic hypotension, tumor). Measuring plasma metanephrines is the most sensitive test for pheochromocytoma/paraganglioma.",
         "confirms": [
-          "Pheochromocytoma/paraganglioma if elevated"
+          "Pheochromocytoma/paraganglioma if levels are significantly elevated."
         ],
         "refutes": [
-          "Pheochromocytoma/paraganglioma if normal (though sensitivity is not 100%)"
+          "Pheochromocytoma/paraganglioma if levels are within the normal range (though sensitivity is not 100%, especially for intermittent secretion)."
         ],
-        "power": "exclusionary",
+        "power": "decisive",
         "source": "next_steps",
         "loinc_code": null
       },
       {
-        "test": "HbA1c",
-        "rationale": "The patient has symptoms (polydipsia, weight loss) and biochemistry (increased blood glucose) suggestive of diabetes mellitus. HbA1c provides a measure of average blood glucose control over the preceding 2-3 months and helps confirm the diagnosis of diabetes.",
+        "test": "24-hour urine fractionated metanephrines and catecholamines",
+        "rationale": "This test provides an integrated measure of catecholamine production over 24 hours and is also used to diagnose pheochromocytoma/paraganglioma. It can be helpful if plasma levels are borderline or if intermittent secretion is suspected.",
         "confirms": [
-          "Diabetes mellitus if elevated"
+          "Pheochromocytoma/paraganglioma if levels are significantly elevated."
         ],
         "refutes": [
-          "Diabetes mellitus if normal (though less sensitive for recent onset)"
+          "Pheochromocytoma/paraganglioma if levels are within the normal range (though sensitivity is not 100%)."
         ],
-        "power": "exclusionary",
+        "power": "decisive",
         "source": "next_steps",
         "loinc_code": null
       },
       {
-        "test": "Autoantibody panel for Type 1 Diabetes Mellitus (e.g., GAD65, IA-2, insulin autoantibodies)",
-        "rationale": "The patient presents with symptoms suggestive of diabetes mellitus (polydipsia, weight loss, increased blood glucose) at age 49. While Type 2 Diabetes is more common at this age, the presentation could potentially be Latent Autoimmune Diabetes in Adults (LADA), a form of Type 1 diabetes that develops more slowly in adults. Testing for autoantibodies specific to pancreatic beta cells can help differentiate between Type 1/LADA and Type 2 diabetes.",
+        "test": "Abdominal and pelvic imaging (CT or MRI)",
+        "rationale": "If biochemical testing (metanephrines) is positive, imaging is required to localize the tumor. This patient has a 'Tumor' finding, which could be the source of catecholamines.",
         "confirms": [
-          "Type 1 Diabetes Mellitus or LADA if positive"
+          "Presence and location of a potential pheochromocytoma/paraganglioma if a mass is identified in the adrenal glands or other sympathetic ganglia."
         ],
         "refutes": [
-          "Type 1 Diabetes Mellitus or LADA if negative (though some patients may be antibody negative)"
+          "None"
         ],
         "power": "supportive",
         "source": "next_steps",
         "loinc_code": null
       },
       {
-        "test": "Thyroid peroxidase antibodies (TPOAb)",
-        "rationale": "The patient has high TSH and low free T4, indicating hypothyroidism. Autoimmune thyroid disease (Hashimoto's thyroiditis) is the most common cause of hypothyroidism in iodine-sufficient areas. Testing for TPOAb can confirm an autoimmune etiology.",
+        "test": "Glucose metabolism tests (fasting glucose, HbA1c, oral glucose tolerance test)",
+        "rationale": "The patient presents with polydipsia and orthostatic hypotension which can be symptoms of diabetes mellitus. Although the initial assessment points towards type 1 diabetes based on classic symptoms, ruling out other forms of diabetes or confirming type 1 diabetes requires specific glucose metabolism tests.",
         "confirms": [
-          "Autoimmune hypothyroidism if positive"
+          "None"
         ],
         "refutes": [
-          "Autoimmune hypothyroidism if negative (though sensitivity is not 100%)"
+          "None"
         ],
-        "power": "exclusionary",
+        "power": "supportive",
         "source": "next_steps",
         "loinc_code": null
       }
     ],
-    "reasoning": "The patient presents with a complex picture involving symptoms suggestive of both a catecholamine-secreting tumor and diabetes mellitus, along with confirmed hypothyroidism. The next steps involve biochemical testing to investigate the suspected pheochromocytoma/paraganglioma (plasma metanephrines), confirm the diagnosis of diabetes mellitus (HbA1c), differentiate between types of diabetes (autoantibody panel), and confirm the etiology of hypothyroidism(TPOAb). These tests directly address the leading candidate diagnoses based on the clinical presentation."
+    "reasoning": "The primary concern based on the constellation of symptoms (tumor, racing heart, fainting, orthostatic hypotension) is pheochromocytoma/paraganglioma. The next step is biochemical confirmation using plasma or urine metanephrines. If positive, imaging follows to locate the tumor. The symptoms of polydipsia and orthostatic hypotension also raise suspicion for diabetes mellitus; therefore, glucose metabolism tests should also be performed to evaluate this possibility concurrently or subsequently depending on clinical judgment."
   },
   "trace": {
     "retrievals": [
@@ -387,18 +312,18 @@
         "n_results": 10,
         "results": [
           "Gitelman syndrome",
+          "Hereditary pheochromocytoma-paraganglioma",
+          "Sporadic pheochromocytoma/secreting paraganglioma",
+          "Acute intermittent porphyria",
           "Familial thrombocytosis",
           "Systemic mastocytosis with associated hematologic neoplasm",
-          "Acute intermittent porphyria",
-          "Familial colorectal cancer Type X",
-          "Hereditary pheochromocytoma-paraganglioma",
-          "Imerslund-Gräsbeck syndrome",
-          "Lynch syndrome"
+          "Acromegaly",
+          "Andersen-Tawil syndrome"
         ],
         "took_ms": null,
         "failed": false,
         "error": "",
-        "timestamp": "2026-08-14T08:42:57.428429+00:00"
+        "timestamp": "2026-11-02T08:32:46.298065+00:00"
       },
       {
         "source": "open_targets",
@@ -414,126 +339,119 @@
           "SLC17A5 (0.12)",
           "PTGS2 (0.07)"
         ],
-        "took_ms": 2,
+        "took_ms": 24,
         "failed": false,
         "error": "",
-        "timestamp": "2026-08-14T08:42:57.431056+00:00"
+        "timestamp": "2026-11-02T08:32:46.322223+00:00"
       },
       {
         "source": "open_targets",
-        "query": "Familial thrombocytosis",
+        "query": "Hereditary pheochromocytoma-paraganglioma",
         "n_results": 10,
         "results": [
-          "MPL (0.78)",
-          "THPO (0.71)",
-          "JAK2 (0.66)",
-          "CALR (0.57)",
-          "SH2B3 (0.53)",
-          "PDE3B (0.46)",
-          "PDE3A (0.46)",
-          "MT-ATP8 (0.34)"
+          "SDHB (0.86)",
+          "SDHD (0.86)",
+          "SDHA (0.82)",
+          "SDHC (0.80)",
+          "SDHAF2 (0.79)",
+          "TMEM127 (0.74)",
+          "MAX (0.74)",
+          "VHL (0.73)"
         ],
-        "took_ms": 2641,
+        "took_ms": 13,
         "failed": false,
         "error": "",
-        "timestamp": "2026-08-14T08:43:00.072962+00:00"
+        "timestamp": "2026-11-02T08:32:46.335867+00:00"
       },
       {
         "source": "gwas_catalog",
         "query": "SLC12A3",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "potassium measurement",
+          "potassium measurement",
+          "blood sodium bicarbonate amount",
+          "blood sodium bicarbonate amount",
+          "amount of chloride"
         ],
-        "took_ms": 2163,
+        "took_ms": 8760,
         "failed": false,
         "error": "",
-        "timestamp": "2026-08-14T08:43:02.236184+00:00"
+        "timestamp": "2026-11-02T08:32:55.096867+00:00"
       },
       {
         "source": "gwas_catalog",
         "query": "CLCNKB",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "hemoglobin measurement",
+          "hematocrit",
+          "erythrocyte count",
+          "hematocrit",
+          "hemoglobin measurement"
         ],
-        "took_ms": 2386,
+        "took_ms": 6753,
         "failed": false,
         "error": "",
-        "timestamp": "2026-08-14T08:43:04.622485+00:00"
+        "timestamp": "2026-11-02T08:33:01.850469+00:00"
       },
       {
         "source": "gwas_catalog",
         "query": "IDUA",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "systemic lupus erythematosus",
+          "systemic lupus erythematosus",
+          "bone tissue density",
+          "white matter microstructure measurement",
+          "white matter microstructure measurement"
         ],
-        "took_ms": 3421,
+        "took_ms": 14652,
         "failed": false,
         "error": "",
-        "timestamp": "2026-08-14T08:43:08.043794+00:00"
+        "timestamp": "2026-11-02T08:33:16.502669+00:00"
       },
       {
         "source": "gwas_catalog",
         "query": "MMP2",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "bone tissue density",
+          "refractive error",
+          "refractive error",
+          "presbycusis",
+          "body height"
         ],
-        "took_ms": 3567,
+        "took_ms": 18587,
         "failed": false,
         "error": "",
-        "timestamp": "2026-08-14T08:43:11.611083+00:00"
+        "timestamp": "2026-11-02T08:33:35.090380+00:00"
       },
       {
         "source": "gwas_catalog",
         "query": "SLC12A1",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "Dermatochalasis",
+          "benign neoplasm of eye",
+          "skin cancer",
+          "skin pigmentation",
+          "skin pigmentation"
         ],
-        "took_ms": 2059,
+        "took_ms": 15000,
         "failed": false,
         "error": "",
-        "timestamp": "2026-08-14T08:43:13.670727+00:00"
+        "timestamp": "2026-11-02T08:33:50.091015+00:00"
       },
       {
         "source": "europepmc",
-        "query": "(\"Gitelman syndrome\" OR \"Familial thrombocytosis\") AND (GWAS OR polygenic OR heritability OR risk factor)",
-        "n_results": 6,
-        "results": [
-          "MED PMID:41554351 Gene modification: Exploring the potential in treating kidney diseases.",
-          "MED PMID:42290910 Long-Read Sequencing in CKD Diagnostics: Breaking Genomic Barriers and Expanding Global Inclusion.",
-          "MED PMID:41751411 Potential Factors of Diabetes in Gitelman Syndrome and the Choices of the Appropriate Hypoglycemic Drugs: A Literature Narrative Review.",
-          "MED PMID:42254956 Gitelman Syndrome in a Child Presenting With Polyuria and Polydipsia: Diagnostic Challenges in a Resource-Limited Setting.",
-          "MED PMID:41347228 Clinical and genetic features of Gitelman syndrome patients with hyperuricemia.",
-          "MED PMID:41365382 Refractory hypercalcemic crisis: A case of primary hyperparathyroidism with Gitelman syndrome."
-        ],
-        "took_ms": 1681,
+        "query": "(\"Gitelman syndrome\" OR \"Hereditary pheochromocytoma-paraganglioma\") AND (GWAS OR polygenic OR heritability OR risk factor)",
+        "n_results": 0,
+        "results": [],
+        "took_ms": 3,
         "failed": false,
         "error": "",
-        "timestamp": "2026-08-14T08:43:15.352238+00:00"
+        "timestamp": "2026-11-02T08:33:50.094275+00:00"
       }
     ],
     "steps": [
@@ -547,7 +465,7 @@
       },
       {
         "step": "biochem_extractor",
-        "claim": "3 measurement(s) parsed, 3 abnormal: blood glucose (increased); TSH (increased); free T4 (decreased)",
+        "claim": "No biochemical measurements found in note",
         "grounded_in": [
           "clinical_note_deidentified"
         ],
@@ -555,7 +473,7 @@
       },
       {
         "step": "case_classifier",
-        "claim": "Etiology: multifactorial (dominant, margin 1.00). The patient's symptoms of polyuria, polydipsia, polyphagia, and weight loss, along with elevated blood glucose and ketonuria, are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones (though serum ketones were negative at follow-up). While other causes exist, the constellation strongly suggests an autoimmune process destroying pancreatic beta cells.. Diabetes mellitus type 1 is typically caused by an autoimmune destruction of pancreatic beta cells leading to insulin deficiency. This is considered a multifactorial disease involving genetic predisposition (multiple genes) and environmental triggers (like viral infections) interacting to initiate the autoimmune response. It is not primarily caused by a single gene defect, a chromosomal abnormality, or a non-genetic acquired cause",
+        "claim": "Etiology: multifactorial (dominant, margin 1.00). The patient's symptoms (polydipsia, polyuria, polyphagia, weight loss, hyperglycemia, glucosuria, ketonuria) are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones in urine (though serum ketones were negative at bedside testing). While other forms of diabetes exist, the presentation strongly suggests an autoimmune destruction of pancreatic beta cells leading to insulin deficiency.. Diabetes mellitus type 1 is typically caused by autoimmune destruction of pancreatic beta cells, leading to insulin deficiency. This process is considered multifactorial because it involves a combination of genetic susceptibility (multiple genes conferring increased risk) and environmental triggers (like viral infections) that initiate the autoimmune response. No single gene defect or chromosomal abnormality is sufficient to cause type 1 diabetes; rather, multiple genetic variants interact with environmental factors to cross a threshold for disease development",
         "grounded_in": [
           "clinical_note"
         ],
@@ -563,7 +481,7 @@
       },
       {
         "step": "branch_multifactorial",
-        "claim": "The patient presents with symptoms suggestive of both a catecholamine-secreting tumor (pheochromocytoma/paraganglioma) and metabolic dysfunction (likely Type 2 Diabetes). Pheochromocytomas can cause episodic or sustained hypertension, palpitations, sweating, headaches, and anxiety, potentially leading to fainting and weight loss. The metabolic findings (polydipsia, weight loss, increased blood glucose) are consistent with diabetes mellitus. These conditions are often multifactorial, involving complex interactions between multiple genetic variants and environmental factors.",
+        "claim": "Pheochromocytomas are tumors arising from chromaffin cells, typically in the adrenal medulla, that secrete catecholamines (epinephrine, norepinephrine). Excess catecholamines cause symptoms like racing heart (tachycardia), fainting (hypotension), orthostatic hypotension, and potentially tingling. Tumors can also cause systemic effects. Polydipsia might occur secondary to hypertension or other metabolic changes, though it's not a primary symptom. The etiology is often sporadic, involving somatic mutations in genes like VHL, SDHB, SDHD, etc., or can be part of inherited syndromes.",
         "grounded_in": [
           "hpo_a",
           "open_targets",
@@ -574,7 +492,7 @@
       },
       {
         "step": "next_steps",
-        "claim": "4 confirmatory test(s) proposed; none decisive",
+        "claim": "4 confirmatory test(s) proposed; decisive: Plasma metanephrines (free and total)",
         "grounded_in": [
           "hpo_a",
           "open_targets",
@@ -587,10 +505,10 @@
   },
   "doctor_report": {
     "case_id": "DEMO_CASE_MULTIFACTORIAL",
-    "generated_at": "2026-08-14T08:43:38.507091+00:00",
-    "case_summary": "The patient presents with a complex phenotype including tingling, a tumor, racing heart, fainting, high TSH, polydipsia, and weight loss. Despite these symptoms, the analysis did not identify any specific candidate genes strongly associated with this combination of findings. Further investigation is needed to clarify the underlying cause.",
+    "generated_at": "2026-11-02T08:34:15.185618+00:00",
+    "case_summary": "The patient presents with tingling, a tumor, racing heart, fainting, polydipsia, and orthostatic hypotension. Nausea, vomiting, and negativism are absent. Based on the current clinical information and available genomic data, no specific gene strongly explains this combination of symptoms.",
     "classification": "multifactorial",
-    "classification_reasoning": "The patient's symptoms of polyuria, polydipsia, polyphagia, and weight loss, along with elevated blood glucose and ketonuria, are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones (though serum ketones were negative at follow-up). While other causes exist, the constellation strongly suggests an autoimmune process destroying pancreatic beta cells.. Diabetes mellitus type 1 is typically caused by an autoimmune destruction of pancreatic beta cells leading to insulin deficiency. This is considered a multifactorial disease involving genetic predisposition (multiple genes) and environmental triggers (like viral infections) interacting to initiate the autoimmune response. It is not primarily caused by a single gene defect, a chromosomal abnormality, or a non-genetic acquired cause",
+    "classification_reasoning": "The patient's symptoms (polydipsia, polyuria, polyphagia, weight loss, hyperglycemia, glucosuria, ketonuria) are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones in urine (though serum ketones were negative at bedside testing). While other forms of diabetes exist, the presentation strongly suggests an autoimmune destruction of pancreatic beta cells leading to insulin deficiency.. Diabetes mellitus type 1 is typically caused by autoimmune destruction of pancreatic beta cells, leading to insulin deficiency. This process is considered multifactorial because it involves a combination of genetic susceptibility (multiple genes conferring increased risk) and environmental triggers (like viral infections) that initiate the autoimmune response. No single gene defect or chromosomal abnormality is sufficient to cause type 1 diabetes; rather, multiple genetic variants interact with environmental factors to cross a threshold for disease development",
     "classification_scores": {
       "multifactorial": 1.0,
       "single_gene": 0.0,
@@ -602,94 +520,75 @@
         "name": "Sporadic pheochromocytoma/secreting paraganglioma",
         "likelihood": "moderate",
         "supporting": [
-          "Tumour",
+          "Tumor",
           "Racing heart",
           "Fainting",
-          "Weight loss",
-          "Tingling"
+          "Orthostatic hypotension"
         ],
         "against": [
-          "High TSH",
-          "Polydipsia",
-          "blood glucose (increased)",
-          "free T4 (decreased)"
-        ]
-      },
-      {
-        "name": "Type 2 Diabetes Mellitus",
-        "likelihood": "moderate",
-        "supporting": [
-          "Weight loss",
-          "Polydipsia",
-          "blood glucose (increased)"
-        ],
-        "against": [
-          "Tumour",
-          "Racing heart",
-          "Fainting",
-          "Tingling"
+          "No family history of diabetes (though not directly related, pheochromocytoma can sometimes be associated with syndromes like MEN2 which can have endocrine features)",
+          "Polydipsia (less typical but possible)",
+          "Tingling (less typical but possible)"
         ]
       }
     ],
     "top_candidate_genes": [],
     "top_candidate_variants": [],
-    "evidence_strength": "Insufficient evidence was found to identify specific candidate genes.",
-    "mechanism_explanation": "The patient presents with symptoms suggestive of both a catecholamine-secreting tumor (pheochromocytoma/paraganglioma) and metabolic dysfunction (likely Type 2 Diabetes). Pheochromocytomas can cause episodic or sustained hypertension, palpitations, sweating, headaches, and anxiety, potentially leading to fainting and weight loss. The metabolic findings (polydipsia, weight loss, increased blood glucose) are consistent with diabetes mellitus. These conditions are often multifactorial, involving complex interactions between multiple genetic variants and environmental factors.",
-    "uncertainty_statement": "The analysis yielded no strong candidate genes. This does not rule out a genetic contribution, but suggests the phenotype may be multifactorial, due to rare variants not yet well-characterized, or unrelated to germline genetics.",
+    "evidence_strength": "Insufficient evidence to identify candidate genes.",
+    "mechanism_explanation": "Pheochromocytomas are tumors arising from chromaffin cells, typically in the adrenal medulla, that secrete catecholamines (epinephrine, norepinephrine). Excess catecholamines cause symptoms like racing heart (tachycardia), fainting (hypotension), orthostatic hypotension, and potentially tingling. Tumors can also cause systemic effects. Polydipsia might occur secondary to hypertension or other metabolic changes, though it's not a primary symptom. The etiology is often sporadic, involving somatic mutations in genes like VHL, SDHB, SDHD, etc., or can be part of inherited syndromes.",
+    "uncertainty_statement": "Due to the lack of identified candidate genes or assessed variants, this analysis cannot provide a specific genetic explanation for the patient's condition. Further investigation may be needed.",
     "suggested_review_points": [
-      "Consider alternative diagnoses based on the specific tumor type and location.",
-      "Evaluate for common endocrine disorders causing high TSH and polydipsia (e.g., primary hypothyroidism).",
-      "Assess cardiovascular status related to racing heart and fainting.",
-      "Review medication list for potential side effects causing tingling or other symptoms.",
-      "Consider environmental factors or other non-genetic causes."
+      "Re-evaluate the patient's complete medical history and physical examination findings.",
+      "Consider alternative diagnoses or multifactorial etiologies.",
+      "Explore potential environmental factors or exposures contributing to the symptoms."
     ],
     "suggested_next_steps": [
       {
-        "test": "Plasma metanephrines and normetanephrines",
-        "rationale": "The patient has symptoms potentially consistent with pheochromocytoma/paraganglioma (tumour, racing heart, fainting, weight loss, tingling). Measuring plasma metanephrines and normetanephrines is the standard biochemical test to screen for these catecholamine-secreting tumors.",
+        "test": "Plasma metanephrines (free and total)",
+        "rationale": "The patient presents with symptoms suggestive of catecholamine excess (racing heart, fainting, orthostatic hypotension, tumor). Measuring plasma metanephrines is the most sensitive test for pheochromocytoma/paraganglioma.",
         "confirms": [
-          "Pheochromocytoma/paraganglioma if elevated"
+          "Pheochromocytoma/paraganglioma if levels are significantly elevated."
         ],
         "refutes": [
-          "Pheochromocytoma/paraganglioma if normal (though sensitivity is not 100%)"
+          "Pheochromocytoma/paraganglioma if levels are within the normal range (though sensitivity is not 100%, especially for intermittent secretion)."
         ],
-        "power": "exclusionary"
+        "power": "decisive"
       },
       {
-        "test": "HbA1c",
-        "rationale": "The patient has symptoms (polydipsia, weight loss) and biochemistry (increased blood glucose) suggestive of diabetes mellitus. HbA1c provides a measure of average blood glucose control over the preceding 2-3 months and helps confirm the diagnosis of diabetes.",
+        "test": "24-hour urine fractionated metanephrines and catecholamines",
+        "rationale": "This test provides an integrated measure of catecholamine production over 24 hours and is also used to diagnose pheochromocytoma/paraganglioma. It can be helpful if plasma levels are borderline or if intermittent secretion is suspected.",
         "confirms": [
-          "Diabetes mellitus if elevated"
+          "Pheochromocytoma/paraganglioma if levels are significantly elevated."
         ],
         "refutes": [
-          "Diabetes mellitus if normal (though less sensitive for recent onset)"
+          "Pheochromocytoma/paraganglioma if levels are within the normal range (though sensitivity is not 100%)."
         ],
-        "power": "exclusionary"
+        "power": "decisive"
       },
       {
-        "test": "Autoantibody panel for Type 1 Diabetes Mellitus (e.g., GAD65, IA-2, insulin autoantibodies)",
-        "rationale": "The patient presents with symptoms suggestive of diabetes mellitus (polydipsia, weight loss, increased blood glucose) at age 49. While Type 2 Diabetes is more common at this age, the presentation could potentially be Latent Autoimmune Diabetes in Adults (LADA), a form of Type 1 diabetes that develops more slowly in adults. Testing for autoantibodies specific to pancreatic beta cells can help differentiate between Type 1/LADA and Type 2 diabetes.",
+        "test": "Abdominal and pelvic imaging (CT or MRI)",
+        "rationale": "If biochemical testing (metanephrines) is positive, imaging is required to localize the tumor. This patient has a 'Tumor' finding, which could be the source of catecholamines.",
         "confirms": [
-          "Type 1 Diabetes Mellitus or LADA if positive"
+          "Presence and location of a potential pheochromocytoma/paraganglioma if a mass is identified in the adrenal glands or other sympathetic ganglia."
         ],
         "refutes": [
-          "Type 1 Diabetes Mellitus or LADA if negative (though some patients may be antibody negative)"
+          "None"
         ],
         "power": "supportive"
       },
       {
-        "test": "Thyroid peroxidase antibodies (TPOAb)",
-        "rationale": "The patient has high TSH and low free T4, indicating hypothyroidism. Autoimmune thyroid disease (Hashimoto's thyroiditis) is the most common cause of hypothyroidism in iodine-sufficient areas. Testing for TPOAb can confirm an autoimmune etiology.",
+        "test": "Glucose metabolism tests (fasting glucose, HbA1c, oral glucose tolerance test)",
+        "rationale": "The patient presents with polydipsia and orthostatic hypotension which can be symptoms of diabetes mellitus. Although the initial assessment points towards type 1 diabetes based on classic symptoms, ruling out other forms of diabetes or confirming type 1 diabetes requires specific glucose metabolism tests.",
         "confirms": [
-          "Autoimmune hypothyroidism if positive"
+          "None"
         ],
         "refutes": [
-          "Autoimmune hypothyroidism if negative (though sensitivity is not 100%)"
+          "None"
         ],
-        "power": "exclusionary"
+        "power": "supportive"
       }
     ],
-    "next_steps_reasoning": "The patient presents with a complex picture involving symptoms suggestive of both a catecholamine-secreting tumor and diabetes mellitus, along with confirmed hypothyroidism. The next steps involve biochemical testing to investigate the suspected pheochromocytoma/paraganglioma (plasma metanephrines), confirm the diagnosis of diabetes mellitus (HbA1c), differentiate between types of diabetes (autoantibody panel), and confirm the etiology of hypothyroidism(TPOAb). These tests directly address the leading candidate diagnoses based on the clinical presentation.",
+    "next_steps_reasoning": "The primary concern based on the constellation of symptoms (tumor, racing heart, fainting, orthostatic hypotension) is pheochromocytoma/paraganglioma. The next step is biochemical confirmation using plasma or urine metanephrines. If positive, imaging follows to locate the tumor. The symptoms of polydipsia and orthostatic hypotension also raise suspicion for diabetes mellitus; therefore, glucose metabolism tests should also be performed to evaluate this possibility concurrently or subsequently depending on clinical judgment.",
     "reasoning_trace": [
       {
         "step": "demographics",
@@ -701,7 +600,7 @@
       },
       {
         "step": "biochem_extractor",
-        "claim": "3 measurement(s) parsed, 3 abnormal: blood glucose (increased); TSH (increased); free T4 (decreased)",
+        "claim": "No biochemical measurements found in note",
         "grounded_in": [
           "clinical_note_deidentified"
         ],
@@ -709,7 +608,7 @@
       },
       {
         "step": "case_classifier",
-        "claim": "Etiology: multifactorial (dominant, margin 1.00). The patient's symptoms of polyuria, polydipsia, polyphagia, and weight loss, along with elevated blood glucose and ketonuria, are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones (though serum ketones were negative at follow-up). While other causes exist, the constellation strongly suggests an autoimmune process destroying pancreatic beta cells.. Diabetes mellitus type 1 is typically caused by an autoimmune destruction of pancreatic beta cells leading to insulin deficiency. This is considered a multifactorial disease involving genetic predisposition (multiple genes) and environmental triggers (like viral infections) interacting to initiate the autoimmune response. It is not primarily caused by a single gene defect, a chromosomal abnormality, or a non-genetic acquired cause",
+        "claim": "Etiology: multifactorial (dominant, margin 1.00). The patient's symptoms (polydipsia, polyuria, polyphagia, weight loss, hyperglycemia, glucosuria, ketonuria) are classic signs of diabetes mellitus, likely type 1 given the recent onset and presence of ketones in urine (though serum ketones were negative at bedside testing). While other forms of diabetes exist, the presentation strongly suggests an autoimmune destruction of pancreatic beta cells leading to insulin deficiency.. Diabetes mellitus type 1 is typically caused by autoimmune destruction of pancreatic beta cells, leading to insulin deficiency. This process is considered multifactorial because it involves a combination of genetic susceptibility (multiple genes conferring increased risk) and environmental triggers (like viral infections) that initiate the autoimmune response. No single gene defect or chromosomal abnormality is sufficient to cause type 1 diabetes; rather, multiple genetic variants interact with environmental factors to cross a threshold for disease development",
         "grounded_in": [
           "clinical_note"
         ],
@@ -717,7 +616,7 @@
       },
       {
         "step": "branch_multifactorial",
-        "claim": "The patient presents with symptoms suggestive of both a catecholamine-secreting tumor (pheochromocytoma/paraganglioma) and metabolic dysfunction (likely Type 2 Diabetes). Pheochromocytomas can cause episodic or sustained hypertension, palpitations, sweating, headaches, and anxiety, potentially leading to fainting and weight loss. The metabolic findings (polydipsia, weight loss, increased blood glucose) are consistent with diabetes mellitus. These conditions are often multifactorial, involving complex interactions between multiple genetic variants and environmental factors.",
+        "claim": "Pheochromocytomas are tumors arising from chromaffin cells, typically in the adrenal medulla, that secrete catecholamines (epinephrine, norepinephrine). Excess catecholamines cause symptoms like racing heart (tachycardia), fainting (hypotension), orthostatic hypotension, and potentially tingling. Tumors can also cause systemic effects. Polydipsia might occur secondary to hypertension or other metabolic changes, though it's not a primary symptom. The etiology is often sporadic, involving somatic mutations in genes like VHL, SDHB, SDHD, etc., or can be part of inherited syndromes.",
         "grounded_in": [
           "hpo_a",
           "open_targets",
@@ -728,7 +627,7 @@
       },
       {
         "step": "next_steps",
-        "claim": "4 confirmatory test(s) proposed; none decisive",
+        "claim": "4 confirmatory test(s) proposed; decisive: Plasma metanephrines (free and total)",
         "grounded_in": [
           "hpo_a",
           "open_targets",
@@ -745,13 +644,13 @@
         "n_results": 10,
         "results": [
           "Gitelman syndrome",
+          "Hereditary pheochromocytoma-paraganglioma",
+          "Sporadic pheochromocytoma/secreting paraganglioma",
+          "Acute intermittent porphyria",
           "Familial thrombocytosis",
           "Systemic mastocytosis with associated hematologic neoplasm",
-          "Acute intermittent porphyria",
-          "Familial colorectal cancer Type X",
-          "Hereditary pheochromocytoma-paraganglioma",
-          "Imerslund-Gräsbeck syndrome",
-          "Lynch syndrome"
+          "Acromegaly",
+          "Andersen-Tawil syndrome"
         ],
         "failed": false,
         "error": ""
@@ -775,17 +674,17 @@
       },
       {
         "source": "open_targets",
-        "query": "Familial thrombocytosis",
+        "query": "Hereditary pheochromocytoma-paraganglioma",
         "n_results": 10,
         "results": [
-          "MPL (0.78)",
-          "THPO (0.71)",
-          "JAK2 (0.66)",
-          "CALR (0.57)",
-          "SH2B3 (0.53)",
-          "PDE3B (0.46)",
-          "PDE3A (0.46)",
-          "MT-ATP8 (0.34)"
+          "SDHB (0.86)",
+          "SDHD (0.86)",
+          "SDHA (0.82)",
+          "SDHC (0.80)",
+          "SDHAF2 (0.79)",
+          "TMEM127 (0.74)",
+          "MAX (0.74)",
+          "VHL (0.73)"
         ],
         "failed": false,
         "error": ""
@@ -795,11 +694,11 @@
         "query": "SLC12A3",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "potassium measurement",
+          "potassium measurement",
+          "blood sodium bicarbonate amount",
+          "blood sodium bicarbonate amount",
+          "amount of chloride"
         ],
         "failed": false,
         "error": ""
@@ -809,11 +708,11 @@
         "query": "CLCNKB",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "hemoglobin measurement",
+          "hematocrit",
+          "erythrocyte count",
+          "hematocrit",
+          "hemoglobin measurement"
         ],
         "failed": false,
         "error": ""
@@ -823,11 +722,11 @@
         "query": "IDUA",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "systemic lupus erythematosus",
+          "systemic lupus erythematosus",
+          "bone tissue density",
+          "white matter microstructure measurement",
+          "white matter microstructure measurement"
         ],
         "failed": false,
         "error": ""
@@ -837,11 +736,11 @@
         "query": "MMP2",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "bone tissue density",
+          "refractive error",
+          "refractive error",
+          "presbycusis",
+          "body height"
         ],
         "failed": false,
         "error": ""
@@ -851,27 +750,20 @@
         "query": "SLC12A1",
         "n_results": 10,
         "results": [
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown",
-          "unknown"
+          "Dermatochalasis",
+          "benign neoplasm of eye",
+          "skin cancer",
+          "skin pigmentation",
+          "skin pigmentation"
         ],
         "failed": false,
         "error": ""
       },
       {
         "source": "europepmc",
-        "query": "(\"Gitelman syndrome\" OR \"Familial thrombocytosis\") AND (GWAS OR polygenic OR heritability OR risk factor)",
-        "n_results": 6,
-        "results": [
-          "MED PMID:41554351 Gene modification: Exploring the potential in treating kidney diseases.",
-          "MED PMID:42290910 Long-Read Sequencing in CKD Diagnostics: Breaking Genomic Barriers and Expanding Global Inclusion.",
-          "MED PMID:41751411 Potential Factors of Diabetes in Gitelman Syndrome and the Choices of the Appropriate Hypoglycemic Drugs: A Literature Narrative Review.",
-          "MED PMID:42254956 Gitelman Syndrome in a Child Presenting With Polyuria and Polydipsia: Diagnostic Challenges in a Resource-Limited Setting.",
-          "MED PMID:41347228 Clinical and genetic features of Gitelman syndrome patients with hyperuricemia.",
-          "MED PMID:41365382 Refractory hypercalcemic crisis: A case of primary hyperparathyroidism with Gitelman syndrome."
-        ],
+        "query": "(\"Gitelman syndrome\" OR \"Hereditary pheochromocytoma-paraganglioma\") AND (GWAS OR polygenic OR heritability OR risk factor)",
+        "n_results": 0,
+        "results": [],
         "failed": false,
         "error": ""
       }
@@ -883,24 +775,23 @@
       "europepmc"
     ],
     "investigation_limitations": [
-      "No polygenic risk score was computed — GeneResolve does not carry PRS weights. GWAS loci are reported as associations, not as a per-patient risk estimate."
+      "No polygenic risk score was computed — GeneResolver does not carry PRS weights. GWAS loci are reported as associations, not as a per-patient risk estimate."
     ],
     "disclaimer": "This is a preliminary decision-support output. It must be reviewed by a qualified clinician or clinical geneticist before any diagnostic or clinical action is taken."
   },
   "geneticist_appendix": {
     "case_id": "DEMO_CASE_MULTIFACTORIAL",
-    "generated_at": "2026-08-14T08:43:38.507711+00:00",
+    "generated_at": "2026-11-02T08:34:15.188110+00:00",
     "hpo_terms_used": [
       "HP:0003401 (Tingling) [present]",
       "HP:0002018 (Nausea) [absent]",
       "HP:0002013 (Vomiting) [absent]",
-      "HP:0002664 (Tumour) [present]",
+      "HP:0002664 (Tumor) [present]",
       "HP:0001649 (Racing heart) [present]",
       "HP:0007185 (Fainting) [present]",
       "HP:0410291 (Negativism) [absent]",
-      "HP:0002925 (High TSH) [present]",
       "HP:0001959 (Polydipsia) [present]",
-      "HP:0001824 (Weight loss) [present]"
+      "HP:0001278 (Orthostatic hypotension) [present]"
     ],
     "vcf_context_summary": "",
     "candidate_variants": [],
@@ -914,83 +805,92 @@
       {
         "component": "demographics",
         "tool_name": "llm demographic extractor",
-        "tool_version": "medgemma (local backend only; fails gracefully on error)",
+        "tool_version": "backend=medgemma; model_used=True",
         "database_version": null,
-        "timestamp": "2026-08-14T08:41:27.049073+00:00",
+        "timestamp": "2026-11-02T08:30:09.584510+00:00",
         "input_hash": null,
-        "output_hash": null
+        "output_hash": null,
+        "details": {}
       },
       {
         "component": "deidentifier",
-        "tool_name": "obi/deid_roberta_i2b2 + eponym protection",
+        "tool_name": "OpenMed/privacy-filter-multilingual + eponym protection",
         "tool_version": "186 protected medical eponyms",
         "database_version": null,
-        "timestamp": "2026-08-14T08:41:52.483941+00:00",
+        "timestamp": "2026-11-02T08:31:38.102484+00:00",
         "input_hash": null,
-        "output_hash": null
+        "output_hash": null,
+        "details": {}
       },
       {
         "component": "biochem_extractor",
         "tool_name": "llm biochemical measurement extractor",
-        "tool_version": "medgemma (local backend only; fails gracefully on error)",
+        "tool_version": "backend=medgemma",
         "database_version": null,
-        "timestamp": "2026-08-14T08:41:54.795108+00:00",
+        "timestamp": "2026-11-02T08:31:39.012344+00:00",
         "input_hash": null,
-        "output_hash": null
+        "output_hash": null,
+        "details": {}
       },
       {
         "component": "disease_extractor",
         "tool_name": "LLM disease NER + Orphanet en_product1 normalizer",
-        "tool_version": "backend=default; orphanet_available=True; mentions=1 (orpha-normalized=0)",
+        "tool_version": "backend=default; orphanet_available=True; mentions=0 (orpha-normalized=0)",
         "database_version": null,
-        "timestamp": "2026-08-14T08:41:57.674004+00:00",
+        "timestamp": "2026-11-02T08:31:39.546259+00:00",
         "input_hash": null,
-        "output_hash": null
+        "output_hash": null,
+        "details": {}
       },
       {
         "component": "hpo_mapper",
-        "tool_name": "FastHPOCR (Groza et al., Bioinformatics 2024) + LLM-supplemented HPO search",
-        "tool_version": "8 HPO term(s) extracted",
+        "tool_name": "FastHPOCR (Groza et al., Bioinformatics 2024)",
+        "tool_version": "7 HPO term(s) extracted",
         "database_version": null,
-        "timestamp": "2026-08-14T08:42:03.048536+00:00",
+        "timestamp": "2026-11-02T08:31:48.651229+00:00",
         "input_hash": null,
-        "output_hash": null
+        "output_hash": null,
+        "details": {}
       },
       {
         "component": "clinical_synthesizer",
         "tool_name": "LLM clinical reasoning (medgemma) + Orphanet/HPO-A back-fill (grounded in text spans + retrieved ontologies)",
         "tool_version": "backend=medgemma; deidentified=True; diseases_added=0; hpo_backfilled=0; hpo_llm_direct=2",
         "database_version": null,
-        "timestamp": "2026-08-14T08:42:38.790183+00:00",
+        "timestamp": "2026-11-02T08:32:38.892681+00:00",
         "input_hash": null,
-        "output_hash": null
+        "output_hash": null,
+        "details": {}
       },
       {
         "component": "case_classifier",
         "tool_name": "narrative-grounded etiology classifier",
         "tool_version": "classes=single_gene,chromosomal,multifactorial,phenocopy",
         "database_version": null,
-        "timestamp": "2026-08-14T08:42:55.281299+00:00",
+        "timestamp": "2026-11-02T08:32:42.221306+00:00",
         "input_hash": null,
-        "output_hash": null
+        "output_hash": null,
+        "details": {}
       },
       {
         "component": "branch_multifactorial",
         "tool_name": "multifactorial evidence branch",
         "tool_version": "sources: hpo_a, open_targets, gwas_catalog, europepmc",
         "database_version": null,
-        "timestamp": "2026-08-14T08:43:22.688090+00:00",
+        "timestamp": "2026-11-02T08:33:59.425267+00:00",
         "input_hash": null,
-        "output_hash": null
+        "output_hash": null,
+        "details": {}
       },
       {
         "component": "next_steps",
         "tool_name": "LLM confirm-or-deny plan synthesized from the full case record",
         "tool_version": "no canned per-class test lists",
         "database_version": null,
-        "timestamp": "2026-08-14T08:43:33.921643+00:00",
+        "timestamp": "2026-11-02T08:34:11.002724+00:00",
         "input_hash": null,
-        "output_hash": null
+        "output_hash": null,
+        "details": {}
       }
     ],
     "limitations": [
@@ -1004,109 +904,121 @@
     "warnings": [
       "No VCF provided — ranking will be phenotype-based only.",
       "No family history — inheritance compatibility cannot be assessed.",
-      "[multifactorial] No polygenic risk score was computed — GeneResolve does not carry PRS weights. GWAS loci are reported as associations, not as a per-patient risk estimate."
+      "disease_extractor: no diseases or syndromes detected in the note. Pipeline continues phenotype-only.",
+      "[multifactorial] No polygenic risk score was computed — GeneResolver does not carry PRS weights. GWAS loci are reported as associations, not as a per-patient risk estimate."
     ]
   },
   "provenance": [
     {
       "component": "demographics",
       "tool_name": "llm demographic extractor",
-      "tool_version": "medgemma (local backend only; fails gracefully on error)",
+      "tool_version": "backend=medgemma; model_used=True",
       "database_version": null,
-      "timestamp": "2026-08-14T08:41:27.049073+00:00",
+      "timestamp": "2026-11-02T08:30:09.584510+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     },
     {
       "component": "deidentifier",
-      "tool_name": "obi/deid_roberta_i2b2 + eponym protection",
+      "tool_name": "OpenMed/privacy-filter-multilingual + eponym protection",
       "tool_version": "186 protected medical eponyms",
       "database_version": null,
-      "timestamp": "2026-08-14T08:41:52.483941+00:00",
+      "timestamp": "2026-11-02T08:31:38.102484+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     },
     {
       "component": "biochem_extractor",
       "tool_name": "llm biochemical measurement extractor",
-      "tool_version": "medgemma (local backend only; fails gracefully on error)",
+      "tool_version": "backend=medgemma",
       "database_version": null,
-      "timestamp": "2026-08-14T08:41:54.795108+00:00",
+      "timestamp": "2026-11-02T08:31:39.012344+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     },
     {
       "component": "disease_extractor",
       "tool_name": "LLM disease NER + Orphanet en_product1 normalizer",
-      "tool_version": "backend=default; orphanet_available=True; mentions=1 (orpha-normalized=0)",
+      "tool_version": "backend=default; orphanet_available=True; mentions=0 (orpha-normalized=0)",
       "database_version": null,
-      "timestamp": "2026-08-14T08:41:57.674004+00:00",
+      "timestamp": "2026-11-02T08:31:39.546259+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     },
     {
       "component": "hpo_mapper",
-      "tool_name": "FastHPOCR (Groza et al., Bioinformatics 2024) + LLM-supplemented HPO search",
-      "tool_version": "8 HPO term(s) extracted",
+      "tool_name": "FastHPOCR (Groza et al., Bioinformatics 2024)",
+      "tool_version": "7 HPO term(s) extracted",
       "database_version": null,
-      "timestamp": "2026-08-14T08:42:03.048536+00:00",
+      "timestamp": "2026-11-02T08:31:48.651229+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     },
     {
       "component": "clinical_synthesizer",
       "tool_name": "LLM clinical reasoning (medgemma) + Orphanet/HPO-A back-fill (grounded in text spans + retrieved ontologies)",
       "tool_version": "backend=medgemma; deidentified=True; diseases_added=0; hpo_backfilled=0; hpo_llm_direct=2",
       "database_version": null,
-      "timestamp": "2026-08-14T08:42:38.790183+00:00",
+      "timestamp": "2026-11-02T08:32:38.892681+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     },
     {
       "component": "case_classifier",
       "tool_name": "narrative-grounded etiology classifier",
       "tool_version": "classes=single_gene,chromosomal,multifactorial,phenocopy",
       "database_version": null,
-      "timestamp": "2026-08-14T08:42:55.281299+00:00",
+      "timestamp": "2026-11-02T08:32:42.221306+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     },
     {
       "component": "branch_multifactorial",
       "tool_name": "multifactorial evidence branch",
       "tool_version": "sources: hpo_a, open_targets, gwas_catalog, europepmc",
       "database_version": null,
-      "timestamp": "2026-08-14T08:43:22.688090+00:00",
+      "timestamp": "2026-11-02T08:33:59.425267+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     },
     {
       "component": "next_steps",
       "tool_name": "LLM confirm-or-deny plan synthesized from the full case record",
       "tool_version": "no canned per-class test lists",
       "database_version": null,
-      "timestamp": "2026-08-14T08:43:33.921643+00:00",
+      "timestamp": "2026-11-02T08:34:11.002724+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     },
     {
       "component": "report_generator",
-      "tool_name": "Claude (claude-opus-5)",
-      "tool_version": null,
+      "tool_name": "medgemma (google/medgemma-27b-it)",
+      "tool_version": "generation=model; backend=medgemma; model=google/medgemma-27b-it; temperature=0; max_tokens=1024; cache_disabled=1; local_annotation=1",
       "database_version": null,
-      "timestamp": "2026-08-14T08:43:38.507795+00:00",
+      "timestamp": "2026-11-02T08:34:15.188215+00:00",
       "input_hash": null,
-      "output_hash": null
+      "output_hash": null,
+      "details": {}
     }
   ],
   "warnings": [
     "No VCF provided — ranking will be phenotype-based only.",
     "No family history — inheritance compatibility cannot be assessed.",
-    "[multifactorial] No polygenic risk score was computed — GeneResolve does not carry PRS weights. GWAS loci are reported as associations, not as a per-patient risk estimate."
+    "disease_extractor: no diseases or syndromes detected in the note. Pipeline continues phenotype-only.",
+    "[multifactorial] No polygenic risk score was computed — GeneResolver does not carry PRS weights. GWAS loci are reported as associations, not as a per-patient risk estimate."
   ],
   "diagnostics": {
     "synthesizer": {
-      "n_present_hpo": 5,
+      "n_present_hpo": 4,
       "shortlist_min_overlap": 3,
       "shortlist": [
         {
@@ -1140,6 +1052,43 @@
           ]
         },
         {
+          "orpha_id": "ORPHA:29072",
+          "label": "Hereditary pheochromocytoma-paraganglioma",
+          "overlap": 3,
+          "selected": false,
+          "genes": [
+            "DLST",
+            "FH",
+            "KIF1B",
+            "MAX",
+            "MDH2",
+            "NF1",
+            "RET",
+            "SDHA",
+            "SDHAF2",
+            "SDHB",
+            "SDHC",
+            "SDHD",
+            "SLC25A11",
+            "TMEM127",
+            "VHL"
+          ]
+        },
+        {
+          "orpha_id": "ORPHA:276621",
+          "label": "Sporadic pheochromocytoma/secreting paraganglioma",
+          "overlap": 3,
+          "selected": false,
+          "genes": [
+            "DNMT3A",
+            "EPAS1",
+            "RET",
+            "SDHB",
+            "SDHD",
+            "VHL"
+          ]
+        },
+        {
           "orpha_id": "ORPHA:98849",
           "label": "Systemic mastocytosis with associated hematologic neoplasm",
           "overlap": 3,
@@ -1157,7 +1106,7 @@
     "_ot_targets": [
       {
         "gene_symbol": "SLC12A3",
-        "score": 0.8538295960763508
+        "score": 0.8538891496632813
       },
       {
         "gene_symbol": "CLCNKB",
@@ -1196,44 +1145,44 @@
         "score": 0.06407221150741332
       },
       {
-        "gene_symbol": "MPL",
-        "score": 0.7775064308846557
+        "gene_symbol": "SDHB",
+        "score": 0.8611489821951329
       },
       {
-        "gene_symbol": "THPO",
-        "score": 0.7078426008232186
+        "gene_symbol": "SDHD",
+        "score": 0.8608687518844657
       },
       {
-        "gene_symbol": "JAK2",
-        "score": 0.658021106260315
+        "gene_symbol": "SDHA",
+        "score": 0.8166777563410942
       },
       {
-        "gene_symbol": "CALR",
-        "score": 0.5665761833387224
+        "gene_symbol": "SDHC",
+        "score": 0.7968492443719035
       },
       {
-        "gene_symbol": "SH2B3",
-        "score": 0.5258678720026023
+        "gene_symbol": "SDHAF2",
+        "score": 0.7919620297606746
       },
       {
-        "gene_symbol": "PDE3B",
-        "score": 0.4619748183558772
+        "gene_symbol": "TMEM127",
+        "score": 0.7446482147918082
       },
       {
-        "gene_symbol": "PDE3A",
-        "score": 0.4619748183558772
+        "gene_symbol": "MAX",
+        "score": 0.7431443583823448
       },
       {
-        "gene_symbol": "MT-ATP8",
-        "score": 0.3400134663099256
+        "gene_symbol": "VHL",
+        "score": 0.732705053679983
       },
       {
-        "gene_symbol": "MT-ND4L",
-        "score": 0.3400134663099256
+        "gene_symbol": "RET",
+        "score": 0.648797502152849
       },
       {
-        "gene_symbol": "MT-ND4",
-        "score": 0.3400134663099256
+        "gene_symbol": "SLC25A11",
+        "score": 0.586093100449436
       }
     ]
   }

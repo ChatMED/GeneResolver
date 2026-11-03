@@ -115,6 +115,12 @@ def run(state: CaseState) -> CaseState:
     for v in state.annotated_variants:
         if v.gene:
             variants_by_gene.setdefault(v.gene, []).append(v)
+    if not any(gr.gene in variants_by_gene for gr in state.ranked_genes):
+        state.add_warning(
+            "No annotated variant overlaps a ranked gene. Variant-disease and ACMG "
+            "assessment cannot proceed for this VCF sample; increase the variant cap "
+            "or use full VCF annotation."
+        )
 
     inheritance_by_gene = {ic.gene: ic for ic in state.inheritance_results}
     source_versions = _source_versions()

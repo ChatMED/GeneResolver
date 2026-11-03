@@ -1,7 +1,7 @@
 # Core
 pydantic>=2.0
-anthropic>=0.86.0
-openai>=1.0   # used by medgemma_client (local vLLM), openai_client (OpenAI API), and deepseek_client (OpenRouter)
+jsonschema>=4.0   # validate provider-returned JSON against guided schemas
+openai>=1.0   # OpenAI-compatible client library used to reach the local MedGemma server
 langgraph>=1.1.9   # generesolve/orchestrator.py: the pipeline's dispatch graph
 
 # NER / ML
@@ -13,6 +13,7 @@ openmed>=1.9   # generesolve/integrations/privacy_filter.py (OpenMed/privacy-fil
 # HPO
 pyhpo>=4.0.0
 FastHPOCR>=0.1.4   # generesolver/integrations/fasthpocr_extractor.py: phenotype concept recognition
+pronto>=2.5          # FastHPOCR's undeclared dependency for reading hp.obo
 
 # VCF (cross-platform)
 vcfpy>=0.14
@@ -30,7 +31,7 @@ numpy>=1.24
 # Evaluation harness (evaluation/). RareBench uses a dataset loading script,
 # which datasets>=3.0 removed — keep it on the 2.x line.
 datasets>=2.16,<3.0
-duckdb>=1.0        # evaluation/pheval_scoring.py: reads pheval-utils' benchmark .duckdb output
+duckdb==1.2.2      # PhEval 0.5.8 imports duckdb.duckdb (removed in newer DuckDB)
 openpyxl>=3.1       # reproduce_paper_results.py: writes paper_tables.xlsx
 
 # Export

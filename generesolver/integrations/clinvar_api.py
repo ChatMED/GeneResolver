@@ -22,6 +22,10 @@ def lookup_by_rsid(rsid: str) -> dict | None:
     return _search(f"{rsid}[RS]")
 
 
+def lookup_all_by_rsid(rsid: str) -> list[dict]:
+    return _search_multi(f"{rsid}[RS]")
+
+
 def lookup_by_hgvs(hgvs: str) -> dict | None:
     return _search(f"{hgvs}[HGVS]")
 
@@ -58,7 +62,7 @@ def _search_multi(query: str) -> list[dict]:
                     time.sleep(1.0)
                 else:
                     logger.error("ClinVar search failed for query '%s': %s", query, exc)
-                    return []
+                    raise RuntimeError(f"ClinVar search failed for {query}: {exc}") from exc
     return []
 
 
@@ -77,7 +81,7 @@ def _fetch_summaries(client: httpx.Client, ids: list[str], api_key: str | None) 
             entry = result.get(uid, {})
             trait_set = entry.get("germline_classification", {}).get("trait_set", [])
             summaries.append({
-                "clinvar_id": f"RCV{uid}",
+                "clinvar_id": f"VCV{int(uid):09d}",
                 "title": entry.get("title", ""),
                 "clinical_significance": _extract_significance(entry),
                 "review_status": entry.get("review_status", ""),
@@ -87,7 +91,7 @@ def _fetch_summaries(client: httpx.Client, ids: list[str], api_key: str | None) 
         return summaries
     except Exception as exc:
         logger.error("ClinVar summary fetch failed: %s", exc)
-        return []
+        raise RuntimeError(f"ClinVar summary fetch failed: {exc}") from exc
 
 
 def _extract_significance(entry: dict) -> str:

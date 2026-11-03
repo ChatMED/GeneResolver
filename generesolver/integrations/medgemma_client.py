@@ -153,48 +153,12 @@ def complete_structured(
     max_tokens: int,
     model: str | None = None,
 ):
-    model = model or _model_name()
-    schema = schema_model.model_json_schema()
-    key = _cache_key(model, system, user, max_tokens,
-                     response_format={"type": "json_schema"},
-                     extra_body={"schema": schema, "name": schema_model.__name__})
-
-    cached = _cache_read(key)
-    if cached is not None:
-        return schema_model.model_validate_json(cached)
-
-    messages: list[dict] = []
-    if system:
-        messages.append({"role": "system", "content": system})
-    messages.append({"role": "user", "content": user})
-
+    obj = complete_json(system, user, max_tokens=max_tokens, model=model,
+                        guided_json=schema_model.model_json_schema())
     try:
-        completion = _get_client().chat.completions.parse(
-            model=model,
-            messages=messages,
-            max_tokens=max_tokens,
-            temperature=0,
-            response_format=schema_model,
-            extra_body={"guided_json": schema},
-            frequency_penalty=0.4,
-        )
+        return schema_model.model_validate(obj)
     except Exception as exc:
-        raise LLMResponseError(f"MedGemma structured-output call failed: {exc}") from exc
-
-    msg = completion.choices[0].message
-    parsed = getattr(msg, "parsed", None)
-    if parsed is not None:
-        _cache_write(key, parsed.model_dump_json())
-        return parsed
-    raw = _strip_fences(msg.content or "")
-    try:
-        parsed = schema_model.model_validate_json(raw)
-    except Exception as exc:
-        raise LLMResponseError(
-            f"MedGemma structured output was not schema-valid: {exc}", raw_payload=raw,
-        ) from exc
-    _cache_write(key, parsed.model_dump_json())
-    return parsed
+        raise LLMResponseError(f"MedGemma structured output was not schema-valid: {exc}") from exc
 
 
 def _json_error_context(text: str, pos: int, window: int = 300) -> str:
@@ -212,31 +176,28 @@ def complete_json(
     guided_json: dict | None = None,
     temperature: float = 0.0,
 ) -> dict:
+    instruction = "Return exactly one valid JSON object without Markdown or prose."
     if guided_json is not None:
-        raw = complete_text(system, user, max_tokens=max_tokens, model=model,
-                            extra_body={"guided_json": guided_json}, temperature=temperature)
-    else:
-        raw = complete_text(system, user, max_tokens=max_tokens, model=model,
-                            response_format={"type": "json_object"}, temperature=temperature)
-    cleaned = _strip_fences(raw).lstrip()
-
-    import re
-    cleaned = re.sub(r'(:\s*)\+(\d+(?:\.\d+)?)', r'\1\2', cleaned)
-    cleaned = re.sub(r',(\s*[}\]])', r'\1', cleaned)
-    cleaned = re.sub(r'}(\s*){', r'},\1{', cleaned)
+        instruction += " Match this JSON schema: " + json.dumps(guided_json)
+    try:
+        raw = complete_text((system + "\n" + instruction).strip(), user,
+                            max_tokens=max_tokens, model=model, temperature=temperature)
+    except Exception as exc:
+        raise LLMResponseError(f"MedGemma request failed: {exc}") from exc
+    cleaned = _strip_fences(raw)
 
     try:
-        return json.loads(cleaned)
-    except json.JSONDecodeError as exc1:
+        obj = json.loads(cleaned)
+    except json.JSONDecodeError as exc:
+        raise LLMResponseError(f"MedGemma response was not valid JSON: {exc}",
+                               raw_payload=cleaned) from exc
+    if not isinstance(obj, dict):
+        raise LLMResponseError("MedGemma returned non-object JSON", raw_payload=cleaned)
+    if guided_json is not None:
+        import jsonschema
         try:
-            obj, _end = json.JSONDecoder().raw_decode(cleaned)
-            return obj
-        except json.JSONDecodeError as exc2:
-            context = _json_error_context(cleaned, exc2.pos)
-
-            raise LLMResponseError(
-                "MedGemma response was not valid JSON: "
-                f"{exc2.msg} at line {exc2.lineno}, column {exc2.colno}, pos {exc2.pos}. "
-                f"Context around error: {context!r}",
-                raw_payload=cleaned,
-            ) from exc2
+            jsonschema.validate(obj, guided_json)
+        except jsonschema.ValidationError as exc:
+            raise LLMResponseError(f"MedGemma JSON failed schema validation: {exc.message}",
+                                   raw_payload=cleaned) from exc
+    return obj

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from pathlib import Path
 
 from generesolver import orchestrator
@@ -13,6 +14,8 @@ logger = logging.getLogger(__name__)
 
 
 def run_case(inp: CaseInput, save_output: bool = True) -> CaseState:
+    from generesolver.integrations.llm_client import active_backend
+    active_backend()  # fails fast if GENERESOLVER_LLM_BACKEND names anything but medgemma
     state = CaseState(case_id=inp.case_id, input=inp)
 
     state = orchestrator.run(state)

@@ -33,6 +33,11 @@ class GeneRank(BaseModel):
     score_literature: float = 0.0
     score_gwas: float = 0.0
     score_disease_match: float = 0.0
+    score_phenotype_normalized: float = 0.0
+    score_constraint: float = 0.0
+    score_pathway: float = 0.0
+    constraint_weight_gated: bool = False
+    score_adjustment: float = 0.0
 
     best_variant_id: str | None = None
     seeded_by_diseases: list[str] = Field(default_factory=list)

@@ -123,14 +123,7 @@ def run(state: CaseState, backend: str | None = None) -> CaseState:
     inp = state.input
     parsed: list[str] = []
 
-    if active_backend() != "medgemma":
-        state.add_warning(
-            "Demographics extraction skipped: requires the local MedGemma backend "
-            "(runs on the original note before de-identification)."
-        )
-        llm_result = None
-    else:
-        llm_result = _llm_extract(note, backend=backend)
+    llm_result = _llm_extract(note, backend=backend)
 
     if llm_result is not None:
         age = llm_result.age_years
@@ -222,8 +215,8 @@ def run(state: CaseState, backend: str | None = None) -> CaseState:
     )
     state.provenance.append(ProvenanceItem(
         component="demographics",
-        tool_name="llm demographic extractor",
-        tool_version="medgemma (local backend only; fails gracefully on error)",
+        tool_name="llm demographic extractor" if llm_result is not None else "rule-based demographic extraction",
+        tool_version=f"backend={active_backend()}; model_used={llm_result is not None}",
     ))
     state.mark_done("demographics")
     return state

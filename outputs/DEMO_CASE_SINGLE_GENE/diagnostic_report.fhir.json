@@ -1,11 +1,11 @@
 {
   "resourceType": "Bundle",
-  "id": "generesolve-bundle-DEMO-CASE-SINGLE-GENE",
+  "id": "generesolver-bundle-DEMO-CASE-SINGLE-GENE",
   "type": "collection",
-  "timestamp": "2026-08-14T08:51:50.855310+00:00",
+  "timestamp": "2026-11-02T08:29:49.762810+00:00",
   "entry": [
     {
-      "fullUrl": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288",
+      "fullUrl": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a",
       "resource": {
         "resourceType": "Patient",
         "id": "patient-DEMO-CASE-SINGLE-GENE",
@@ -21,7 +21,7 @@
         "gender": "male",
         "extension": [
           {
-            "url": "https://generesolve.io/fhir/StructureDefinition/age-at-presentation",
+            "url": "https://generesolver.io/fhir/StructureDefinition/age-at-presentation",
             "valueQuantity": {
               "value": 45.0,
               "unit": "a",
@@ -33,10 +33,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:d1c0fdea-cd6a-4c48-8215-71a555171d57",
+      "fullUrl": "urn:uuid:6fddf93d-7f17-4a8a-8e14-56e9699a65dd",
       "resource": {
         "resourceType": "DiagnosticReport",
-        "id": "generesolve-DEMO-CASE-SINGLE-GENE",
+        "id": "generesolver-DEMO-CASE-SINGLE-GENE",
         "meta": {
           "profile": [
             "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomics-report"
@@ -64,29 +64,39 @@
           ]
         },
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
-        "effectiveDateTime": "2026-08-14T08:51:50.855310+00:00",
-        "issued": "2026-08-14T08:51:50.855310+00:00",
+        "effectiveDateTime": "2026-11-02T08:29:49.762810+00:00",
+        "issued": "2026-11-02T08:29:49.762810+00:00",
         "result": [
           {
-            "reference": "urn:uuid:bdc6ea6a-dadc-4167-863b-57ddce678b17"
+            "reference": "urn:uuid:ec30c0b0-2524-4202-9ad8-47d01053278d"
           },
           {
-            "reference": "urn:uuid:47911740-43ac-4e55-92a7-c7ee46df4a44"
+            "reference": "urn:uuid:da4fe6df-6cc0-42e6-b54a-7ab4d0e1790b"
           },
           {
-            "reference": "urn:uuid:b2645743-f3b0-47c6-af86-672bd5b70bdc"
+            "reference": "urn:uuid:9ab010e5-bff5-4dde-b2c6-db848ac8a230"
           },
           {
-            "reference": "urn:uuid:c166ab70-60a4-4bab-8597-e295dfafa588"
+            "reference": "urn:uuid:65b5cb14-404e-4ccf-9e24-61ed199ce3db"
           },
           {
-            "reference": "urn:uuid:342d80b9-cc0a-462b-952b-6e4041e1d71b"
+            "reference": "urn:uuid:1f4e030e-31e0-4c92-abbc-45b7ad8046df"
           }
         ],
-        "conclusion": "The patient's clinical presentation, including renal failure, proteinuria, muscle pain, abdominal pain, limb pain, high blood pressure, and small kidneys, strongly suggests Fabry disease. The differential reasoner identifies GLA as the most likely candidate gene (high confidence) associated with this condition. Family history is also positive.",
+        "conclusion": "The patient presents with a complex phenotype including renal failure, proteinuria, muscle pain, abdominal pain, and cardiomyopathy. The clinical reasoning strongly suggests Fabry disease (associated with the GLA gene) as the most likely underlying genetic cause, given the high confidence score and strong overlap with key symptoms like renal failure, muscle pain, and abdominal pain. Other potential genetic associations considered include Williams syndrome (STX1A), but the evidence is less compelling than for Fabry disease.",
         "conclusionCode": [
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "95712",
+                "display": "Thyroid ectopia"
+              }
+            ],
+            "text": "Thyroid ectopia"
+          },
           {
             "coding": [
               {
@@ -96,6 +106,26 @@
               }
             ],
             "text": "Fabry disease"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "340",
+                "display": "Hemorrhagic fever-renal syndrome"
+              }
+            ],
+            "text": "Hemorrhagic fever-renal syndrome"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://www.orpha.net",
+                "code": "213",
+                "display": "Cystinosis"
+              }
+            ],
+            "text": "Cystinosis"
           },
           {
             "coding": [
@@ -120,75 +150,90 @@
           {
             "coding": [
               {
-                "system": "http://www.omim.org",
-                "code": "301500",
-                "display": "fabry disease"
+                "system": "http://www.orpha.net",
+                "code": "544482",
+                "display": "Infection-related hemolytic uremic syndrome"
               }
             ],
-            "text": "fabry disease"
+            "text": "Infection-related hemolytic uremic syndrome"
           },
           {
             "coding": [
               {
                 "system": "http://www.orpha.net",
-                "code": "79276",
-                "display": "Acute intermittent porphyria"
+                "code": "731",
+                "display": "Autosomal recessive polycystic kidney disease"
               }
             ],
-            "text": "Acute intermittent porphyria"
-          },
-          {
-            "coding": [
-              {
-                "system": "http://www.orpha.net",
-                "code": "904",
-                "display": "Williams syndrome"
-              }
-            ],
-            "text": "Williams syndrome"
-          },
-          {
-            "coding": [
-              {
-                "system": "http://www.orpha.net",
-                "code": "183",
-                "display": "Eosinophilic granulomatosis with polyangiitis"
-              }
-            ],
-            "text": "Eosinophilic granulomatosis with polyangiitis"
-          },
-          {
-            "coding": [
-              {
-                "system": "http://www.orpha.net",
-                "code": "340",
-                "display": "Hemorrhagic fever-renal syndrome"
-              }
-            ],
-            "text": "Hemorrhagic fever-renal syndrome"
+            "text": "Autosomal recessive polycystic kidney disease"
           }
         ],
         "extension": [
           {
-            "url": "https://generesolve.io/fhir/StructureDefinition/decision-support-disclaimer",
+            "url": "https://generesolver.io/fhir/StructureDefinition/decision-support-disclaimer",
             "valueString": "This is a preliminary decision-support output. It must be reviewed by a qualified clinician or clinical geneticist before any diagnostic or clinical action is taken."
           },
           {
-            "url": "https://generesolve.io/fhir/StructureDefinition/confidence-level",
+            "url": "https://generesolver.io/fhir/StructureDefinition/confidence-level",
             "valueString": "high"
           },
           {
-            "url": "https://generesolve.io/fhir/StructureDefinition/etiology-classification",
-            "valueString": "single_gene — The patient presents with a constellation of symptoms including kidney failure, burning limb pain, abdominal pain, intolerance to temperature extremes, hypertension, and hypertrophic cardiomyopathy, along with a family history suggestive of an inherited disorder affecting multiple systems.. The combination of symptoms affecting multiple organ systems (kidneys, nerves, heart) and the presence of similar symptoms in family members (daughter, maternal cousin) strongly suggests a single genetic defect causing a systemic disorder. The specific symptoms point towards conditions like Fabry disease or mitochondrial disorders, which are typically inherited in a single-gene manner"
+            "url": "https://generesolver.io/fhir/StructureDefinition/etiology-classification",
+            "valueString": "single_gene — The patient presents with a constellation of symptoms including kidney failure, hypertrophic cardiomyopathy, burning limb pain, abdominal pain, and intolerance to temperature extremes, along with a family history suggestive of an inherited disorder affecting multiple organ systems. This pattern points towards a disorder caused by a mutation in a single gene that affects multiple tissues or pathways.. The combination of kidney disease (small echogenic kidneys), hypertrophic cardiomyopathy, and neuropathic pain (burning limbs) in the patient, along with similar symptoms in his daughter and maternal cousin, strongly suggests an inherited condition affecting multiple organ systems. This pattern is characteristic of single-gene disorders, often involving metabolic pathways or structural proteins expressed in various tissues. The specific combination of symptoms is highly suggestive of Fabry disease, a lysosomal storage disorder caused by mutations in the GLA gene"
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:5a9b3fac-35bb-4b1d-a040-1a6e73cbbe5a",
+      "fullUrl": "urn:uuid:552d1c58-6a0a-4cd5-8363-eae542f02354",
       "resource": {
         "resourceType": "Condition",
         "id": "cond-0",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "95712",
+              "display": "Thyroid ectopia"
+            }
+          ],
+          "text": "Thyroid ectopia"
+        },
+        "subject": {
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 1.0. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6f3731d4-762b-4cbb-bcb8-194027066ee0",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-1",
         "verificationStatus": {
           "coding": [
             {
@@ -220,290 +265,20 @@
           "text": "Fabry disease"
         },
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
         "note": [
           {
-            "text": "Likelihood: 0.9123. Supporting: n/a. Against: n/a."
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:477f6e6c-4129-40bc-938c-df1f766e7fd1",
-      "resource": {
-        "resourceType": "Condition",
-        "id": "cond-1",
-        "verificationStatus": {
-          "coding": [
-            {
-              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-              "code": "provisional",
-              "display": "Provisional"
-            }
-          ]
-        },
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
-                "code": "encounter-diagnosis",
-                "display": "Encounter Diagnosis"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://www.orpha.net",
-              "code": "49041",
-              "display": "IgG4-related retroperitoneal fibrosis"
-            }
-          ],
-          "text": "IgG4-related retroperitoneal fibrosis"
-        },
-        "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
-        },
-        "note": [
-          {
-            "text": "Likelihood: 0.0115. Supporting: n/a. Against: n/a."
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "urn:uuid:7061d8b0-3d5d-4188-8d9f-b3a8a9457d16",
+      "fullUrl": "urn:uuid:195bc0cd-bb74-4cd7-b995-5e43ec3ef52c",
       "resource": {
         "resourceType": "Condition",
         "id": "cond-2",
-        "verificationStatus": {
-          "coding": [
-            {
-              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-              "code": "provisional",
-              "display": "Provisional"
-            }
-          ]
-        },
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
-                "code": "encounter-diagnosis",
-                "display": "Encounter Diagnosis"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://www.omim.org",
-              "code": "621369",
-              "display": "Systemic lupus erythematosus 18"
-            }
-          ],
-          "text": "Systemic lupus erythematosus 18"
-        },
-        "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
-        },
-        "note": [
-          {
-            "text": "Likelihood: 0.01. Supporting: n/a. Against: n/a."
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "urn:uuid:f1f8e22c-9114-49ff-b7f0-009d9f0c3ae4",
-      "resource": {
-        "resourceType": "Condition",
-        "id": "cond-3",
-        "verificationStatus": {
-          "coding": [
-            {
-              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-              "code": "provisional",
-              "display": "Provisional"
-            }
-          ]
-        },
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
-                "code": "encounter-diagnosis",
-                "display": "Encounter Diagnosis"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://www.omim.org",
-              "code": "301500",
-              "display": "fabry disease"
-            }
-          ],
-          "text": "fabry disease"
-        },
-        "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
-        },
-        "note": [
-          {
-            "text": "Likelihood: 0.0039. Supporting: n/a. Against: n/a."
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "urn:uuid:9dc5c698-fed3-49d2-a7ac-3c9b07629dfe",
-      "resource": {
-        "resourceType": "Condition",
-        "id": "cond-4",
-        "verificationStatus": {
-          "coding": [
-            {
-              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-              "code": "provisional",
-              "display": "Provisional"
-            }
-          ]
-        },
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
-                "code": "encounter-diagnosis",
-                "display": "Encounter Diagnosis"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://www.orpha.net",
-              "code": "79276",
-              "display": "Acute intermittent porphyria"
-            }
-          ],
-          "text": "Acute intermittent porphyria"
-        },
-        "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
-        },
-        "note": [
-          {
-            "text": "Likelihood: 0.0026. Supporting: n/a. Against: n/a."
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "urn:uuid:f3aa0358-098d-49fe-bd62-8f93ac047723",
-      "resource": {
-        "resourceType": "Condition",
-        "id": "cond-5",
-        "verificationStatus": {
-          "coding": [
-            {
-              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-              "code": "provisional",
-              "display": "Provisional"
-            }
-          ]
-        },
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
-                "code": "encounter-diagnosis",
-                "display": "Encounter Diagnosis"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://www.orpha.net",
-              "code": "904",
-              "display": "Williams syndrome"
-            }
-          ],
-          "text": "Williams syndrome"
-        },
-        "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
-        },
-        "note": [
-          {
-            "text": "Likelihood: 0.0023. Supporting: n/a. Against: n/a."
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "urn:uuid:b6b97bf9-68c5-4002-8992-2c87b4a89c8d",
-      "resource": {
-        "resourceType": "Condition",
-        "id": "cond-6",
-        "verificationStatus": {
-          "coding": [
-            {
-              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
-              "code": "provisional",
-              "display": "Provisional"
-            }
-          ]
-        },
-        "category": [
-          {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
-                "code": "encounter-diagnosis",
-                "display": "Encounter Diagnosis"
-              }
-            ]
-          }
-        ],
-        "code": {
-          "coding": [
-            {
-              "system": "http://www.orpha.net",
-              "code": "183",
-              "display": "Eosinophilic granulomatosis with polyangiitis"
-            }
-          ],
-          "text": "Eosinophilic granulomatosis with polyangiitis"
-        },
-        "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
-        },
-        "note": [
-          {
-            "text": "Likelihood: 0.0022. Supporting: n/a. Against: n/a."
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "urn:uuid:b3ab41b7-918d-4a7e-9d64-3d87782b7326",
-      "resource": {
-        "resourceType": "Condition",
-        "id": "cond-7",
         "verificationStatus": {
           "coding": [
             {
@@ -535,17 +310,242 @@
           "text": "Hemorrhagic fever-renal syndrome"
         },
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
         "note": [
           {
-            "text": "Likelihood: 0.0022. Supporting: n/a. Against: n/a."
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:2d4f6fdd-66ca-473d-ba60-616f571f72f7",
+      "fullUrl": "urn:uuid:870f758f-e1ad-412f-904a-e1ca897b7259",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-3",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "213",
+              "display": "Cystinosis"
+            }
+          ],
+          "text": "Cystinosis"
+        },
+        "subject": {
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:319560fa-b84e-4565-9f4e-541815827ebb",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-4",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "49041",
+              "display": "IgG4-related retroperitoneal fibrosis"
+            }
+          ],
+          "text": "IgG4-related retroperitoneal fibrosis"
+        },
+        "subject": {
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:27b0b8cc-7486-425d-8fa4-d9e22fbabb54",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-5",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.omim.org",
+              "code": "621369",
+              "display": "Systemic lupus erythematosus 18"
+            }
+          ],
+          "text": "Systemic lupus erythematosus 18"
+        },
+        "subject": {
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e887894a-2381-4d42-8c03-8a1211a5c712",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-6",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "544482",
+              "display": "Infection-related hemolytic uremic syndrome"
+            }
+          ],
+          "text": "Infection-related hemolytic uremic syndrome"
+        },
+        "subject": {
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:18565888-c202-4a81-bccb-583dacb697c9",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cond-7",
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "provisional",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.orpha.net",
+              "code": "731",
+              "display": "Autosomal recessive polycystic kidney disease"
+            }
+          ],
+          "text": "Autosomal recessive polycystic kidney disease"
+        },
+        "subject": {
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
+        },
+        "note": [
+          {
+            "text": "Likelihood: 0.0. Supporting: n/a. Against: n/a."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b903eaea-6ccb-4568-b41c-603cefa5eba3",
       "resource": {
         "resourceType": "ServiceRequest",
         "id": "svcreq-0",
@@ -555,28 +555,28 @@
         "code": {
           "coding": [
             {
-              "display": "Enzyme activity assay for alpha-galactosidase A (GLA)"
+              "display": "GLA gene sequencing and deletion/duplication analysis"
             }
           ],
-          "text": "Enzyme activity assay for alpha-galactosidase A (GLA)"
+          "text": "GLA gene sequencing and deletion/duplication analysis"
         },
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
         "reasonCode": [
           {
-            "text": "The patient's phenotype (renal failure, proteinuria, hypertrophic cardiomyopathy, burning limb pain, abdominal pain, intolerance to temperature extremes) and family history are highly suggestive of Fabry disease. The top candidate gene is GLA, which encodes alpha-galactosidase A. Measuring the enzyme activity in leukocytes or plasma can directly assess the function of the GLA gene product."
+            "text": "The patient's phenotype (renal failure, proteinuria, cardiomyopathy, pain, anemia, electrolyte abnormalities) and family history (similar symptoms in daughter and maternal cousin) are highly suggestive of Fabry disease. The top candidate gene identified is GLA, which encodes the enzyme alpha-galactosidase A. Sequencing the GLA gene will identify pathogenic variants, while deletion/duplication analysis will detect larger rearrangements that sequencing might miss."
           }
         ],
         "note": [
           {
-            "text": "Power: decisive. A positive result would establish: Fabry disease if enzyme activity is deficient (<20% of normal). A negative result would rule out: Fabry disease if enzyme activity is normal or near normal (>20% of normal)."
+            "text": "Power: decisive. A positive result would establish: Fabry disease if a pathogenic variant in GLA is identified.. A negative result would rule out: Fabry disease if no pathogenic variant in GLA is found (though deep intronic or regulatory variants might be missed).."
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:82096e84-87a5-4f2f-9380-49572e571485",
+      "fullUrl": "urn:uuid:275bb28d-fa8b-4d55-8dcf-541f922b55fd",
       "resource": {
         "resourceType": "ServiceRequest",
         "id": "svcreq-1",
@@ -586,34 +586,34 @@
         "code": {
           "coding": [
             {
-              "display": "Genetic sequencing of the GLA gene"
+              "display": "Alpha-galactosidase A enzyme activity assay"
             }
           ],
-          "text": "Genetic sequencing of the GLA gene"
+          "text": "Alpha-galactosidase A enzyme activity assay"
         },
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
         "reasonCode": [
           {
-            "text": "Given the strong suspicion for Fabry disease based on clinical features and family history, sequencing the GLA gene will identify pathogenic variants responsible for deficient alpha-galactosidase A activity. This test can confirm the diagnosis and identify specific mutations."
+            "text": "Fabry disease is caused by deficient alpha-galactosidase A activity. Measuring this enzyme activity in leukocytes or plasma can directly assess the underlying biochemical defect. This test complements genetic testing."
           }
         ],
         "note": [
           {
-            "text": "Power: decisive. A positive result would establish: Fabry disease if a pathogenic variant in GLA is identified. A negative result would rule out: Fabry disease if no pathogenic variant in GLA is identified (though this would be less likely given the strong clinical picture and family history; a normal enzyme assay would be more definitive for ruling out Fabry)."
+            "text": "Power: decisive. A positive result would establish: Fabry disease if alpha-galactosidase A activity is significantly reduced or absent.. A negative result would rule out: Fabry disease if alpha-galactosidase A activity is normal or near normal (though some variants may have residual activity).."
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:bdc6ea6a-dadc-4167-863b-57ddce678b17",
+      "fullUrl": "urn:uuid:ec30c0b0-2524-4202-9ad8-47d01053278d",
       "resource": {
         "resourceType": "Observation",
         "id": "obs-GLA",
         "status": "preliminary",
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
         "code": {
           "coding": [
@@ -653,19 +653,19 @@
                 }
               ]
             },
-            "valueString": "high (GeneResolve score 0.972)"
+            "valueString": "high (GeneResolver score 0.913)"
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:47911740-43ac-4e55-92a7-c7ee46df4a44",
+      "fullUrl": "urn:uuid:da4fe6df-6cc0-42e6-b54a-7ab4d0e1790b",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-ELN",
+        "id": "obs-STX1A",
         "status": "preliminary",
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
         "code": {
           "coding": [
@@ -690,7 +690,7 @@
             "valueCodeableConcept": {
               "coding": [
                 {
-                  "display": "ELN"
+                  "display": "STX1A"
                 }
               ]
             }
@@ -705,19 +705,19 @@
                 }
               ]
             },
-            "valueString": "low (GeneResolve score 0.357)"
+            "valueString": "moderate (GeneResolver score 0.570)"
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:b2645743-f3b0-47c6-af86-672bd5b70bdc",
+      "fullUrl": "urn:uuid:9ab010e5-bff5-4dde-b2c6-db848ac8a230",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-DNAJC30",
+        "id": "obs-GTF2I",
         "status": "preliminary",
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
         "code": {
           "coding": [
@@ -742,7 +742,7 @@
             "valueCodeableConcept": {
               "coding": [
                 {
-                  "display": "DNAJC30"
+                  "display": "GTF2I"
                 }
               ]
             }
@@ -757,19 +757,19 @@
                 }
               ]
             },
-            "valueString": "low (GeneResolve score 0.350)"
+            "valueString": "moderate (GeneResolver score 0.559)"
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:c166ab70-60a4-4bab-8597-e295dfafa588",
+      "fullUrl": "urn:uuid:65b5cb14-404e-4ccf-9e24-61ed199ce3db",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-FKBP6",
+        "id": "obs-BAZ1B",
         "status": "preliminary",
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
         "code": {
           "coding": [
@@ -794,7 +794,7 @@
             "valueCodeableConcept": {
               "coding": [
                 {
-                  "display": "FKBP6"
+                  "display": "BAZ1B"
                 }
               ]
             }
@@ -809,19 +809,19 @@
                 }
               ]
             },
-            "valueString": "low (GeneResolve score 0.343)"
+            "valueString": "moderate (GeneResolver score 0.557)"
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:342d80b9-cc0a-462b-952b-6e4041e1d71b",
+      "fullUrl": "urn:uuid:1f4e030e-31e0-4c92-abbc-45b7ad8046df",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-TBL2",
+        "id": "obs-NCF1",
         "status": "preliminary",
         "subject": {
-          "reference": "urn:uuid:973a1130-110b-4d33-b3c6-6935c63fc288"
+          "reference": "urn:uuid:1261f64e-00bf-468b-9502-bfbfd594ee3a"
         },
         "code": {
           "coding": [
@@ -846,7 +846,7 @@
             "valueCodeableConcept": {
               "coding": [
                 {
-                  "display": "TBL2"
+                  "display": "NCF1"
                 }
               ]
             }
@@ -861,7 +861,7 @@
                 }
               ]
             },
-            "valueString": "low (GeneResolve score 0.333)"
+            "valueString": "moderate (GeneResolver score 0.556)"
           }
         ]
       }

@@ -25,6 +25,7 @@ STEP_MODULES: dict[str, str] = {
     "vcf_input":         "generesolver.components.vcf_input",
     "variant_annotator": "generesolver.components.variant_annotator",
     "gwas_lookup":        "generesolver.components.gwas_lookup",
+    "locus_lookup":       "generesolver.components.locus_lookup",
     "inheritance":        "generesolver.components.inheritance",
     "case_classifier":    "generesolver.agents.case_classifier",
     "class_retrieval":    "generesolver.components.class_retrieval",
@@ -56,7 +57,7 @@ _CANONICAL_ORDER: list[str] = [
     "demographics", "deidentifier", "biochem_extractor", "disease_extractor",
     "hpo_mapper", "clinical_synthesizer", "vcf_input", "variant_annotator",
     "inheritance", "case_classifier", "gene_aggregator",
-    "bio_integrator", "gwas_lookup", "literature", "gene_ranker",
+    "bio_integrator", "gwas_lookup", "locus_lookup", "literature", "gene_ranker",
     "variant_disease_context", "acmg_engine", "acmg_rerank", "mechanism",
     "differential_synthesizer", "reasoner", "case_integrator", "next_steps",
     "safety_monitor", "review_manager", "report_generator", "exporter",
@@ -71,7 +72,7 @@ _STEPS_PHENOTYPE_ONLY = [
     "safety_monitor", "review_manager", "report_generator", "exporter",
 ]
 
-_STEPS_PHENOTYPE_VCF = list(_CANONICAL_ORDER)
+_STEPS_PHENOTYPE_VCF = [step for step in _CANONICAL_ORDER if step != "locus_lookup"]
 
 _STEPS_VARIANT_INTERPRETATION = [
     "vcf_input", "variant_annotator", "inheritance",
@@ -88,7 +89,7 @@ _STEPS_GENE_DISEASE_QUERY = [
     "safety_monitor", "review_manager", "report_generator", "exporter",
 ]
 
-_STEPS_LOCUS_LOOKUP = ["gwas_lookup", "report_generator", "exporter"]
+_STEPS_LOCUS_LOOKUP = ["locus_lookup", "report_generator", "exporter"]
 
 _MODE_STEPS: dict[TaskMode, list[str]] = {
     TaskMode.PHENOTYPE_ONLY: _STEPS_PHENOTYPE_ONLY,
@@ -145,6 +146,8 @@ def _should_skip(step: str, state: CaseState) -> bool:
     if step == "gwas_lookup" and not state.has_rsid \
             and not state.annotated_variants:
         return True
+    if step == "locus_lookup" and not state.has_rsid:
+        return True
     if step == "inheritance" and not state.has_family_history \
             and not state.annotated_variants:
         return True
@@ -183,9 +186,9 @@ def _route(state: CaseState) -> CaseState:
 
     state.pending_steps = steps
 
-    if not state.has_vcf:
+    if not state.has_vcf and state.task_mode != TaskMode.LOCUS_LOOKUP:
         state.add_warning("No VCF provided — ranking will be phenotype-based only.")
-    if not state.has_family_history:
+    if not state.has_family_history and state.task_mode != TaskMode.LOCUS_LOOKUP:
         state.add_warning("No family history — inheritance compatibility cannot be assessed.")
 
     state.mark_done("router")
@@ -242,18 +245,20 @@ def _make_node(step_name: str, module_path: str):
             return state
         try:
             module = importlib.import_module(module_path)
-            logger.info("Running agent: %s", step_name)
+            logger.info("Running step: %s", step_name)
             state = module.run(state)
         except NotImplementedError:
-            logger.info("Agent '%s' not yet implemented — skipping.", step_name)
+            logger.info("Step '%s' not yet implemented — skipping.", step_name)
             state.mark_done(step_name)
         except Exception as exc:
-            logger.error("Agent '%s' failed: %s", step_name, exc)
-            state.add_warning(f"Agent '{step_name}' encountered an error: {exc}")
+            logger.error("Step '%s' failed: %s", step_name, exc)
+            if step_name in {"deidentifier", "variant_annotator", "case_classifier", "locus_lookup"}:
+                raise RuntimeError(f"Required step '{step_name}' failed; pipeline stopped: {exc}") from exc
+            state.add_warning(f"Step '{step_name}' encountered an error: {exc}")
             state.mark_done(step_name)
 
         if step_name not in state.completed_steps:
-            logger.warning("Agent '%s' did not mark itself done — forcing.", step_name)
+            logger.warning("Step '%s' did not mark itself done — forcing.", step_name)
             state.mark_done(step_name)
         return state
 
@@ -298,7 +303,7 @@ def run_steps(state: CaseState, steps: list[str]) -> CaseState:
     for name in steps:
         module_path = STEP_MODULES.get(name)
         if module_path is None:
-            logger.warning("No agent registered for step '%s' — skipping.", name)
+            logger.warning("No module registered for step '%s' — skipping.", name)
             continue
         state = _make_node(name, module_path)(state)
     return state

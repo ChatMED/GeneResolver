@@ -34,8 +34,9 @@ def run_benchmark(run_yaml: Path, out_dir: Path) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     for stale in out_dir.rglob("*.duckdb"):
         stale.unlink()
-    subprocess.run([exe, "benchmark", "-r", str(run_yaml), "-o", str(out_dir)],
-                   env=_SUBPROCESS_ENV, check=True)
+    # PhEval 0.5.8 writes <benchmark_name>.duckdb to its current directory.
+    subprocess.run([exe, "benchmark", "-r", str(run_yaml)],
+                   cwd=out_dir, env=_SUBPROCESS_ENV, check=True)
 
     duckdb_files = list(out_dir.rglob("*.duckdb"))
     if not duckdb_files:
@@ -47,7 +48,7 @@ def run_benchmark(run_yaml: Path, out_dir: Path) -> dict:
     except ImportError:
         raise RuntimeError(
             "the `duckdb` package is required to read pheval-utils' output "
-            "(`pip install duckdb`)")
+            "(`pip install duckdb==1.2.2`)")
 
     con = duckdb.connect(str(duckdb_files[0]), read_only=True)
     try:

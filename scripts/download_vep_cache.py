@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 import subprocess
 import sys
@@ -17,7 +18,7 @@ SOURCE_URL = (
     "https://ftp.ensembl.org/pub/release-116/variation/indexed_vep_cache/"
     "homo_sapiens_vep_116_GRCh37.tar.gz"
 )
-DOCKER_IMAGE = "ensemblorg/ensembl-vep"
+DOCKER_IMAGE = os.environ.get("GENERESOLVER_VEP_DOCKER_IMAGE", "ensemblorg/ensembl-vep:release_116.0")
 
 
 def _pull_docker_image() -> bool:
@@ -31,11 +32,16 @@ def _pull_docker_image() -> bool:
 
 
 def _download_and_extract() -> bool:
-    if _MARKER.exists():
+    if _MARKER.is_dir() and any(_MARKER.iterdir()):
         print(f"  [ok] cache already present at {_MARKER}")
         return True
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    free_gib = shutil.disk_usage(CACHE_DIR).free / (1024 ** 3)
+    if free_gib < 50:
+        print(f"  [!] VEP cache setup needs at least 50 GiB free for the 23 GiB archive "
+              f"and extraction; only {free_gib:.1f} GiB is available.", file=sys.stderr)
+        return False
     if not _ARCHIVE.exists():
         print(f"  Downloading {SOURCE_URL}\n  (~23 GB -- this will take a while)")
         try:
@@ -54,7 +60,7 @@ def _download_and_extract() -> bool:
         print(f"  [!] extraction failed: {exc}", file=sys.stderr)
         return False
 
-    if not _MARKER.exists():
+    if not _MARKER.is_dir() or not any(_MARKER.iterdir()):
         print(f"  [!] extraction finished but expected path missing: {_MARKER}",
               file=sys.stderr)
         return False
@@ -73,7 +79,7 @@ def main() -> None:
 
     print("=== VEP local cache + Docker image setup (GRCh37) ===")
     ok_docker = args.skip_docker_pull or _pull_docker_image()
-    ok_cache = _download_and_extract()
+    ok_cache = _download_and_extract() if ok_docker else False
 
     if ok_docker and ok_cache:
         print("\nDone. GENERESOLVER_LOCAL_MODE=1 will now use this local Docker VEP cache "

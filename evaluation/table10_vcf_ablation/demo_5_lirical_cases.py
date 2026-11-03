@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from evaluation.stage5_genome_vcf_ranking import eval_genome_vcf_ranking as evr
+from evaluation.table10_vcf_ablation import eval_genome_vcf_ranking as evr
 
 N_CASES = 5
 _SNAPSHOT_KEY = "_demo_pre_acmg_ranked_genes"

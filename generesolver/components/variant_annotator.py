@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import logging
+import re
+from collections import Counter
 
 from generesolver import config
 from generesolver.components.vcf_input import load_normalized_variants, NormalizedVariant
@@ -12,8 +14,14 @@ from generesolver.schemas.variant import AnnotatedVariant
 
 logger = logging.getLogger(__name__)
 
-_CANDIDATE_RARITY_CEILING = 0.01
+_CANDIDATE_RARITY_CEILING = config.RARITY_AF_CEILING
 
+# The continental gnomAD groups (bottlenecked ASJ/FIN, MID and REMAINING excluded), as in
+# gnomAD's own grpmax and in acmg_engine's BA1 check.
+_CONTINENTAL_KEY_RE = re.compile(r"^gnomADe_(AFR|AMR|EAS|NFE|SAS)_AF$")
+
+# Used by the ORIGINAL profile only. splice_region_variant is LOW impact in Ensembl; it was
+# added so near-splice variants are not lost. The revised profile requires SpliceAI support.
 _HIGH_MODERATE_CONSEQUENCES = {
     "transcript_ablation",
     "splice_acceptor_variant",
@@ -52,9 +60,54 @@ def _get_vep_result(raw_variant: NormalizedVariant, vep_results: dict) -> dict:
 
 def _has_relevant_consequence(consequence: str, impact: str) -> bool:
     return (
-        consequence in _HIGH_MODERATE_CONSEQUENCES or 
+        consequence in _HIGH_MODERATE_CONSEQUENCES or
         impact in ("HIGH", "MODERATE")
     )
+
+
+_HIGH_MODERATE_REVISED = _HIGH_MODERATE_CONSEQUENCES - {"splice_region_variant"}
+
+
+def is_relevant_variant(consequence: str | None, impact: str | None, *, is_splice_relevant: bool = False,
+                        spliceai: float | None = None, profile: str | None = None) -> bool:
+    """Consequence gate shared by variant retention and the gene-candidate gate."""
+    profile = profile or config.VARIANT_FILTER_PROFILE
+    if profile == "original":
+        return _has_relevant_consequence(consequence or "", impact or "")
+    if impact in ("HIGH", "MODERATE") or (consequence or "") in _HIGH_MODERATE_REVISED:
+        return True
+    # LOW-impact splice-region terms count only with SpliceAI support.
+    return bool(is_splice_relevant and spliceai is not None
+                and spliceai >= config.SPLICEAI_RELEVANCE_MIN)
+
+
+def filter_frequency(vep: dict, profile: str | None = None) -> tuple[float | None, str | None, str]:
+    """The allele frequency the candidate filter uses: (af, source, status).
+
+    status: "observed" | "absent" (gnomAD queried, allele not in it) | "not_evaluated"
+    (no gnomAD query result, e.g. annotation gap). Absent counts as rare in both profiles;
+    not_evaluated is kept in both but is counted and flagged separately.
+    """
+    profile = profile or config.VARIANT_FILTER_PROFILE
+    status = vep.get("gnomad_frequency_status") or "not_evaluated"
+    if profile == "original":
+        af = vep.get("gnomad_af")
+        if af is not None:
+            return af, "gnomADe_AF (overall, VEP cache)", "observed"
+        return None, None, status if status in ("absent", "not_evaluated") else "not_evaluated"
+    groups = [v for k, v in (vep.get("gnomad_af_by_population") or {}).items()
+              if v is not None and _CONTINENTAL_KEY_RE.match(k)]
+    if groups:
+        return max(groups), "gnomADe continental max (AFR/AMR/EAS/NFE/SAS, VEP cache)", "observed"
+    if vep.get("gnomad_af") is not None:
+        return vep["gnomad_af"], "gnomADe_AF (overall; no group AFs reported)", "observed"
+    return None, None, status if status in ("absent", "not_evaluated") else "not_evaluated"
+
+
+def passes_rarity(af: float | None, status: str) -> bool:
+    if af is not None:
+        return af < _CANDIDATE_RARITY_CEILING
+    return status in ("absent", "not_evaluated")
 
 
 def _resolve_clinvar_fields(
@@ -77,9 +130,14 @@ def _resolve_clinvar_fields(
         )
     
     clinvar_sig = vep.get("clinvar_significance")
+    # VEP's fallback carries an rsID (Existing_variation), not a ClinVar VariationID. Older
+    # cached annotations stored it under clinvar_id; never pass it on as one.
+    vep_cv_id = vep.get("clinvar_id")
+    if vep_cv_id and not str(vep_cv_id).isdigit():
+        vep_cv_id = None
     return (
         clinvar_sig,
-        vep.get("clinvar_id"),
+        vep_cv_id,
         None,
         None,
         None,
@@ -99,7 +157,22 @@ def _resolve_popmax_allele_number(
     gnomad_af_popmax = vep.get("gnomad_af_popmax")
     gnomad_af_popmax_an = vep.get("gnomad_af_popmax_allele_number")
     gnomad_frequency_status = vep.get("gnomad_frequency_status") or "not_evaluated"
-    
+
+    if config.VARIANT_FILTER_PROFILE == "revised":
+        # One gnomAD release only (v4.1 exomes from the VEP cache): no VEP MAX_AF (mixes
+        # 1000 Genomes), no slivar/AN-index gnomAD v2.1.1 values, no remote gnomAD API.
+        groups = [v for k, v in (vep.get("gnomad_af_by_population") or {}).items()
+                  if v is not None and _CONTINENTAL_KEY_RE.match(k)]
+        return (max(groups) if groups else None), None, gnomad_frequency_status
+
+    # A popmax AF is only usable for BA1/PM2 coverage checks together with the allele
+    # number of the SAME population. VEP's MAX_AF mixes gnomAD v4.1 and 1000 Genomes
+    # populations and carries no AN, so when the local gnomAD index supplies a matched
+    # AF_popmax/AN_popmax pair, use that pair instead.
+    if (gnomad_af_popmax_an is None and slivar.get("gnomad_popmax_an") is not None
+            and slivar.get("gnomad_popmax_af") is not None):
+        return slivar["gnomad_popmax_af"], slivar["gnomad_popmax_an"], "observed"
+
     if gnomad_af_popmax is None and slivar.get("gnomad_popmax_af") is not None:
         gnomad_af_popmax = slivar["gnomad_popmax_af"]
         if gnomad_frequency_status != "observed":
@@ -121,7 +194,9 @@ def _resolve_popmax_allele_number(
         if gn.get("af_popmax_allele_number") is not None:
             gnomad_af_popmax = gn.get("af_popmax")
             gnomad_af_popmax_an = gn.get("af_popmax_allele_number")
-    
+        elif gn.get("af_status") == "absent" and gnomad_frequency_status == "not_evaluated":
+            gnomad_frequency_status = "absent"
+
     return gnomad_af_popmax, gnomad_af_popmax_an, gnomad_frequency_status
 
 
@@ -135,13 +210,16 @@ def _resolve_gnomad_overall_af(
 ) -> tuple[float | None, str]:
     gnomad_af = vep.get("gnomad_af")
     gnomad_frequency_status = vep.get("gnomad_frequency_status") or "not_evaluated"
-    
-    if gnomad_af is None and is_relevant_consequence and not config.LOCAL_MODE:
+
+    if (gnomad_af is None and is_relevant_consequence and not config.LOCAL_MODE
+            and config.VARIANT_FILTER_PROFILE == "original"):
         gn = gnomad_api.get_allele_frequency(chrom, pos, ref, alt, vep.get("genome_build") or "")
         if gn.get("af") is not None:
             gnomad_af = gn.get("af")
             gnomad_frequency_status = "observed"
-    
+        elif gn.get("af_status") == "absent" and gnomad_frequency_status == "not_evaluated":
+            gnomad_frequency_status = "absent"
+
     return gnomad_af, gnomad_frequency_status
 
 
@@ -243,15 +321,18 @@ def _extract_synonymous_positions(
 def _resolve_gnomad_homozygote_count(vep: dict, slivar: dict) -> int | None:
     if vep.get("gnomad_homozygote_count") is not None:
         return vep.get("gnomad_homozygote_count")
-    if slivar.get("gnomad_nhomalt") is not None:
+    # slivar's nhomalt is gnomAD v2.1.1; the revised profile keeps to one gnomAD release.
+    if config.VARIANT_FILTER_PROFILE == "original" and slivar.get("gnomad_nhomalt") is not None:
         return int(slivar["gnomad_nhomalt"])
     return None
 
 
-def _resolve_revel_score(vep: dict, consequence: str, chrom: str, pos: int, ref: str, alt: str) -> float | None:
+def _resolve_revel_score(vep: dict, consequence: str, chrom: str, pos: int, ref: str, alt: str,
+                         genome_build: str | None = None) -> float | None:
     if vep.get("revel_score") is not None:
         return vep.get("revel_score")
-    if consequence == "missense_variant":
+    # The local REVEL index is keyed on hg19 positions; never query it with GRCh38 coordinates.
+    if consequence == "missense_variant" and str(getattr(genome_build, "value", genome_build)) == "GRCh37":
         return revel_local.get_revel_score(chrom, pos, ref, alt)
     return None
 
@@ -260,6 +341,16 @@ def _resolve_spliceai_score(vep: dict, slivar: dict) -> float | None:
     if vep.get("spliceai_score") is not None:
         return vep.get("spliceai_score")
     return slivar.get("spliceai_score")
+
+
+_FREQUENCY_STATUS_PRIORITY = ("observed", "absent", "not_evaluated")
+
+
+def _merge_frequency_status(*statuses: str | None) -> str:
+    for status in _FREQUENCY_STATUS_PRIORITY:
+        if status in statuses:
+            return status
+    return "not_evaluated"
 
 
 def _create_annotated_variant(
@@ -287,8 +378,17 @@ def _create_annotated_variant(
         vep, slivar, chrom, pos, ref, alt, is_relevant
     )
     
+    f_af, f_src, f_status = filter_frequency(vep)
+    legacy_id = vep.get("clinvar_id")
+    dbsnp = vep.get("dbsnp_id") or (legacy_id if str(legacy_id or "").startswith("rs") else None)
+
     return AnnotatedVariant(
         variant_id=variant_id,
+        dbsnp_id=dbsnp,
+        filter_af=f_af,
+        filter_af_source=f_src,
+        filter_af_status=f_status,
+        filter_profile=config.VARIANT_FILTER_PROFILE,
         gene=vep.get("gene"),
         transcript=vep.get("transcript"),
         hgvs_c=vep.get("hgvs_c"),
@@ -316,15 +416,16 @@ def _create_annotated_variant(
         gnomad_homozygote_count=_resolve_gnomad_homozygote_count(vep, slivar),
         gnomad_filter_status=vep.get("gnomad_filter_status"),
         gnomad_coverage=vep.get("gnomad_coverage"),
-        gnomad_frequency_status=gnomad_freq_status_popmax or gnomad_freq_status,
+        gnomad_frequency_status=_merge_frequency_status(gnomad_freq_status_popmax, gnomad_freq_status),
         sift_prediction=vep.get("sift"),
         sift_score=vep.get("sift_score"),
         polyphen_prediction=vep.get("polyphen"),
         polyphen_score=vep.get("polyphen_score"),
-        revel_score=_resolve_revel_score(vep, consequence, chrom, pos, ref, alt),
+        revel_score=_resolve_revel_score(vep, consequence, chrom, pos, ref, alt, genome_build),
         spliceai_score=_resolve_spliceai_score(vep, slivar),
         domains=vep.get("domains") or [],
-        conservation_score=conservation_results.get(_normalize_variant_key(chrom, pos, ref, alt)),
+        # conservation_local keys scores by position only ("chrom:pos").
+        conservation_score=conservation_results.get(f"{str(chrom).lstrip('chr')}:{pos}"),
         genotype=rv.genotype,
         zygosity=rv.zygosity,
         allele_depth_ref=rv.allele_depth_ref,
@@ -364,7 +465,7 @@ def run(state: CaseState) -> CaseState:
     logger.info("Annotating %d PASS variants via VEP...", len(raw_variants))
 
     vep_results = vep_api.annotate_variants(
-        [(v.chrom, v.pos, v.ref, v.alt) for v in raw_variants]
+        [(v.chrom, v.pos, v.ref, v.alt) for v in raw_variants], genome_build=genome_build
     )
 
     slivar_results = gnomad_popmax_local.annotate_batch(
@@ -372,45 +473,91 @@ def run(state: CaseState) -> CaseState:
     )
 
     synonymous_positions = _extract_synonymous_positions(raw_variants, vep_results)
-    conservation_results = conservation_local.get_conservation_batch(synonymous_positions)
+    # phyloP100way is the hg19 track; for other builds BP7 stays not evaluated.
+    conservation_results = (
+        conservation_local.get_conservation_batch(synonymous_positions)
+        if str(getattr(genome_build, "value", genome_build)) == "GRCh37" else {}
+    )
 
     _warn_about_missing_resources(state, genome_build, slivar_results)
 
     annotated: list[AnnotatedVariant] = []
+    profile = config.VARIANT_FILTER_PROFILE
+    fstats: Counter = Counter()
 
     for rv in raw_variants:
         vep = _get_vep_result(rv, vep_results)
-        
+        slivar = slivar_results.get(_normalize_variant_key(rv.chrom, rv.pos, rv.ref, rv.alt)) or {}
+
         consequence = vep.get("consequence", "") or vep.get("most_severe_consequence", "")
         impact = vep.get("impact", "")
-        gnomad_af = vep.get("gnomad_af")
+        f_af, _, f_status = filter_frequency(vep, profile)
 
-        is_relevant_consequence = _has_relevant_consequence(consequence, impact)
-        is_rare = gnomad_af is None or gnomad_af < _CANDIDATE_RARITY_CEILING
+        is_relevant_consequence = is_relevant_variant(
+            consequence, impact, is_splice_relevant=bool(vep.get("is_splice_relevant")),
+            spliceai=_resolve_spliceai_score(vep, slivar), profile=profile)
+        is_rare = passes_rarity(f_af, f_status)
 
+        fstats["annotated"] += 1
         if not is_relevant_consequence and not is_rare:
+            fstats["dropped_common_and_not_relevant"] += 1
             continue
-
-        slivar = slivar_results.get(_normalize_variant_key(rv.chrom, rv.pos, rv.ref, rv.alt)) or {}
+        fstats["retained"] += 1
+        fstats[f"retained_frequency_{f_status}"] += 1
+        if is_relevant_consequence and is_rare:
+            fstats["relevant_and_rare"] += 1
+            fstats[f"relevant_and_rare_frequency_{f_status}"] += 1
 
         variant = _create_annotated_variant(
             rv, vep, slivar, conservation_results, genome_build
         )
 
         _add_variant_warnings(variant, rv)
+        if f_status == "not_evaluated":
+            variant.warnings.append(
+                "gnomAD frequency NOT EVALUATED (no gnomAD result for this allele) -- treated as "
+                "rare for candidate selection but this is unverified, not an observed absence.")
 
         annotated.append(variant)
 
     state.annotated_variants = annotated
-    logger.info("Retained %d candidate variants after filtering.", len(annotated))
+    logger.info("Retained %d candidate variants after filtering (profile=%s).", len(annotated), profile)
 
     if not annotated:
         state.add_warning("No candidate variants remained after annotation filtering.")
+    n_ne = fstats.get("relevant_and_rare_frequency_not_evaluated", 0)
+    if n_ne:
+        state.add_warning(
+            f"{n_ne} HIGH/MODERATE variant(s) passed the rarity filter only because no gnomAD "
+            "frequency could be evaluated (not_evaluated, distinct from absent).")
 
+    from generesolver.components import vcf_input as _vcf
+    from generesolver.integrations import resource_versions
+    meta = vep_api.annotation_metadata(genome_build)
     state.provenance.append(ProvenanceItem(
         component="variant_annotator",
-        tool_name="Ensembl VEP REST API + gnomAD GraphQL",
-        tool_version="Ensembl VEP REST v12",
+        tool_name=("Local Ensembl VEP Docker" if config.LOCAL_MODE else "Ensembl VEP REST API"),
+        tool_version=(f"VEP {meta.get('vep_release')}; {meta.get('vep_image')}"
+                      if config.LOCAL_MODE else f"Ensembl release {meta.get('ensembl_release')}"),
+        database_version=(f"cache {meta.get('cache')}" if config.LOCAL_MODE else genome_build),
+        details={
+            "vep": meta,
+            "filter": {
+                "profile": profile,
+                "rarity_af_ceiling": _CANDIDATE_RARITY_CEILING,
+                "rarity_frequency": ("overall gnomADe_AF" if profile == "original"
+                                     else "max gnomADe AF over AFR/AMR/EAS/NFE/SAS"),
+                "relevance": ("VEP IMPACT HIGH/MODERATE or consequence list incl. splice_region_variant"
+                              if profile == "original" else
+                              f"VEP IMPACT HIGH/MODERATE, or splice-region term with SpliceAI >= "
+                              f"{config.SPLICEAI_RELEVANCE_MIN}"),
+                "retention_rule": "keep unless (not rare AND not relevant)",
+                "gene_candidate_rule": "gene needs >=1 variant that is relevant AND rare",
+                "counts": dict(fstats),
+            },
+            "vcf_loading": dict(_vcf.LAST_LOAD_STATS),
+            "resources": resource_versions.collect(genome_build),
+        },
     ))
     if any(v.clinvar_source == "local_clinvar_vcf" for v in annotated):
         state.provenance.append(ProvenanceItem(

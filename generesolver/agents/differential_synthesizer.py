@@ -18,6 +18,7 @@ from generesolver.config import (
     JUDGE_TOP_K,
     JUDGE_MAX_CANDIDATES,
     JUDGE_SEED_RESERVE,
+    JUDGE_TIEBREAK_CAP,
 )
 from generesolver.schemas.case import CaseState
 from generesolver.schemas.gene import GeneRank
@@ -38,8 +39,7 @@ _MAX_TOKENS = 2048
 _REASONING_CHAR_BUDGET = 60
 _VALID_CONFIDENCE = {b.value for b in ConfidenceBand}
 
-_CTX_LIMIT = {"medgemma": 16384, "claude": 200000, "anthropic": 200000,
-              "deepseek": 64000, "openai": 128000}
+_CTX_LIMIT = 16384  # MedGemma 27B IT serving context
 _SYS_RESERVE = 2000
 _CHARS_PER_TOKEN = 2.8
 _BUNDLE_MIN_KEEP = 5
@@ -56,7 +56,7 @@ def _bundle_tokens(bundle: dict) -> int:
 
 
 def _fit_bundle(bundle: dict, max_output_tokens: int) -> dict:
-    ctx = _CTX_LIMIT.get(active_backend(), 16384)
+    ctx = _CTX_LIMIT
     budget = ctx - max_output_tokens - _SYS_RESERVE
     if _bundle_tokens(bundle) <= budget:
         return bundle
@@ -173,7 +173,7 @@ def run(state: CaseState) -> CaseState:
             f"candidates={len(judge_view)}"
         )
     else:
-        mode_tag = f"tiebreak; cap=±{RERANK_ADJUSTMENT_CAP}; top_k={len(judge_view)}"
+        mode_tag = f"tiebreak; cap=±{JUDGE_TIEBREAK_CAP}; top_k={len(judge_view)}"
     state.provenance.append(ProvenanceItem(
         component="differential_synthesizer",
         tool_name="LLM judge - rerank + differential (grounded in retrieved facts)",
@@ -390,10 +390,12 @@ def _build_rerank_prompt(
 ) -> str:
     facts_json = json.dumps(bundle, separators=(",", ":"), ensure_ascii=False)
     allowed_genes = ", ".join(candidate_symbols) or "(none)"
-    cap = RERANK_ADJUSTMENT_CAP
+    cap = JUDGE_TIEBREAK_CAP
 
     return (
-        "You rerank candidate genes for a clinical-genomics case.\n"
+        "You break near-ties between candidate genes for a clinical-genomics case.\n"
+        "The deterministic ranker order is final except where two genes have almost the "
+        "same ranker score; your adjustments only matter there.\n"
         "Use ONLY the FACTS. Do NOT use outside memory.\n\n"
         f"FACTS: {facts_json}\n\n"
         f"Allowed genes: {allowed_genes}\n\n"
@@ -593,7 +595,7 @@ def _apply_rerank(
             continue
         grounded_raw = d.get("grounded_in") or []
         valid, _invalid = validate_grounded_in(grounded_raw, bundle)
-        adjustment = clamp_adjustment(d.get("adjustment", 0.0))
+        adjustment = clamp_adjustment(d.get("adjustment", 0.0), cap=JUDGE_TIEBREAK_CAP)
         if not valid and adjustment != 0.0:
             logger.debug("rerank: %s ungrounded -> zeroed", gene)
             adjustment = 0.0

@@ -284,13 +284,10 @@ def run(state: CaseState) -> CaseState:
                 ent.text = restore_terms(clean, emap) if ok else "[REDACTED]"
 
     if not applied:
-        state.add_warning(
-            "Privacy filter could not run — clinical note may contain PII. "
-            "External API calls (Claude HPO mapper) will use the original text. "
-            "De-identify the clinical note manually before running in production."
-        )
-        state.add_safety_flag(
-            "PII filter failed — patient identifiers may have been sent to external APIs."
+        state.clinical_note_deidentified = None
+        raise RuntimeError(
+            "De-identification failed; pipeline stopped before outbound LLM/evidence requests. "
+            "Provide a de-identified note or repair the local de-identification backend."
         )
     else:
         logger.info(

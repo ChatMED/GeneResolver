@@ -75,6 +75,28 @@ def _load() -> dict[str, str]:
     return result
 
 
+_gene_map: dict[str, str] | None = None
+
+
+def mane_select_transcript(gene: str | None) -> str | None:
+    """Unversioned Ensembl ID of the gene's MANE Select transcript (by HGNC symbol)."""
+    global _gene_map
+    if not gene:
+        return None
+    if _gene_map is None:
+        _gene_map = {}
+        path = _mane_file()
+        if path is not None:
+            with gzip.open(path, "rt", encoding="utf-8") as f:
+                col = {n: i for i, n in enumerate(f.readline().lstrip("#").rstrip("\n").split("\t"))}
+                if {"symbol", "Ensembl_nuc", "MANE_status"} <= set(col):
+                    for line in f:
+                        c = line.rstrip("\n").split("\t")
+                        if c[col["MANE_status"]] == "MANE Select":
+                            _gene_map.setdefault(c[col["symbol"]], _strip_version(c[col["Ensembl_nuc"]]))
+    return _gene_map.get(gene)
+
+
 def get_mane_status(transcript_id: str | None) -> str | None:
     global _mane_map
     if not transcript_id:

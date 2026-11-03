@@ -29,7 +29,7 @@
     {
       "type": {
         "id": "HP:0002664",
-        "label": "Tumour"
+        "label": "Tumor"
       },
       "excluded": false
     },
@@ -56,13 +56,6 @@
     },
     {
       "type": {
-        "id": "HP:0002925",
-        "label": "High TSH"
-      },
-      "excluded": false
-    },
-    {
-      "type": {
         "id": "HP:0001959",
         "label": "Polydipsia"
       },
@@ -70,16 +63,16 @@
     },
     {
       "type": {
-        "id": "HP:0001824",
-        "label": "Weight loss"
+        "id": "HP:0001278",
+        "label": "Orthostatic hypotension"
       },
       "excluded": false
     }
   ],
   "interpretations": [],
   "metaData": {
-    "created": "2026-08-14T08:43:38.528991+00:00",
-    "createdBy": "GeneResolve v2",
+    "created": "2026-11-02T08:34:15.269347+00:00",
+    "createdBy": "GeneResolver v2",
     "resources": [
       {
         "id": "hp",

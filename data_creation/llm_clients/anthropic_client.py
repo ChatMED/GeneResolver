@@ -9,8 +9,10 @@ from pathlib import Path
 
 import anthropic
 
-from generesolver.config import CLAUDE_MODEL, OUTPUTS_DIR
+from generesolver.config import OUTPUTS_DIR
 from generesolver.integrations._llm_errors import LLMResponseError
+
+CLAUDE_MODEL = "claude-opus-5"  # default only; dataset scripts pass the model they used
 
 __all__ = ["complete_json", "complete_structured", "complete_text", "LLMResponseError"]
 

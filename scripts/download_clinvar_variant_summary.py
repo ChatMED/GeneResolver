@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import gzip
 import urllib.request
 from pathlib import Path
 
@@ -13,14 +14,25 @@ SOURCE_URL = "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_sum
 def main() -> None:
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     if OUTPUT_PATH.exists():
-        size_mb = OUTPUT_PATH.stat().st_size / (1024 * 1024)
-        print(f"Already exists: {OUTPUT_PATH} ({size_mb:.1f} MB)")
-        print("Delete the file first if you want to refresh.")
-        return
+        try:
+            with gzip.open(OUTPUT_PATH, "rb") as handle:
+                while handle.read(1024 * 1024):
+                    pass
+        except (EOFError, OSError) as exc:
+            print(f"Incomplete ClinVar download found ({exc}); will replace it.")
+        else:
+            size_mb = OUTPUT_PATH.stat().st_size / (1024 * 1024)
+            print(f"Already exists: {OUTPUT_PATH} ({size_mb:.1f} MB)")
+            return
 
     print(f"Downloading {SOURCE_URL} (~421 MB)...")
     try:
-        urllib.request.urlretrieve(SOURCE_URL, OUTPUT_PATH)
+        partial = OUTPUT_PATH.with_name(OUTPUT_PATH.name + ".part")
+        urllib.request.urlretrieve(SOURCE_URL, partial)
+        with gzip.open(partial, "rb") as handle:
+            while handle.read(1024 * 1024):
+                pass
+        partial.replace(OUTPUT_PATH)
     except Exception as exc:
         print(f"FATAL: download failed: {exc}", file=sys.stderr)
         sys.exit(1)

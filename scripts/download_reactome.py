@@ -7,7 +7,7 @@ from pathlib import Path
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_PATH = _PROJECT_ROOT / "data" / "reactome" / "NCBI2Reactome_All_Levels.txt"
 
-SOURCE_URL = "https://reactome.org/download/current/NCBI2Reactome_All_Levels.txt"
+SOURCE_URL = "https://download.reactome.org/97/NCBI2Reactome_All_Levels.txt"
 
 
 def main() -> None:
@@ -18,7 +18,7 @@ def main() -> None:
         print("Delete the file first if you want to refresh.")
         return
 
-    print(f"Downloading {SOURCE_URL} (~30 MB)...")
+    print(f"Downloading {SOURCE_URL} (~93 MB, Reactome release 97)...")
     try:
         urllib.request.urlretrieve(SOURCE_URL, OUTPUT_PATH)
     except Exception as exc:

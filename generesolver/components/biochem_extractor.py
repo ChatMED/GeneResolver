@@ -64,17 +64,7 @@ def _llm_extract(note: str, backend: str | None = None) -> list[BiochemMeasureme
                 )
             except Exception as exc2:
                 logger.warning("biochem_extractor: LLM extraction retry failed: %s", exc2)
-                try:
-                    if backend is None and active_backend() == "medgemma":
-                        logger.info("biochem_extractor: falling back to 'deepseek' after medgemma failure")
-                        result = complete_structured(
-                            system=_BIOCHEM_LLM_SYSTEM, user=note,
-                            schema_model=_BiochemExtractionResult, max_tokens=1000, backend="deepseek",
-                        )
-                    else:
-                        raise
-                except Exception:
-                    raise
+                raise
         
         measurements: list[BiochemMeasurement] = []
         direction_map = {
@@ -105,13 +95,13 @@ def _llm_extract(note: str, backend: str | None = None) -> list[BiochemMeasureme
 
 def extract(note: str, backend: str | None = None) -> list[BiochemMeasurement]:
     result = _llm_extract(note, backend)
-    return result if result is not None else []
+    if result is None:
+        raise RuntimeError("Biochemical extraction model failed")
+    return result
 
 
 def run(state: CaseState, backend: str | None = None) -> CaseState:
-    note = (state.clinical_note_deidentified
-            if state.deidentification_applied
-            else (state.input.clinical_note or ""))
+    note = state.clinical_note_deidentified if state.deidentification_applied else ""
     if not note:
         state.mark_done("biochem_extractor")
         return state
@@ -145,10 +135,7 @@ def run(state: CaseState, backend: str | None = None) -> CaseState:
     state.provenance.append(ProvenanceItem(
         component="biochem_extractor",
         tool_name="llm biochemical measurement extractor",
-        tool_version=(
-            f"{backend} backend" if backend else
-            "medgemma (local backend only; fails gracefully on error)"
-        ),
+        tool_version=f"backend={backend or active_backend()}",
     ))
     state.mark_done("biochem_extractor")
     return state

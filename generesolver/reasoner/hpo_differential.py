@@ -8,6 +8,7 @@ import time
 from typing import Any
 
 from generesolver.integrations import (
+    hpo_a,
     llm_client,
     orphanet,
     lr_score,
@@ -31,14 +32,13 @@ _LR_SEED_TOP_N = 100
 _LR_SEED_PARENT_SCAN = 300
 _STAGE_A_MAX_TOKENS = 3000
 _STAGE_C_MAX_TOKENS = 2048
-_STAGE_C_CTX_LIMIT = {"medgemma": 16384, "claude": 200000, "anthropic": 200000,
-                      "deepseek": 64000}
+_STAGE_C_CTX_LIMIT = 16384  # MedGemma 27B IT serving context
 _STAGE_C_SYS_RESERVE = 800
 _STAGE_C_MIN_KEEP = 12
 
 
 def _stage_c_input_budget() -> int:
-    ctx = _STAGE_C_CTX_LIMIT.get(llm_client.active_backend(), 16384)
+    ctx = _STAGE_C_CTX_LIMIT
     return ctx - _STAGE_C_MAX_TOKENS - _STAGE_C_SYS_RESERVE
 _STAGE_C_SLATE = 20
 _STAGE_C_SEED_SLOTS = 15
@@ -70,6 +70,31 @@ def _label(hpo_id: str) -> str:
         return str(hpo_db._get_ontology().get_hpo_object(int(hpo_id.split(":")[1])).name)
     except Exception:
         return ""
+
+
+_ULTRA_RARE_DISEASE_THRESHOLD = 2
+
+
+def _is_ultra_rare(hpo_id: str) -> bool:
+    try:
+        ti = int(str(hpo_id).split(":")[1])
+    except (ValueError, IndexError):
+        return True
+    return len(hpo_a.get_hpo_to_diseases_map().get(ti) or ()) <= _ULTRA_RARE_DISEASE_THRESHOLD
+
+
+def _sendable_labels(terms: list[dict]) -> list[str]:
+    if LOCAL_MODE:
+        return []
+    out = []
+    for t in terms:
+        hid = t.get("hpo_id")
+        if not hid or _is_ultra_rare(hid):
+            continue
+        lab = t.get("label") or _label(hid)
+        if lab:
+            out.append(lab)
+    return out
 
 
 def _terms_block(ids: list[str]) -> str:
@@ -319,8 +344,7 @@ def _evidence_bundle(
         matched = []
         contradicting = []
         lr_sum = 0.0
-    top_labels = [m.get("label") or _label(m["hpo_id"]) for m in matched[:3]]
-    top_labels = [l for l in top_labels if l]
+    top_labels = _sendable_labels(matched)[:3]
     finding_clause = " AND (" + " OR ".join(f'"{l}"' for l in top_labels) + ")" if top_labels else ""
     query = f'"{name}"[ti]' + finding_clause
     try:
@@ -513,9 +537,27 @@ def _biochemical_query_search_candidates(
     bio_cands: list[dict],
     present_ids: list[str] | None = None,
 ) -> list[dict]:
+    if LOCAL_MODE:
+        return []
     queries = _biochemical_search_queries(bio_cands, present_ids)
     if not queries:
         return []
+
+    blocked: set[str] = set()
+    for hid in list(present_ids or []) + [m.get("hpo_id") for c in bio_cands
+                                          for m in c.get("markers") or []]:
+        if hid and _is_ultra_rare(hid):
+            lab = _label(hid)
+            if lab:
+                blocked.add(lab.lower())
+    if blocked:
+        kept = [q for q in queries if not any(b in q.lower() for b in blocked)]
+        if len(kept) < len(queries):
+            logger.info("biochemical query search: blocked %d quer(ies) containing an ultra-rare "
+                        "term -- quasi-identifier risk", len(queries) - len(kept))
+        queries = kept
+        if not queries:
+            return []
 
     _LAST_ENGINES["biochemical_queries"] = list(queries)
 

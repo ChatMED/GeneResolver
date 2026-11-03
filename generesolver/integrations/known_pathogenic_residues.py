@@ -83,43 +83,52 @@ def _build_index() -> tuple[dict[str, dict[int, list[tuple[str, str]]]], dict[st
         )
     else:
         n = 0
-        with gzip.open(_CLINVAR_SUMMARY_PATH, "rt", encoding="utf-8", errors="replace") as f:
-            header = f.readline().lstrip("#").rstrip("\n").split("\t")
-            col = {name: i for i, name in enumerate(header)}
-            required = ("Assembly", "GeneSymbol", "Name", "ClinicalSignificance")
-            if any(r not in col for r in required):
-                logger.error("variant_summary.txt.gz is missing expected column(s) %s -- skipping ClinVar source.",
-                             [r for r in required if r not in col])
-            else:
-                idx_assembly, idx_gene, idx_name, idx_sig = (col[r] for r in required)
-                max_idx = max(idx_assembly, idx_gene, idx_name, idx_sig)
-                n_type = 0
-                for line in f:
-                    cols = line.rstrip("\n").split("\t")
-                    if len(cols) <= max_idx or cols[idx_assembly] != "GRCh37":
-                        continue
-                    if not _clinvar_is_pathogenic(cols[idx_sig]):
-                        continue
-                    name = cols[idx_name]
-                    gene = cols[idx_gene]
+        n_type = 0
+        try:
+            with gzip.open(_CLINVAR_SUMMARY_PATH, "rt", encoding="utf-8", errors="replace") as f:
+                header = f.readline().lstrip("#").rstrip("\n").split("\t")
+                col = {name: i for i, name in enumerate(header)}
+                required = ("Assembly", "GeneSymbol", "Name", "ClinicalSignificance")
+                if any(r not in col for r in required):
+                    logger.error("variant_summary.txt.gz is missing expected column(s) %s -- skipping ClinVar source.",
+                                 [r for r in required if r not in col])
+                else:
+                    idx_assembly, idx_gene, idx_name, idx_sig = (col[r] for r in required)
+                    max_idx = max(idx_assembly, idx_gene, idx_name, idx_sig)
+                    for line in f:
+                        cols = line.rstrip("\n").split("\t")
+                        if len(cols) <= max_idx or cols[idx_assembly] != "GRCh37":
+                            continue
+                        if not _clinvar_is_pathogenic(cols[idx_sig]):
+                            continue
+                        name = cols[idx_name]
+                        gene = cols[idx_gene]
 
-                    parsed = _parse_clinvar_row(name, cols[idx_sig])
-                    if parsed is not None:
-                        pos, ref, alt = parsed
-                        positions = index.setdefault(gene, {})
-                        pairs = positions.setdefault(pos, [])
-                        if (ref, alt) not in pairs:
-                            pairs.append((ref, alt))
-                        n += 1
+                        parsed = _parse_clinvar_row(name, cols[idx_sig])
+                        if parsed is not None:
+                            pos, ref, alt = parsed
+                            positions = index.setdefault(gene, {})
+                            pairs = positions.setdefault(pos, [])
+                            if (ref, alt) not in pairs:
+                                pairs.append((ref, alt))
+                            n += 1
 
-                    consequence = _classify_consequence(name)
-                    if consequence is not None:
-                        counts = type_counts.setdefault(gene, {"truncating": 0, "missense": 0})
-                        counts[consequence] += 1
-                        n_type += 1
-        logger.info("ClinVar pathogenic-missense index: %d entr(y/ies) across %d gene(s)", n, len(index))
-        logger.info("ClinVar truncating/missense classification: %d entr(y/ies) across %d gene(s)",
-                    n_type, len(type_counts))
+                        consequence = _classify_consequence(name)
+                        if consequence is not None:
+                            counts = type_counts.setdefault(gene, {"truncating": 0, "missense": 0})
+                            counts[consequence] += 1
+                            n_type += 1
+        except (EOFError, OSError) as exc:
+            index.clear()
+            type_counts.clear()
+            logger.warning(
+                "ClinVar variant summary is incomplete or corrupt (%s). Skipping its "
+                "PS1/PM5/BP1 evidence; rerun scripts/download_clinvar_variant_summary.py.", exc,
+            )
+        else:
+            logger.info("ClinVar pathogenic-missense index: %d entr(y/ies) across %d gene(s)", n, len(index))
+            logger.info("ClinVar truncating/missense classification: %d entr(y/ies) across %d gene(s)",
+                        n_type, len(type_counts))
 
     if _UNIPROT_HUMSAVAR_PATH.exists():
         n2 = 0
@@ -153,11 +162,14 @@ def _build_index() -> tuple[dict[str, dict[int, list[tuple[str, str]]]], dict[st
 
 def _load() -> tuple[dict[str, dict[str, list[list[str]]]], dict[str, dict[str, int]]]:
     if _CACHE_PATH.exists() and _TYPE_CACHE_PATH.exists():
-        with gzip.open(_CACHE_PATH, "rt", encoding="utf-8") as f:
-            positions = json.load(f)
-        with gzip.open(_TYPE_CACHE_PATH, "rt", encoding="utf-8") as f:
-            types = json.load(f)
-        return positions, types
+        try:
+            with gzip.open(_CACHE_PATH, "rt", encoding="utf-8") as f:
+                positions = json.load(f)
+            with gzip.open(_TYPE_CACHE_PATH, "rt", encoding="utf-8") as f:
+                types = json.load(f)
+            return positions, types
+        except (EOFError, OSError, ValueError) as exc:
+            logger.warning("ClinVar pathogenic-position cache is corrupt (%s); rebuilding.", exc)
 
     index, type_counts = _build_index()
     serializable = {
@@ -165,11 +177,14 @@ def _load() -> tuple[dict[str, dict[str, list[list[str]]]], dict[str, dict[str, 
         for gene, positions in index.items()
     }
     _CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with gzip.open(_CACHE_PATH, "wt", encoding="utf-8") as f:
+    tmp_cache = _CACHE_PATH.with_name(_CACHE_PATH.name + ".part")
+    tmp_types = _TYPE_CACHE_PATH.with_name(_TYPE_CACHE_PATH.name + ".part")
+    with gzip.open(tmp_cache, "wt", encoding="utf-8") as f:
         json.dump(serializable, f)
-    _TYPE_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with gzip.open(_TYPE_CACHE_PATH, "wt", encoding="utf-8") as f:
+    with gzip.open(tmp_types, "wt", encoding="utf-8") as f:
         json.dump(type_counts, f)
+    tmp_cache.replace(_CACHE_PATH)
+    tmp_types.replace(_TYPE_CACHE_PATH)
     return serializable, type_counts
 
 
@@ -204,6 +219,12 @@ def truncating_fraction(gene: str) -> tuple[float | None, int]:
     if total < BP1_MIN_CLASSIFIED:
         return None, total
     return counts.get("truncating", 0) / total, total
+
+
+def type_counts(gene: str) -> dict[str, int]:
+    """{'truncating': n, 'missense': n} for the gene's ClinVar P/LP variants ({} if none)."""
+    _ensure_loaded()
+    return dict(_type_counts.get(gene) or {})
 
 
 def known_pathogenic_at_residue(gene: str, position: int) -> list[tuple[str, str]]:

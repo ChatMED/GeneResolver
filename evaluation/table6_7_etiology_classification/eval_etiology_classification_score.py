@@ -55,6 +55,14 @@ def macro_f1(gold: list[str], pred: list[str]) -> float:
     return sum(scores) / len(scores)
 
 
+def confusion_matrix(gold: list[str], pred: list[str]) -> dict[str, dict[str, int]]:
+    """Four-way counts with gold labels as rows and predictions as columns."""
+    matrix = {actual: {predicted: 0 for predicted in LABELS} for actual in LABELS}
+    for actual, predicted in zip(gold, pred):
+        matrix[actual][predicted] += 1
+    return matrix
+
+
 def percentile(values: list[float], probability: float) -> float:
     ordered = sorted(values)
     position = (len(ordered) - 1) * probability
@@ -117,6 +125,9 @@ def analyze_repeat(rows: list[dict], repeat: int, bootstraps: int, seed: int) ->
         branch_correct[condition] = branch
         acc_ci = bootstrap_ci(correct, rng, bootstraps)
         branch_ci = bootstrap_ci(branch, rng, bootstraps)
+        confusion = confusion_matrix(gold, pred)
+        single_gene_total = sum(confusion["single_gene"].values())
+        single_gene_correct = confusion["single_gene"]["single_gene"]
         result["conditions"][condition_name(condition)] = {
             "correct": sum(correct),
             "accuracy": sum(correct) / len(correct),
@@ -125,6 +136,12 @@ def analyze_repeat(rows: list[dict], repeat: int, bootstraps: int, seed: int) ->
             "branch_correct": sum(branch),
             "branch_accuracy": sum(branch) / len(branch),
             "branch_ci": branch_ci,
+            "single_gene_correct": single_gene_correct,
+            "single_gene_total": single_gene_total,
+            "single_gene_recall": (
+                single_gene_correct / single_gene_total if single_gene_total else None
+            ),
+            "confusion_matrix": confusion,
         }
 
     comparisons = {
@@ -170,6 +187,18 @@ def print_report(result: dict) -> None:
             f"branch={metric['branch_correct']}/{result['n']}="
             f"{metric['branch_accuracy']:.3f} (95% CI {blo:.3f}-{bhi:.3f})"
         )
+        recall = metric["single_gene_recall"]
+        recall_text = f"{recall:.3f}" if recall is not None else "undefined"
+        print(
+            f"  single-gene recall={metric['single_gene_correct']}/"
+            f"{metric['single_gene_total']}={recall_text}"
+        )
+        print("  confusion matrix (gold rows, predicted columns):")
+        print("    gold \\ pred       " + " ".join(f"{label:>14s}" for label in LABELS))
+        for gold_label, counts in metric["confusion_matrix"].items():
+            print(f"    {gold_label:18s}" + " ".join(
+                f"{counts[pred_label]:14d}" for pred_label in LABELS
+            ))
     for name, comparison in result["comparisons"].items():
         lo, hi = comparison["difference_ci"]
         print(

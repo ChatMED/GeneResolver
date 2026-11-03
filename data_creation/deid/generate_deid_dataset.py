@@ -87,9 +87,9 @@ def generate_one(item_id: str, backend: str, model: str | None) -> dict:
         "(not a list, no markdown fencing) matching the schema in your instructions."
     )
     if backend == "anthropic":
-        from generesolver.integrations import anthropic_client as backend_client
+        from data_creation.llm_clients import anthropic_client as backend_client
     elif backend == "openai":
-        from generesolver.integrations import openai_client as backend_client
+        from data_creation.llm_clients import openai_client as backend_client
     else:
         raise ValueError(f"unknown backend: {backend}")
 

@@ -140,9 +140,10 @@ def _call_classifier(findings: str) -> dict:
                 max_tokens=MAX_TOKENS, temperature=TEMPERATURE,
             )
         except Exception as exc2:
-            logger.warning("Etiology classification failed after retry: %s", exc2)
-            return {}
-    return response if isinstance(response, dict) else {}
+            raise RuntimeError(f"Etiology classification model failed after retry: {exc2}") from exc2
+    if not isinstance(response, dict) or not isinstance(response.get("label"), str):
+        raise RuntimeError("Etiology classification returned invalid JSON (missing label)")
+    return response
 
 
 def classify(findings: str, with_llm: bool = True, max_tokens: int = 700, **_ignored) -> dict:

@@ -1,0 +1,2 @@
+anthropic>=0.86.0   # data_creation/llm_clients/anthropic_client.py (de-identification note generation)
+openai>=1.0         # data_creation/llm_clients/openai_client.py (silver-corpus construction)

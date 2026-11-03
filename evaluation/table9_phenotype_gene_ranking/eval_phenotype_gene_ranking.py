@@ -74,6 +74,7 @@ class GeneResolverPhEvalRunner(PhEvalRunner):
         print(f"  [run] {len(files)} cases total — {cached} already cached (resuming), "
               f"{todo} left to run", file=sys.stderr)
         errors = 0
+        done = 0
         bar = tqdm(files, desc="PhEval phenotype-only", unit="case", file=sys.stderr)
         for pp in bar:
             out = self._raw / f"{pp.stem}.json"
@@ -90,6 +91,7 @@ class GeneResolverPhEvalRunner(PhEvalRunner):
             tmp = out.with_suffix(".json.tmp")
             tmp.write_text(json.dumps(ranked))
             os.replace(tmp, out)
+            done += 1
             bar.set_postfix(errors=errors)
         if todo:
             print(f"  [run] done — {done} cases run this session, {errors} errors, "
@@ -169,7 +171,7 @@ plot_customisation:
 def _main():
     if len(sys.argv) <= 1:
         sys.exit(
-            "usage: python -m evaluation.stage4_phenotype_gene_ranking.eval_phenotype_gene_ranking N [corpus_dir]\n"
+            "usage: python -m evaluation.table9_phenotype_gene_ranking.eval_phenotype_gene_ranking N [corpus_dir]\n"
             "  N = 0 runs the FULL 4,677-case corpus (hours). Pass a small number (e.g. 20) for a quick\n"
             "  check instead. No default is assumed on purpose so this never launches the full run by\n"
             "  accident -- pass 0 explicitly if that's really what you want."
@@ -179,7 +181,7 @@ def _main():
     corpus_pp = corpus / "phenopackets"
     if not corpus_pp.exists():
         sys.exit(f"corpus not found: {corpus_pp}")
-    base = ROOT / "eval_runs" / f"_pheval_{corpus.name}"
+    base = Path(os.environ.get("GENERESOLVER_STAGE4_RUN_DIR") or ROOT / "eval_runs" / f"_pheval_{corpus.name}")
     out = base / "results"
     out.mkdir(parents=True, exist_ok=True)
     testdata = base / "testdata" if n else corpus
@@ -209,12 +211,12 @@ def _main():
     metrics: dict = {}
     try:
         summary = pheval_scoring.run_benchmark(run_yaml, base / "benchmark")
-        hits = pheval_scoring.per_case_hits(runner._raw, testdata / "phenopackets", runner._gid)
+        hits = pheval_scoring.per_case_hits_from_results(out)
         r1_ci = stats.bootstrap_ci(pheval_scoring.hit_vector(hits, k=1))
         metrics = {"summary": summary, "recall_at_1_ci95": [r1_ci[1], r1_ci[2]],
                    "n_scored_for_ci": len(hits)}
         n_total = summary.get("total") or summary.get("number_of_samples") or len(hits)
-        print(f"\nScored — same metrics as the paper (compare to Exomiser R@1 0.391):")
+        print(f"\nScored {n_total} case(s) with the paper's PhEval metric definitions:")
         print(f"  Recall@1={summary.get('top1', 0) / n_total:.3f}  "
               f"(95% CI {r1_ci[1]:.3f}-{r1_ci[2]:.3f})  "
               f"Recall@3={summary.get('top3', 0) / n_total:.3f}  "
@@ -222,10 +224,10 @@ def _main():
               f"Recall@10={summary.get('top10', 0) / n_total:.3f}  "
               f"MRR={summary.get('mrr', 0):.3f}")
     except Exception as exc:
-        print(f"\n[score] could not auto-score with pheval-utils ({exc})")
-        print(f"Score it yourself: pheval-utils benchmark -r {run_yaml} -o {base / 'benchmark'}")
-        print(f"  (NOT 'generate-benchmark-stats' — that command does not exist in pheval-utils; "
-              f"the subcommand is 'benchmark')")
+        raise RuntimeError(
+            f"PhEval scoring failed: {exc}. Retry with "
+            f"`cd {base / 'benchmark'} && pheval-utils benchmark -r {run_yaml}`"
+        ) from exc
 
     metrics_path = base / "metrics.json"
     metrics_path.write_text(json.dumps(metrics, indent=2, default=str), encoding="utf-8")
